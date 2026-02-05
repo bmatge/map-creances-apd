@@ -41,23 +41,33 @@ body {
 .main {
   flex: 1;
   padding: 1.5rem;
-  max-width: 1600px;
-  margin: 0 auto;
   width: 100%;
 }
 
 /* Map Section */
 .map-section {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 350px;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
-  min-height: 500px;
+  min-height: 550px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+  .map-section {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+@media (max-width: 900px) {
   .map-section {
     grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .country-panel {
+    order: -1;
+    min-height: 200px;
   }
 }
 
@@ -343,6 +353,23 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .year-slider {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .slider-label {
+    justify-content: center;
+  }
+
+  .current-year {
+    align-self: center;
+  }
 }
 
 .slider-label {
