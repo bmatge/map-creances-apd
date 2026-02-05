@@ -32,6 +32,17 @@ function App() {
       });
   }, []);
 
+  // Update country data when year changes
+  useEffect(() => {
+    if (data && selectedCountry) {
+      const yearData = data[selectedYear.toString()];
+      const countryData = yearData?.countries[selectedCountry];
+      if (countryData) {
+        setSelectedCountryData(countryData);
+      }
+    }
+  }, [selectedYear, data, selectedCountry]);
+
   const handleCountrySelect = (isoCode: string | null, countryData: CountryData | null) => {
     setSelectedCountry(isoCode);
     setSelectedCountryData(countryData);
