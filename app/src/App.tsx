@@ -3,6 +3,7 @@ import WorldMap from './components/WorldMap';
 import CountryPanel from './components/CountryPanel';
 import YearSlider from './components/YearSlider';
 import KPIBar from './components/KPIBar';
+import CountrySearch from './components/CountrySearch';
 import type { AllData, CountryData } from './types';
 import './App.css';
 
@@ -87,11 +88,17 @@ function App() {
         <KPIBar totals={yearData.totals} year={selectedYear} />
 
         <div className="left-column">
-          <YearSlider
-            years={YEARS}
-            selectedYear={selectedYear}
-            onYearChange={setSelectedYear}
-          />
+          <div className="controls-row">
+            <YearSlider
+              years={YEARS}
+              selectedYear={selectedYear}
+              onYearChange={setSelectedYear}
+            />
+            <CountrySearch
+              data={yearData}
+              onSelect={handleCountrySelect}
+            />
+          </div>
           <WorldMap
             data={yearData}
             selectedCountry={selectedCountry}
