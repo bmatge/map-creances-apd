@@ -22,62 +22,68 @@ body {
 .header {
   background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
   color: white;
-  padding: 1.5rem 2rem;
+  padding: 0.75rem 2rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .header-content h1 {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.1rem;
 }
 
 .header-content .subtitle {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   opacity: 0.9;
 }
 
 /* Main */
 .main {
   flex: 1;
-  padding: 1.5rem;
+  padding: 1rem 0;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 /* Map Section */
 .map-section {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: 1.5rem;
-  min-height: 550px;
+  grid-template-columns: 1fr 320px;
+  gap: 1rem;
+  height: 380px;
 }
 
 @media (max-width: 1200px) {
   .map-section {
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 280px;
   }
 }
 
 @media (max-width: 900px) {
   .map-section {
     grid-template-columns: 1fr;
-    min-height: auto;
   }
 
   .country-panel {
     order: -1;
-    min-height: 200px;
   }
 }
 
 /* Map Container */
 .map-container {
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
-  min-height: 500px;
+  height: 100%;
 }
 
 .map-container svg {
@@ -133,10 +139,13 @@ body {
 /* Country Panel */
 .country-panel {
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  padding: 1rem;
   position: relative;
+  overflow-y: auto;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .country-panel.empty {
@@ -344,14 +353,14 @@ body {
 
 /* Year Slider */
 .year-slider {
+  grid-column: 1 / -1;
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -389,24 +398,26 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0;
+  position: relative;
 }
 
 .slider {
-  width: 100%;
-  height: 6px;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  height: 4px;
   -webkit-appearance: none;
   appearance: none;
   background: #e2e8f0;
-  border-radius: 3px;
+  border-radius: 2px;
   outline: none;
 }
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background: #2563eb;
   border-radius: 50%;
   cursor: pointer;
@@ -414,8 +425,8 @@ body {
 }
 
 .slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background: #2563eb;
   border-radius: 50%;
   cursor: pointer;
@@ -426,17 +437,20 @@ body {
 .year-markers {
   display: flex;
   justify-content: space-between;
+  margin-top: 0.25rem;
 }
 
 .year-marker {
   background: none;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #94a3b8;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.15rem 0.25rem;
   border-radius: 4px;
   transition: all 0.2s;
+  min-width: 40px;
+  text-align: center;
 }
 
 .year-marker:hover {
@@ -460,19 +474,19 @@ body {
 
 /* KPI Bar */
 .kpi-bar {
+  grid-column: 1 / -1;
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
 }
 
 .kpi-title {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #64748b;
   font-weight: 600;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid #e2e8f0;
 }
 
@@ -525,9 +539,9 @@ body {
 .footer {
   background: #1e293b;
   color: #94a3b8;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 /* Loading */
