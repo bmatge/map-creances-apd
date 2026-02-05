@@ -51,23 +51,28 @@ body {
   padding-right: 2rem;
 }
 
-/* Left Column (slider + map) */
-.left-column {
+/* Year Slider - spans left columns */
+.year-slider {
   grid-column: 1 / 9;
   grid-row: 2 / 3;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
-.controls-row {
-  display: flex;
-  gap: 0.5rem;
-  align-items: stretch;
+/* Country Search - spans right columns, same row as slider */
+.country-search {
+  grid-column: 9 / -1;
+  grid-row: 2 / 3;
 }
 
-.controls-row .year-slider {
-  flex: 1;
+/* Map Container - below slider */
+.map-container {
+  grid-column: 1 / 9;
+  grid-row: 3 / 4;
+}
+
+/* Country Panel - below search */
+.country-panel {
+  grid-column: 9 / -1;
+  grid-row: 3 / 4;
 }
 
 @media (max-width: 900px) {
@@ -76,14 +81,24 @@ body {
     padding-right: 1rem;
   }
 
-  .left-column {
+  .year-slider {
     grid-column: 1 / -1;
     grid-row: 2 / 3;
   }
 
-  .country-panel {
+  .country-search {
     grid-column: 1 / -1;
     grid-row: 3 / 4;
+  }
+
+  .map-container {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+  }
+
+  .country-panel {
+    grid-column: 1 / -1;
+    grid-row: 5 / 6;
     max-height: 300px;
     overflow-y: auto;
   }
@@ -160,14 +175,14 @@ body {
 
 /* Country Panel */
 .country-panel {
-  grid-column: 9 / -1;
-  grid-row: 2 / 3;
   background: white;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   position: relative;
   box-sizing: border-box;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .country-panel.empty {
@@ -603,13 +618,19 @@ body {
 /* Country Search */
 .country-search {
   position: relative;
-  flex-shrink: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .search-input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .search-icon {
@@ -622,7 +643,7 @@ body {
 }
 
 .search-input {
-  width: 180px;
+  width: 100%;
   padding: 0.4rem 0.5rem 0.4rem 2rem;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
@@ -676,8 +697,3 @@ body {
   border-radius: 0 0 6px 6px;
 }
 
-@media (max-width: 600px) {
-  .search-input {
-    width: 140px;
-  }
-}
