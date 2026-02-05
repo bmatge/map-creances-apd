@@ -1,0 +1,3088 @@
+{
+  "2020": {
+    "countries": {
+      "ZAF": {
+        "country": "AFRIQUE DU SUD",
+        "apd": 454065891.66999996,
+        "napd": 83284277.66,
+        "total": 537350169.3299999
+      },
+      "ALB": {
+        "country": "ALBANIE",
+        "apd": 0,
+        "napd": 1252137.7434999999,
+        "total": 1252137.7434999999
+      },
+      "DZA": {
+        "country": "ALGERIE",
+        "apd": 100224397.95,
+        "napd": 0,
+        "total": 100224397.95
+      },
+      "AGO": {
+        "country": "ANGOLA",
+        "apd": 14253359.91,
+        "napd": 0,
+        "total": 14253359.91
+      },
+      "ATG": {
+        "country": "ANTIGUE-ET-BARBUDE",
+        "apd": 0,
+        "napd": 27583044.468784172,
+        "total": 27583044.468784172
+      },
+      "ARG": {
+        "country": "ARGENTINE",
+        "apd": 49609399.22,
+        "napd": 56407481.05981223,
+        "total": 106016880.27981223
+      },
+      "ARM": {
+        "country": "ARMENIE",
+        "apd": 128311902.32999998,
+        "napd": 0,
+        "total": 128311902.32999998
+      },
+      "AZE": {
+        "country": "AZERBAIDJAN",
+        "apd": 195791538.34,
+        "napd": 0,
+        "total": 195791538.34
+      },
+      "BGD": {
+        "country": "BANGLADESH",
+        "apd": 187322873.89000002,
+        "napd": 7448965.136466166,
+        "total": 194771839.0264662
+      },
+      "BEN": {
+        "country": "BENIN",
+        "apd": 52088697.5,
+        "napd": 0,
+        "total": 52088697.5
+      },
+      "BOL": {
+        "country": "BOLIVIE",
+        "apd": 280319690.78,
+        "napd": 0,
+        "total": 280319690.78
+      },
+      "BIH": {
+        "country": "BOSNIE",
+        "apd": 0,
+        "napd": 123740177.42663357,
+        "total": 123740177.42663357
+      },
+      "BWA": {
+        "country": "BOTSWANA",
+        "apd": 25922.289999999997,
+        "napd": 0,
+        "total": 25922.289999999997
+      },
+      "BRA": {
+        "country": "BRESIL",
+        "apd": 1033919374.25,
+        "napd": 129525708.06645358,
+        "total": 1163445082.3164535
+      },
+      "BFA": {
+        "country": "BURKINA FASO",
+        "apd": 445739465.42,
+        "napd": 0,
+        "total": 445739465.42
+      },
+      "BDI": {
+        "country": "BURUNDI",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "KHM": {
+        "country": "CAMBODGE",
+        "apd": 430718272.0,
+        "napd": 0,
+        "total": 430718272.0
+      },
+      "CMR": {
+        "country": "CAMEROUN",
+        "apd": 1442594436.99,
+        "napd": 0,
+        "total": 1442594436.99
+      },
+      "CPV": {
+        "country": "CAP-VERT",
+        "apd": 51133528.49,
+        "napd": 0,
+        "total": 51133528.49
+      },
+      "CAF": {
+        "country": "CENTRAFRIQUE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "CHL": {
+        "country": "CHILI",
+        "apd": 21419321.91747779,
+        "napd": 0,
+        "total": 21419321.91747779
+      },
+      "CHN": {
+        "country": "CHINE",
+        "apd": 866561666.9599997,
+        "napd": 25916229.736146763,
+        "total": 892477896.6961465
+      },
+      "COL": {
+        "country": "COLOMBIE",
+        "apd": 1678955100.03,
+        "napd": 161321789.76,
+        "total": 1840276889.79
+      },
+      "COM": {
+        "country": "COMORES",
+        "apd": 0,
+        "napd": 2339590.6712482953,
+        "total": 2339590.6712482953
+      },
+      "COG": {
+        "country": "CONGO",
+        "apd": 169383451.63437,
+        "napd": 0,
+        "total": 169383451.63437
+      },
+      "COD": {
+        "country": "CONGO REPUBLIQUE DEMOCRATIQUE",
+        "apd": 54360808.06999999,
+        "napd": 0,
+        "total": 54360808.06999999
+      },
+      "PRK": {
+        "country": "COREE DU NORD",
+        "apd": 0,
+        "napd": 133964062.47972856,
+        "total": 133964062.47972856
+      },
+      "CRI": {
+        "country": "COSTA RICA",
+        "apd": 127670440.04,
+        "napd": 0,
+        "total": 127670440.04
+      },
+      "CIV": {
+        "country": "COTE D'IVOIRE",
+        "apd": 1247770090.07825,
+        "napd": 482262.455585996,
+        "total": 1248252352.533836
+      },
+      "CUB": {
+        "country": "CUBA",
+        "apd": 19738657.26,
+        "napd": 712308814.3406154,
+        "total": 732047471.6006154
+      },
+      "DJI": {
+        "country": "DJIBOUTI",
+        "apd": 21611282.43,
+        "napd": 3414281.8568572113,
+        "total": 25025564.28685721
+      },
+      "EGY": {
+        "country": "EGYPTE",
+        "apd": 1280491512.99,
+        "napd": 23942306.16728506,
+        "total": 1304433819.157285
+      },
+      "ECU": {
+        "country": "EQUATEUR",
+        "apd": 559156813.51,
+        "napd": 914258.3038548125,
+        "total": 560071071.8138548
+      },
+      "ETH": {
+        "country": "ETHIOPIE",
+        "apd": 203308505.3,
+        "napd": 45295251.73,
+        "total": 248603757.03
+      },
+      "GAB": {
+        "country": "GABON",
+        "apd": 395406620.49,
+        "napd": 8672546.01525,
+        "total": 404079166.50525004
+      },
+      "GEO": {
+        "country": "GEORGIE",
+        "apd": 435712961.91,
+        "napd": 0,
+        "total": 435712961.91
+      },
+      "GHA": {
+        "country": "GHANA",
+        "apd": 321613937.92,
+        "napd": 0,
+        "total": 321613937.92
+      },
+      "GRC": {
+        "country": "GRECE",
+        "apd": 0,
+        "napd": 11255236062.03,
+        "total": 11255236062.03
+      },
+      "GRD": {
+        "country": "GRENADE",
+        "apd": 2625343.5300000003,
+        "napd": 0,
+        "total": 2625343.5300000003
+      },
+      "GIN": {
+        "country": "GUINEE",
+        "apd": 85256082.65,
+        "napd": 71810.09,
+        "total": 85327892.74000001
+      },
+      "GNQ": {
+        "country": "GUINEE EQUATORIALE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "DMA": {
+        "country": "ILE DOMINIQUE",
+        "apd": 15040406.68,
+        "napd": 0,
+        "total": 15040406.68
+      },
+      "IND": {
+        "country": "INDE",
+        "apd": 1275418358.43,
+        "napd": 0,
+        "total": 1275418358.43
+      },
+      "IDN": {
+        "country": "INDONESIE",
+        "apd": 1818396968.89,
+        "napd": 16805867.607801765,
+        "total": 1835202836.4978018
+      },
+      "IRQ": {
+        "country": "IRAK",
+        "apd": 381678795.0,
+        "napd": 561718667.5380058,
+        "total": 943397462.5380058
+      },
+      "IRN": {
+        "country": "IRAN",
+        "apd": 0,
+        "napd": 513714.5615,
+        "total": 513714.5615
+      },
+      "JOR": {
+        "country": "JORDANIE",
+        "apd": 854181373.5899999,
+        "napd": 15000000.0,
+        "total": 869181373.5899999
+      },
+      "KEN": {
+        "country": "KENYA",
+        "apd": 717756565.6800001,
+        "napd": 86620777.49,
+        "total": 804377343.1700001
+      },
+      "KGZ": {
+        "country": "KIRGHIZISTAN",
+        "apd": 4018058.2100000014,
+        "napd": 0,
+        "total": 4018058.2100000014
+      },
+      "LSO": {
+        "country": "LESOTHO",
+        "apd": 3317446.7299999995,
+        "napd": 0,
+        "total": 3317446.7299999995
+      },
+      "LBN": {
+        "country": "LIBAN",
+        "apd": 112086781.55000001,
+        "napd": 0,
+        "total": 112086781.55000001
+      },
+      "MDG": {
+        "country": "MADAGASCAR",
+        "apd": 90318542.83,
+        "napd": 0,
+        "total": 90318542.83
+      },
+      "MDV": {
+        "country": "MALDIVES",
+        "apd": 11209878.64,
+        "napd": 0,
+        "total": 11209878.64
+      },
+      "MLI": {
+        "country": "MALI",
+        "apd": 196733358.79,
+        "napd": 27870058.250000004,
+        "total": 224603417.04
+      },
+      "MAR": {
+        "country": "MAROC",
+        "apd": 2881183317.37,
+        "napd": 49405639.39,
+        "total": 2930588956.7599998
+      },
+      "MUS": {
+        "country": "MAURICE",
+        "apd": 473902931.86,
+        "napd": 0,
+        "total": 473902931.86
+      },
+      "MRT": {
+        "country": "MAURITANIE",
+        "apd": 94006380.61999999,
+        "napd": 29576912.83,
+        "total": 123583293.44999999
+      },
+      "MEX": {
+        "country": "MEXIQUE",
+        "apd": 1354693568.05,
+        "napd": 15471428.56,
+        "total": 1370164996.61
+      },
+      "MNG": {
+        "country": "MONGOLIE",
+        "apd": 52155507.92,
+        "napd": 0,
+        "total": 52155507.92
+      },
+      "MNE": {
+        "country": "MONTENEGRO",
+        "apd": 2174747.0,
+        "napd": 3478471.114584001,
+        "total": 5653218.114584001
+      },
+      "MOZ": {
+        "country": "MOZAMBIQUE",
+        "apd": 156353754.94,
+        "napd": 0,
+        "total": 156353754.94
+      },
+      "MMR": {
+        "country": "MYANMAR",
+        "apd": 7531146.570000002,
+        "napd": 368528911.51306593,
+        "total": 376060058.0830659
+      },
+      "NAM": {
+        "country": "NAMIBIE",
+        "apd": 21707832.91,
+        "napd": 0,
+        "total": 21707832.91
+      },
+      "NPL": {
+        "country": "NEPAL",
+        "apd": 2244044.59,
+        "napd": 0,
+        "total": 2244044.59
+      },
+      "NIC": {
+        "country": "NICARAGUA",
+        "apd": 206840.0,
+        "napd": 0,
+        "total": 206840.0
+      },
+      "NER": {
+        "country": "NIGER",
+        "apd": 122523013.8,
+        "napd": 0,
+        "total": 122523013.8
+      },
+      "NGA": {
+        "country": "NIGERIA",
+        "apd": 395049661.34,
+        "napd": 0,
+        "total": 395049661.34
+      },
+      "UGA": {
+        "country": "OUGANDA",
+        "apd": 199206070.33,
+        "napd": 0,
+        "total": 199206070.33
+      },
+      "UZB": {
+        "country": "OUZBEKISTAN",
+        "apd": 224182220.17000002,
+        "napd": 150000000.0,
+        "total": 374182220.17
+      },
+      "PAK": {
+        "country": "PAKISTAN",
+        "apd": 922611898.3681855,
+        "napd": 551007576.43736,
+        "total": 1473619474.8055456
+      },
+      "PRY": {
+        "country": "PARAGUAY",
+        "apd": 7898.9400000000005,
+        "napd": 0,
+        "total": 7898.9400000000005
+      },
+      "PER": {
+        "country": "PEROU",
+        "apd": 175265640.70999998,
+        "napd": 0,
+        "total": 175265640.70999998
+      },
+      "PHL": {
+        "country": "PHILIPPINES",
+        "apd": 625086864.4599999,
+        "napd": 0,
+        "total": 625086864.4599999
+      },
+      "DOM": {
+        "country": "REPUBLIQUE DOMINICAINE",
+        "apd": 671083089.0,
+        "napd": 0,
+        "total": 671083089.0
+      },
+      "RWA": {
+        "country": "RWANDA",
+        "apd": 40000000.0,
+        "napd": 13373040.96,
+        "total": 53373040.96
+      },
+      "VCT": {
+        "country": "SAINT VINCENT",
+        "apd": 2116.48,
+        "napd": 0,
+        "total": 2116.48
+      },
+      "LCA": {
+        "country": "SAINTE LUCIE",
+        "apd": 1895384.82,
+        "napd": 0,
+        "total": 1895384.82
+      },
+      "SLV": {
+        "country": "SALVADOR",
+        "apd": 14118776.9,
+        "napd": 0,
+        "total": 14118776.9
+      },
+      "SEN": {
+        "country": "SENEGAL",
+        "apd": 979574415.39,
+        "napd": 167590721.51000005,
+        "total": 1147165136.9
+      },
+      "SRB": {
+        "country": "SERBIE",
+        "apd": 10975000.0,
+        "napd": 72314112.4346989,
+        "total": 83289112.4346989
+      },
+      "SYC": {
+        "country": "SEYCHELLES",
+        "apd": 22586152.97,
+        "napd": 2503401.27,
+        "total": 25089554.24
+      },
+      "SLE": {
+        "country": "SIERRA LEONE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "SOM": {
+        "country": "SOMALIE",
+        "apd": 3260434.87,
+        "napd": 122887275.0275621,
+        "total": 126147709.8975621
+      },
+      "SDN": {
+        "country": "SOUDAN",
+        "apd": 9513555.41,
+        "napd": 333573318.98381734,
+        "total": 343086874.39381737
+      },
+      "LKA": {
+        "country": "SRI LANKA",
+        "apd": 180560503.61,
+        "napd": 0,
+        "total": 180560503.61
+      },
+      "SUR": {
+        "country": "SURINAM",
+        "apd": 31884067.14,
+        "napd": 0,
+        "total": 31884067.14
+      },
+      "SYR": {
+        "country": "SYRIE",
+        "apd": 11450880.58,
+        "napd": 0,
+        "total": 11450880.58
+      },
+      "TJK": {
+        "country": "TADJIKISTAN",
+        "apd": 20021811.63,
+        "napd": 0,
+        "total": 20021811.63
+      },
+      "TZA": {
+        "country": "TANZANIE",
+        "apd": 121979233.21,
+        "napd": 0,
+        "total": 121979233.21
+      },
+      "TCD": {
+        "country": "TCHAD",
+        "apd": 100521112.66,
+        "napd": 0,
+        "total": 100521112.66
+      },
+      "TGO": {
+        "country": "TOGO",
+        "apd": 1799414.96,
+        "napd": 0,
+        "total": 1799414.96
+      },
+      "TUN": {
+        "country": "TUNISIE",
+        "apd": 1071066630.3100001,
+        "napd": 0,
+        "total": 1071066630.3100001
+      },
+      "TUR": {
+        "country": "TURQUIE",
+        "apd": 896053120.14,
+        "napd": 61125000.0,
+        "total": 957178120.14
+      },
+      "UKR": {
+        "country": "UKRAINE",
+        "apd": 645529.6799999999,
+        "napd": 21816759.21,
+        "total": 22462288.89
+      },
+      "URY": {
+        "country": "URUGUAY",
+        "apd": 1455550.9200000002,
+        "napd": 0,
+        "total": 1455550.9200000002
+      },
+      "VEN": {
+        "country": "VENEZUELA",
+        "apd": 0,
+        "napd": 415180785.85200006,
+        "total": 415180785.85200006
+      },
+      "VNM": {
+        "country": "VIETNAM",
+        "apd": 1213928501.942,
+        "napd": 0,
+        "total": 1213928501.942
+      },
+      "YEM": {
+        "country": "YEMEN",
+        "apd": 60069088.27000001,
+        "napd": 3992629.2899835925,
+        "total": 64061717.5599836
+      },
+      "ZMB": {
+        "country": "ZAMBIE",
+        "apd": 66756264.85,
+        "napd": 84969968.6245305,
+        "total": 151726233.4745305
+      },
+      "ZWE": {
+        "country": "ZIMBABWE",
+        "apd": 125088231.69000001,
+        "napd": 0,
+        "total": 125088231.69000001
+      }
+    },
+    "totals": {
+      "apd": 31203700090.150272,
+      "napd": 15978446095.65313,
+      "total": 47182146185.803406,
+      "countryCount": 100
+    }
+  },
+  "2021": {
+    "countries": {
+      "ZAF": {
+        "country": "AFRIQUE DU SUD",
+        "apd": 612229602.6171,
+        "napd": 60726548.44064861,
+        "total": 672956151.0577486
+      },
+      "ALB": {
+        "country": "ALBANIE",
+        "apd": 0,
+        "napd": 1252137.7434999999,
+        "total": 1252137.7434999999
+      },
+      "DZA": {
+        "country": "ALGERIE",
+        "apd": 72583882.14999999,
+        "napd": 0,
+        "total": 72583882.14999999
+      },
+      "AGO": {
+        "country": "ANGOLA",
+        "apd": 25164763.740000006,
+        "napd": 0,
+        "total": 25164763.740000006
+      },
+      "ATG": {
+        "country": "ANTIGUE-ET-BARBUDE",
+        "apd": 0,
+        "napd": 30233135.298544727,
+        "total": 30233135.298544727
+      },
+      "ARG": {
+        "country": "ARGENTINE",
+        "apd": 52912500.992,
+        "napd": 32872570.73199011,
+        "total": 85785071.72399011
+      },
+      "ARM": {
+        "country": "ARMENIE",
+        "apd": 141956917.345,
+        "napd": 54138209.64,
+        "total": 196095126.985
+      },
+      "AZE": {
+        "country": "AZERBAIDJAN",
+        "apd": 227937320.58000004,
+        "napd": 0,
+        "total": 227937320.58000004
+      },
+      "BGD": {
+        "country": "BANGLADESH",
+        "apd": 312256719.54,
+        "napd": 7488582.3237,
+        "total": 319745301.86370003
+      },
+      "BEN": {
+        "country": "BENIN",
+        "apd": 85472667.66,
+        "napd": 0,
+        "total": 85472667.66
+      },
+      "BOL": {
+        "country": "BOLIVIE",
+        "apd": 400150171.97999996,
+        "napd": 0,
+        "total": 400150171.97999996
+      },
+      "BIH": {
+        "country": "BOSNIE",
+        "apd": 0,
+        "napd": 118089110.78061713,
+        "total": 118089110.78061713
+      },
+      "BWA": {
+        "country": "BOTSWANA",
+        "apd": 2567.24,
+        "napd": 131799907.26910001,
+        "total": 131802474.5091
+      },
+      "BRA": {
+        "country": "BRESIL",
+        "apd": 1213864343.6050801,
+        "napd": 2118.5285,
+        "total": 1213866462.1335802
+      },
+      "BFA": {
+        "country": "BURKINA FASO",
+        "apd": 280591660.51000005,
+        "napd": 3300.4615,
+        "total": 280594960.97150004
+      },
+      "BDI": {
+        "country": "BURUNDI",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "KHM": {
+        "country": "CAMBODGE",
+        "apd": 503331779.80999994,
+        "napd": 0,
+        "total": 503331779.80999994
+      },
+      "CMR": {
+        "country": "CAMEROUN",
+        "apd": 1499819449.3619025,
+        "napd": 0,
+        "total": 1499819449.3619025
+      },
+      "CPV": {
+        "country": "CAP-VERT",
+        "apd": 48206937.400000006,
+        "napd": 2866093.9299999997,
+        "total": 51073031.330000006
+      },
+      "CAF": {
+        "country": "CENTRAFRIQUE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "CHL": {
+        "country": "CHILI",
+        "apd": 19173978.103028428,
+        "napd": 0,
+        "total": 19173978.103028428
+      },
+      "CHN": {
+        "country": "CHINE",
+        "apd": 854277362.4517,
+        "napd": 3970848.2231149557,
+        "total": 858248210.6748149
+      },
+      "COL": {
+        "country": "COLOMBIE",
+        "apd": 1935592422.342923,
+        "napd": 148526570.0827,
+        "total": 2084118992.425623
+      },
+      "COM": {
+        "country": "COMORES",
+        "apd": 0,
+        "napd": 2344735.4439006513,
+        "total": 2344735.4439006513
+      },
+      "COG": {
+        "country": "CONGO",
+        "apd": 195470822.6686445,
+        "napd": 0,
+        "total": 195470822.6686445
+      },
+      "COD": {
+        "country": "CONGO REPUBLIQUE DEMOCRATIQUE",
+        "apd": 54377260.010000005,
+        "napd": 0,
+        "total": 54377260.010000005
+      },
+      "PRK": {
+        "country": "COREE DU NORD",
+        "apd": 0,
+        "napd": 133964062.47972856,
+        "total": 133964062.47972856
+      },
+      "CRI": {
+        "country": "COSTA RICA",
+        "apd": 127670440.03999996,
+        "napd": 13175230.567000002,
+        "total": 140845670.60699996
+      },
+      "CIV": {
+        "country": "COTE D'IVOIRE",
+        "apd": 1543401135.69,
+        "napd": 0,
+        "total": 1543401135.69
+      },
+      "CUB": {
+        "country": "CUBA",
+        "apd": 30281703.979999993,
+        "napd": 698740806.938111,
+        "total": 729022510.918111
+      },
+      "DJI": {
+        "country": "DJIBOUTI",
+        "apd": 22141329.50438849,
+        "napd": 2153723.0561234355,
+        "total": 24295052.560511924
+      },
+      "EGY": {
+        "country": "EGYPTE",
+        "apd": 1373783339.8600001,
+        "napd": 10105635.68694626,
+        "total": 1383888975.5469463
+      },
+      "ECU": {
+        "country": "EQUATEUR",
+        "apd": 634600906.5172504,
+        "napd": 0,
+        "total": 634600906.5172504
+      },
+      "ETH": {
+        "country": "ETHIOPIE",
+        "apd": 203959155.7,
+        "napd": 37058823.52,
+        "total": 241017979.22
+      },
+      "GAB": {
+        "country": "GABON",
+        "apd": 416004425.34000003,
+        "napd": 5633448.7095,
+        "total": 421637874.04950005
+      },
+      "GEO": {
+        "country": "GEORGIE",
+        "apd": 585459553.8800001,
+        "napd": 0,
+        "total": 585459553.8800001
+      },
+      "GHA": {
+        "country": "GHANA",
+        "apd": 342633715.2077999,
+        "napd": 0,
+        "total": 342633715.2077999
+      },
+      "GRC": {
+        "country": "GRECE",
+        "apd": 0,
+        "napd": 10810592472.95,
+        "total": 10810592472.95
+      },
+      "GRD": {
+        "country": "GRENADE",
+        "apd": 2795133.85,
+        "napd": 0,
+        "total": 2795133.85
+      },
+      "GIN": {
+        "country": "GUINEE",
+        "apd": 110878169.30744803,
+        "napd": 8.59,
+        "total": 110878177.89744803
+      },
+      "GNQ": {
+        "country": "GUINEE EQUATORIALE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "DMA": {
+        "country": "ILE DOMINIQUE",
+        "apd": 16050565.052597856,
+        "napd": 0,
+        "total": 16050565.052597856
+      },
+      "IND": {
+        "country": "INDE",
+        "apd": 1243956132.63,
+        "napd": 0,
+        "total": 1243956132.63
+      },
+      "IDN": {
+        "country": "INDONESIE",
+        "apd": 1796603563.0572853,
+        "napd": 16509184.314700011,
+        "total": 1813112747.3719854
+      },
+      "IRQ": {
+        "country": "IRAK",
+        "apd": 381678794.99999994,
+        "napd": 522917289.92673254,
+        "total": 904596084.9267325
+      },
+      "IRN": {
+        "country": "IRAN",
+        "apd": 0,
+        "napd": 513714.5615,
+        "total": 513714.5615
+      },
+      "JOR": {
+        "country": "JORDANIE",
+        "apd": 916389483.4695395,
+        "napd": 15000000.0,
+        "total": 931389483.4695395
+      },
+      "KEN": {
+        "country": "KENYA",
+        "apd": 768486768.9368417,
+        "napd": 84774577.05954097,
+        "total": 853261345.9963827
+      },
+      "KGZ": {
+        "country": "KIRGHIZISTAN",
+        "apd": 3847092.880000001,
+        "napd": 0,
+        "total": 3847092.880000001
+      },
+      "LSO": {
+        "country": "LESOTHO",
+        "apd": 3011523.990207999,
+        "napd": 0,
+        "total": 3011523.990207999
+      },
+      "LBN": {
+        "country": "LIBAN",
+        "apd": 85286584.81,
+        "napd": 0,
+        "total": 85286584.81
+      },
+      "MDG": {
+        "country": "MADAGASCAR",
+        "apd": 123535744.63999999,
+        "napd": 0,
+        "total": 123535744.63999999
+      },
+      "MDV": {
+        "country": "MALDIVES",
+        "apd": 11314297.12,
+        "napd": 0,
+        "total": 11314297.12
+      },
+      "MLI": {
+        "country": "MALI",
+        "apd": 198358584.1,
+        "napd": 39706300.61,
+        "total": 238064884.70999998
+      },
+      "MAR": {
+        "country": "MAROC",
+        "apd": 2918931737.0243993,
+        "napd": 22869802.1302,
+        "total": 2941801539.154599
+      },
+      "MUS": {
+        "country": "MAURICE",
+        "apd": 447574063.5117,
+        "napd": 0,
+        "total": 447574063.5117
+      },
+      "MRT": {
+        "country": "MAURITANIE",
+        "apd": 93605086.63000001,
+        "napd": 0,
+        "total": 93605086.63000001
+      },
+      "MEX": {
+        "country": "MEXIQUE",
+        "apd": 1651028438.6546617,
+        "napd": 10314285.7,
+        "total": 1661342724.3546617
+      },
+      "MNG": {
+        "country": "MONGOLIE",
+        "apd": 52778138.55,
+        "napd": 0,
+        "total": 52778138.55
+      },
+      "MNE": {
+        "country": "MONTENEGRO",
+        "apd": 1327643.0,
+        "napd": 2646609.5612117397,
+        "total": 3974252.5612117397
+      },
+      "MOZ": {
+        "country": "MOZAMBIQUE",
+        "apd": 164062987.95534384,
+        "napd": 0,
+        "total": 164062987.95534384
+      },
+      "MMR": {
+        "country": "MYANMAR",
+        "apd": 6672699.060000001,
+        "napd": 319614719.50307477,
+        "total": 326287418.56307477
+      },
+      "NAM": {
+        "country": "NAMIBIE",
+        "apd": 20249800.12251911,
+        "napd": 0,
+        "total": 20249800.12251911
+      },
+      "NPL": {
+        "country": "NEPAL",
+        "apd": 2225583.1400000006,
+        "napd": 0,
+        "total": 2225583.1400000006
+      },
+      "NIC": {
+        "country": "NICARAGUA",
+        "apd": 170956.0,
+        "napd": 0,
+        "total": 170956.0
+      },
+      "NER": {
+        "country": "NIGER",
+        "apd": 161131540.77000004,
+        "napd": 0,
+        "total": 161131540.77000004
+      },
+      "NGA": {
+        "country": "NIGERIA",
+        "apd": 489294660.59980005,
+        "napd": 0,
+        "total": 489294660.59980005
+      },
+      "UGA": {
+        "country": "OUGANDA",
+        "apd": 247800746.40270004,
+        "napd": 0,
+        "total": 247800746.40270004
+      },
+      "UZB": {
+        "country": "OUZBEKISTAN",
+        "apd": 223414720.41000003,
+        "napd": 150000000.0,
+        "total": 373414720.41
+      },
+      "PAK": {
+        "country": "PAKISTAN",
+        "apd": 884206148.7068417,
+        "napd": 566221754.8585899,
+        "total": 1450427903.5654316
+      },
+      "PRY": {
+        "country": "PARAGUAY",
+        "apd": 3071.52,
+        "napd": 0,
+        "total": 3071.52
+      },
+      "PER": {
+        "country": "PEROU",
+        "apd": 149229126.13,
+        "napd": 0,
+        "total": 149229126.13
+      },
+      "PHL": {
+        "country": "PHILIPPINES",
+        "apd": 605804248.2500001,
+        "napd": 0,
+        "total": 605804248.2500001
+      },
+      "DOM": {
+        "country": "REPUBLIQUE DOMINICAINE",
+        "apd": 932887232.3653045,
+        "napd": 0,
+        "total": 932887232.3653045
+      },
+      "RWA": {
+        "country": "RWANDA",
+        "apd": 90000444.44,
+        "napd": 12160943.4694,
+        "total": 102161387.9094
+      },
+      "VCT": {
+        "country": "SAINT VINCENT",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "LCA": {
+        "country": "SAINTE LUCIE",
+        "apd": 1551983.8299999998,
+        "napd": 0,
+        "total": 1551983.8299999998
+      },
+      "SLV": {
+        "country": "SALVADOR",
+        "apd": 35669722.46,
+        "napd": 0,
+        "total": 35669722.46
+      },
+      "SEN": {
+        "country": "SENEGAL",
+        "apd": 1061099633.0099998,
+        "napd": 186848498.36,
+        "total": 1247948131.37
+      },
+      "SRB": {
+        "country": "SERBIE",
+        "apd": 10975000.0,
+        "napd": 55266116.884792626,
+        "total": 66241116.884792626
+      },
+      "SYC": {
+        "country": "SEYCHELLES",
+        "apd": 21816922.209999997,
+        "napd": 2503401.27,
+        "total": 24320323.479999997
+      },
+      "SLE": {
+        "country": "SIERRA LEONE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "SOM": {
+        "country": "SOMALIE",
+        "apd": 3262968.6599999997,
+        "napd": 123842243.27570875,
+        "total": 127105211.93570875
+      },
+      "SDN": {
+        "country": "SOUDAN",
+        "apd": 519464.57,
+        "napd": 346816834.0864339,
+        "total": 347336298.6564339
+      },
+      "LKA": {
+        "country": "SRI LANKA",
+        "apd": 190706546.31520006,
+        "napd": 0,
+        "total": 190706546.31520006
+      },
+      "SUR": {
+        "country": "SURINAM",
+        "apd": 32087385.620000005,
+        "napd": 0,
+        "total": 32087385.620000005
+      },
+      "SYR": {
+        "country": "SYRIE",
+        "apd": 45777.53999999999,
+        "napd": 0,
+        "total": 45777.53999999999
+      },
+      "TJK": {
+        "country": "TADJIKISTAN",
+        "apd": 19999999.98,
+        "napd": 0,
+        "total": 19999999.98
+      },
+      "TZA": {
+        "country": "TANZANIE",
+        "apd": 156071104.73,
+        "napd": 0,
+        "total": 156071104.73
+      },
+      "TCD": {
+        "country": "TCHAD",
+        "apd": 101430311.96999997,
+        "napd": 0,
+        "total": 101430311.96999997
+      },
+      "TGO": {
+        "country": "TOGO",
+        "apd": 9139916.699999996,
+        "napd": 0,
+        "total": 9139916.699999996
+      },
+      "TUN": {
+        "country": "TUNISIE",
+        "apd": 1112916060.328217,
+        "napd": 43917435.2216,
+        "total": 1156833495.549817
+      },
+      "TUR": {
+        "country": "TURQUIE",
+        "apd": 924554018.1100001,
+        "napd": 51875000.0,
+        "total": 976429018.1100001
+      },
+      "UKR": {
+        "country": "UKRAINE",
+        "apd": 781529.6799999999,
+        "napd": 33292975.830000006,
+        "total": 34074505.510000005
+      },
+      "URY": {
+        "country": "URUGUAY",
+        "apd": 900473.4099999999,
+        "napd": 0,
+        "total": 900473.4099999999
+      },
+      "VEN": {
+        "country": "VENEZUELA",
+        "apd": 0,
+        "napd": 423151363.59049994,
+        "total": 423151363.59049994
+      },
+      "VNM": {
+        "country": "VIETNAM",
+        "apd": 1266095841.1289644,
+        "napd": 0,
+        "total": 1266095841.1289644
+      },
+      "YEM": {
+        "country": "YEMEN",
+        "apd": 61451911.66,
+        "napd": 4022265.9186698697,
+        "total": 65474177.57866987
+      },
+      "ZMB": {
+        "country": "ZAMBIE",
+        "apd": 72525721.39057478,
+        "napd": 0,
+        "total": 72525721.39057478
+      },
+      "ZWE": {
+        "country": "ZIMBABWE",
+        "apd": 5808123.139999999,
+        "napd": 85029454.97208151,
+        "total": 90837578.11208151
+      }
+    },
+    "totals": {
+      "apd": 33709310764.35696,
+      "napd": 15425552852.499966,
+      "total": 49134863616.856926,
+      "countryCount": 100
+    }
+  },
+  "2022": {
+    "countries": {
+      "ZAF": {
+        "country": "AFRIQUE DU SUD",
+        "apd": 920115007.98,
+        "napd": 46168193.87,
+        "total": 966283201.85
+      },
+      "ALB": {
+        "country": "ALBANIE",
+        "apd": 75000000.0,
+        "napd": 1252137.7434999999,
+        "total": 76252137.7435
+      },
+      "DZA": {
+        "country": "ALGERIE",
+        "apd": 65164554.690000005,
+        "napd": 72311.76749999999,
+        "total": 65236866.4575
+      },
+      "AGO": {
+        "country": "ANGOLA",
+        "apd": 95574941.74000001,
+        "napd": 0,
+        "total": 95574941.74000001
+      },
+      "ATG": {
+        "country": "ANTIGUE-ET-BARBUDE",
+        "apd": 0,
+        "napd": 32363323.62109649,
+        "total": 32363323.62109649
+      },
+      "SAU": {
+        "country": "ARABIE SAOUDITE",
+        "apd": 0,
+        "napd": 277.90643165197827,
+        "total": 277.90643165197827
+      },
+      "ARG": {
+        "country": "ARGENTINE",
+        "apd": 57388859.559394896,
+        "napd": 84308459.22250438,
+        "total": 141697318.78189927
+      },
+      "ARM": {
+        "country": "ARMENIE",
+        "apd": 256003304.7897348,
+        "napd": 0,
+        "total": 256003304.7897348
+      },
+      "AZE": {
+        "country": "AZERBAIDJAN",
+        "apd": 262462090.21,
+        "napd": 0,
+        "total": 262462090.21
+      },
+      "BGD": {
+        "country": "BANGLADESH",
+        "apd": 486017531.44000006,
+        "napd": 7488582.3237,
+        "total": 493506113.76370007
+      },
+      "BEN": {
+        "country": "BENIN",
+        "apd": 120465485.60000001,
+        "napd": 0,
+        "total": 120465485.60000001
+      },
+      "MMR": {
+        "country": "BIRMANIE",
+        "apd": 5698709.700000001,
+        "napd": 261994155.89539942,
+        "total": 267692865.5953994
+      },
+      "BOL": {
+        "country": "BOLIVIE",
+        "apd": 403721216.94,
+        "napd": 0,
+        "total": 403721216.94
+      },
+      "BIH": {
+        "country": "BOSNIE",
+        "apd": 0,
+        "napd": 111363546.17511389,
+        "total": 111363546.17511389
+      },
+      "BWA": {
+        "country": "BOTSWANA",
+        "apd": 1283.62,
+        "napd": 0,
+        "total": 1283.62
+      },
+      "BRA": {
+        "country": "BRESIL",
+        "apd": 1234864035.18049,
+        "napd": 113337464.8694489,
+        "total": 1348201500.049939
+      },
+      "BFA": {
+        "country": "BURKINA FASO",
+        "apd": 321392238.46,
+        "napd": 3300.4615,
+        "total": 321395538.92149997
+      },
+      "BDI": {
+        "country": "BURUNDI",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "KHM": {
+        "country": "CAMBODGE",
+        "apd": 522848189.22,
+        "napd": 0,
+        "total": 522848189.22
+      },
+      "CMR": {
+        "country": "CAMEROUN",
+        "apd": 1391661195.72,
+        "napd": 0,
+        "total": 1391661195.72
+      },
+      "CPV": {
+        "country": "CAP-VERT",
+        "apd": 47028597.29,
+        "napd": 0,
+        "total": 47028597.29
+      },
+      "CAF": {
+        "country": "CENTRAFRIQUE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "CHL": {
+        "country": "CHILI",
+        "apd": 0,
+        "napd": 16138652.267931744,
+        "total": 16138652.267931744
+      },
+      "CHN": {
+        "country": "CHINE",
+        "apd": 575716649.787617,
+        "napd": 272666541.61389446,
+        "total": 848383191.4015114
+      },
+      "COL": {
+        "country": "COLOMBIE",
+        "apd": 2080286791.1865788,
+        "napd": 131597481.677251,
+        "total": 2211884272.8638296
+      },
+      "COM": {
+        "country": "COMORES",
+        "apd": 0,
+        "napd": 2395004.0847072075,
+        "total": 2395004.0847072075
+      },
+      "COG": {
+        "country": "CONGO",
+        "apd": 233764538.59,
+        "napd": 30000000.0,
+        "total": 263764538.59
+      },
+      "COD": {
+        "country": "CONGO REPUBLIQUE DEMOCRATIQUE",
+        "apd": 34879111.32,
+        "napd": 516997.48,
+        "total": 35396108.8
+      },
+      "PRK": {
+        "country": "COREE DU NORD",
+        "apd": 0,
+        "napd": 133964062.47972856,
+        "total": 133964062.47972856
+      },
+      "CRI": {
+        "country": "COSTA RICA",
+        "apd": 232350443.14982447,
+        "napd": 14008218.1546507,
+        "total": 246358661.30447516
+      },
+      "CIV": {
+        "country": "COTE D'IVOIRE",
+        "apd": 1445425687.44,
+        "napd": 37625095.5375,
+        "total": 1483050782.9775
+      },
+      "CUB": {
+        "country": "CUBA",
+        "apd": 48582204.78,
+        "napd": 742465164.7808675,
+        "total": 791047369.5608674
+      },
+      "DJI": {
+        "country": "DJIBOUTI",
+        "apd": 19620392.28593574,
+        "napd": 1699922.3494046219,
+        "total": 21320314.635340363
+      },
+      "EGY": {
+        "country": "EGYPTE",
+        "apd": 1569030466.42,
+        "napd": 14570431.728802577,
+        "total": 1583600898.1488028
+      },
+      "ECU": {
+        "country": "EQUATEUR",
+        "apd": 775764794.4828806,
+        "napd": 0,
+        "total": 775764794.4828806
+      },
+      "ETH": {
+        "country": "ETHIOPIE",
+        "apd": 210451150.7,
+        "napd": 30266980.38,
+        "total": 240718131.07999998
+      },
+      "GAB": {
+        "country": "GABON",
+        "apd": 438891350.30999994,
+        "napd": 48129361.8785,
+        "total": 487020712.1884999
+      },
+      "GEO": {
+        "country": "GEORGIE",
+        "apd": 613759811.63,
+        "napd": 60000000.0,
+        "total": 673759811.63
+      },
+      "GHA": {
+        "country": "GHANA",
+        "apd": 333203903.28240204,
+        "napd": 0,
+        "total": 333203903.28240204
+      },
+      "GRC": {
+        "country": "GRECE",
+        "apd": 0,
+        "napd": 9670107979.28,
+        "total": 9670107979.28
+      },
+      "GRD": {
+        "country": "GRENADE",
+        "apd": 2678836.58,
+        "napd": 0,
+        "total": 2678836.58
+      },
+      "GIN": {
+        "country": "GUINEE",
+        "apd": 126854504.03,
+        "napd": 7.39,
+        "total": 126854511.42
+      },
+      "GNQ": {
+        "country": "GUINEE EQUATORIALE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "DMA": {
+        "country": "ILE DOMINIQUE",
+        "apd": 13987632.399544269,
+        "napd": 0,
+        "total": 13987632.399544269
+      },
+      "IND": {
+        "country": "INDE",
+        "apd": 1198802317.9099998,
+        "napd": 0,
+        "total": 1198802317.9099998
+      },
+      "IDN": {
+        "country": "INDONESIE",
+        "apd": 1686208907.4164665,
+        "napd": 19897306.81275682,
+        "total": 1706106214.2292233
+      },
+      "IRQ": {
+        "country": "IRAK",
+        "apd": 381678795.0,
+        "napd": 419705512.7728877,
+        "total": 801384307.7728877
+      },
+      "IRN": {
+        "country": "IRAN",
+        "apd": 0,
+        "napd": 513714.5615,
+        "total": 513714.5615
+      },
+      "JOR": {
+        "country": "JORDANIE",
+        "apd": 1051325301.6286855,
+        "napd": 15000000.0,
+        "total": 1066325301.6286855
+      },
+      "KEN": {
+        "country": "KENYA",
+        "apd": 756640047.6067538,
+        "napd": 89274860.4221143,
+        "total": 845914908.0288681
+      },
+      "KGZ": {
+        "country": "KIRGHIZISTAN",
+        "apd": 3798614.71,
+        "napd": 0,
+        "total": 3798614.71
+      },
+      "LSO": {
+        "country": "LESOTHO",
+        "apd": 2495398.09,
+        "napd": 0,
+        "total": 2495398.09
+      },
+      "LBN": {
+        "country": "LIBAN",
+        "apd": 76379812.95,
+        "napd": 0,
+        "total": 76379812.95
+      },
+      "MDG": {
+        "country": "MADAGASCAR",
+        "apd": 134119917.22,
+        "napd": 0,
+        "total": 134119917.22
+      },
+      "MDV": {
+        "country": "MALDIVES",
+        "apd": 9563969.0,
+        "napd": 0,
+        "total": 9563969.0
+      },
+      "MLI": {
+        "country": "MALI",
+        "apd": 212925722.4,
+        "napd": 39891028.20000001,
+        "total": 252816750.60000002
+      },
+      "MAR": {
+        "country": "MAROC",
+        "apd": 3099626368.9363985,
+        "napd": 6000000.0,
+        "total": 3105626368.9363985
+      },
+      "MUS": {
+        "country": "MAURICE",
+        "apd": 421836506.8918117,
+        "napd": 0,
+        "total": 421836506.8918117
+      },
+      "MRT": {
+        "country": "MAURITANIE",
+        "apd": 85504388.98,
+        "napd": 0,
+        "total": 85504388.98
+      },
+      "MEX": {
+        "country": "MEXIQUE",
+        "apd": 1887722723.3348932,
+        "napd": 5157142.84,
+        "total": 1892879866.1748931
+      },
+      "MDA": {
+        "country": "MOLDAVIE",
+        "apd": 75000000.0,
+        "napd": 0,
+        "total": 75000000.0
+      },
+      "MNG": {
+        "country": "MONGOLIE",
+        "apd": 66323248.35,
+        "napd": 0,
+        "total": 66323248.35
+      },
+      "MNE": {
+        "country": "MONTENEGRO",
+        "apd": 5480539.0,
+        "napd": 1693928.0801249319,
+        "total": 7174467.080124931
+      },
+      "MOZ": {
+        "country": "MOZAMBIQUE",
+        "apd": 158043889.78707886,
+        "napd": 0,
+        "total": 158043889.78707886
+      },
+      "NAM": {
+        "country": "NAMIBIE",
+        "apd": 18916740.28,
+        "napd": 0,
+        "total": 18916740.28
+      },
+      "NPL": {
+        "country": "NEPAL",
+        "apd": 1025183.53,
+        "napd": 0,
+        "total": 1025183.53
+      },
+      "NIC": {
+        "country": "NICARAGUA",
+        "apd": 135072.0,
+        "napd": 0,
+        "total": 135072.0
+      },
+      "NER": {
+        "country": "NIGER",
+        "apd": 185211654.14999998,
+        "napd": 0,
+        "total": 185211654.14999998
+      },
+      "NGA": {
+        "country": "NIGERIA",
+        "apd": 579114279.8140045,
+        "napd": 20900000.0,
+        "total": 600014279.8140045
+      },
+      "UGA": {
+        "country": "OUGANDA",
+        "apd": 259635944.177064,
+        "napd": 0,
+        "total": 259635944.177064
+      },
+      "UZB": {
+        "country": "OUZBEKISTAN",
+        "apd": 268345650.94,
+        "napd": 300169166.66,
+        "total": 568514817.6
+      },
+      "PAK": {
+        "country": "PAKISTAN",
+        "apd": 843477418.7099999,
+        "napd": 426055701.3809392,
+        "total": 1269533120.090939
+      },
+      "PRY": {
+        "country": "PARAGUAY",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "PER": {
+        "country": "PEROU",
+        "apd": 157225889.3,
+        "napd": 0,
+        "total": 157225889.3
+      },
+      "PHL": {
+        "country": "PHILIPPINES",
+        "apd": 829347479.7300001,
+        "napd": 0,
+        "total": 829347479.7300001
+      },
+      "DOM": {
+        "country": "REPUBLIQUE DOMINICAINE",
+        "apd": 948376754.6103805,
+        "napd": 0,
+        "total": 948376754.6103805
+      },
+      "RWA": {
+        "country": "RWANDA",
+        "apd": 120594882.3309675,
+        "napd": 14319971.5633172,
+        "total": 134914853.8942847
+      },
+      "VCT": {
+        "country": "SAINT VINCENT",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "LCA": {
+        "country": "SAINTE LUCIE",
+        "apd": 1026460.88,
+        "napd": 0,
+        "total": 1026460.88
+      },
+      "SLV": {
+        "country": "SALVADOR",
+        "apd": 50942594.42,
+        "napd": 0,
+        "total": 50942594.42
+      },
+      "SEN": {
+        "country": "SENEGAL",
+        "apd": 1128490467.1599994,
+        "napd": 209794095.25000003,
+        "total": 1338284562.4099994
+      },
+      "SRB": {
+        "country": "SERBIE",
+        "apd": 64154021.97,
+        "napd": 35498674.89703818,
+        "total": 99652696.86703818
+      },
+      "SYC": {
+        "country": "SEYCHELLES",
+        "apd": 19308106.66,
+        "napd": 2242451.35,
+        "total": 21550558.01
+      },
+      "SLE": {
+        "country": "SIERRA LEONE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "SOM": {
+        "country": "SOMALIE",
+        "apd": 3266560.7199999997,
+        "napd": 124730850.86570875,
+        "total": 127997411.58570875
+      },
+      "SDN": {
+        "country": "SOUDAN",
+        "apd": 9450727.09,
+        "napd": 192954433.78,
+        "total": 202405160.87
+      },
+      "LKA": {
+        "country": "SRI LANKA",
+        "apd": 214379295.46217787,
+        "napd": 174770343.69070533,
+        "total": 389149639.1528832
+      },
+      "SUR": {
+        "country": "SURINAME",
+        "apd": 28300592.91,
+        "napd": 0,
+        "total": 28300592.91
+      },
+      "SYR": {
+        "country": "SYRIE",
+        "apd": 11453859.01,
+        "napd": 0,
+        "total": 11453859.01
+      },
+      "TJK": {
+        "country": "TADJIKISTAN",
+        "apd": 19999999.98,
+        "napd": 0,
+        "total": 19999999.98
+      },
+      "TZA": {
+        "country": "TANZANIE",
+        "apd": 227174719.57000002,
+        "napd": 0,
+        "total": 227174719.57000002
+      },
+      "TCD": {
+        "country": "TCHAD",
+        "apd": 101300001.51,
+        "napd": 0,
+        "total": 101300001.51
+      },
+      "THA": {
+        "country": "THAILANDE",
+        "apd": 0,
+        "napd": 89988752.44679794,
+        "total": 89988752.44679794
+      },
+      "TGO": {
+        "country": "TOGO",
+        "apd": 33938031.28999999,
+        "napd": 150110.92,
+        "total": 34088142.20999999
+      },
+      "TUN": {
+        "country": "TUNISIE",
+        "apd": 1079104815.8,
+        "napd": 48855669.8655025,
+        "total": 1127960485.6655025
+      },
+      "TUR": {
+        "country": "TURQUIE",
+        "apd": 1016488425.4500002,
+        "napd": 42625000.0,
+        "total": 1059113425.4500002
+      },
+      "UKR": {
+        "country": "UKRAINE",
+        "apd": 402358863.01,
+        "napd": 54570929.9005,
+        "total": 456929792.9105
+      },
+      "URY": {
+        "country": "URUGUAY",
+        "apd": 0,
+        "napd": 541965.64,
+        "total": 541965.64
+      },
+      "VEN": {
+        "country": "VENEZUELA",
+        "apd": 0,
+        "napd": 427539279.95400006,
+        "total": 427539279.95400006
+      },
+      "VNM": {
+        "country": "VIETNAM",
+        "apd": 1256142469.357381,
+        "napd": 0,
+        "total": 1256142469.357381
+      },
+      "YEM": {
+        "country": "YEMEN",
+        "apd": 62703385.01,
+        "napd": 4508697.158394051,
+        "total": 67212082.16839404
+      },
+      "ZMB": {
+        "country": "ZAMBIE",
+        "apd": 91449346.94661562,
+        "napd": 0,
+        "total": 91449346.94661562
+      },
+      "ZWE": {
+        "country": "ZIMBABWE",
+        "apd": 125145507.81,
+        "napd": 85043374.18951292,
+        "total": 210188881.9995129
+      }
+    },
+    "totals": {
+      "apd": 36492117181.31508,
+      "napd": 14716896618.141237,
+      "total": 51209013799.456314,
+      "countryCount": 103
+    }
+  },
+  "2023": {
+    "countries": {
+      "ZAF": {
+        "country": "AFRIQUE DU SUD",
+        "apd": 964164628.204489,
+        "napd": 21713632.4494462,
+        "total": 985878260.6539352
+      },
+      "ALB": {
+        "country": "ALBANIE",
+        "apd": 100301960.0,
+        "napd": 51252137.7435,
+        "total": 151554097.7435
+      },
+      "DZA": {
+        "country": "ALGERIE",
+        "apd": 31369348.299999997,
+        "napd": 4285759.615052222,
+        "total": 35655107.91505222
+      },
+      "AGO": {
+        "country": "ANGOLA",
+        "apd": 195447005.65862098,
+        "napd": 0,
+        "total": 195447005.65862098
+      },
+      "ATG": {
+        "country": "ANTIGUE-ET-BARBUDE",
+        "apd": 0,
+        "napd": 31379123.018619645,
+        "total": 31379123.018619645
+      },
+      "SAU": {
+        "country": "ARABIE SAOUDITE",
+        "apd": 0,
+        "napd": 6496008.312217195,
+        "total": 6496008.312217195
+      },
+      "ARG": {
+        "country": "ARGENTINE",
+        "apd": 69090985.7534,
+        "napd": 73368148.57352981,
+        "total": 142459134.3269298
+      },
+      "ARM": {
+        "country": "ARMENIE",
+        "apd": 245149275.9884,
+        "napd": 0,
+        "total": 245149275.9884
+      },
+      "AZE": {
+        "country": "AZERBAIDJAN",
+        "apd": 279247216.6600001,
+        "napd": 0,
+        "total": 279247216.6600001
+      },
+      "BGD": {
+        "country": "BANGLADESH",
+        "apd": 624332312.9699999,
+        "napd": 11453004.025259998,
+        "total": 635785316.9952599
+      },
+      "BEN": {
+        "country": "BENIN",
+        "apd": 193880981.14,
+        "napd": 132050.0,
+        "total": 194013031.14
+      },
+      "BOL": {
+        "country": "BOLIVIE",
+        "apd": 603726732.84,
+        "napd": 0,
+        "total": 603726732.84
+      },
+      "BIH": {
+        "country": "BOSNIE",
+        "apd": 0,
+        "napd": 103012430.54743087,
+        "total": 103012430.54743087
+      },
+      "BWA": {
+        "country": "BOTSWANA",
+        "apd": 1293.25,
+        "napd": 0,
+        "total": 1293.25
+      },
+      "BRA": {
+        "country": "BRESIL",
+        "apd": 1267828464.87214,
+        "napd": 86442938.2274626,
+        "total": 1354271403.0996025
+      },
+      "BFA": {
+        "country": "BURKINA FASO",
+        "apd": 307818013.59,
+        "napd": 3300.4615,
+        "total": 307821314.05149996
+      },
+      "KHM": {
+        "country": "CAMBODGE",
+        "apd": 514577183.36,
+        "napd": 18073377.914899997,
+        "total": 532650561.2749
+      },
+      "CMR": {
+        "country": "CAMEROUN",
+        "apd": 1233695715.88,
+        "napd": 0,
+        "total": 1233695715.88
+      },
+      "CPV": {
+        "country": "CAP-VERT",
+        "apd": 42187999.65,
+        "napd": 0,
+        "total": 42187999.65
+      },
+      "CHL": {
+        "country": "CHILI",
+        "apd": 0,
+        "napd": 11650055.007918546,
+        "total": 11650055.007918546
+      },
+      "CHN": {
+        "country": "CHINE",
+        "apd": 567705797.641751,
+        "napd": 232592252.3424976,
+        "total": 800298049.9842486
+      },
+      "COL": {
+        "country": "COLOMBIE",
+        "apd": 2238364552.85832,
+        "napd": 101872100.777155,
+        "total": 2340236653.635475
+      },
+      "COM": {
+        "country": "COMORES",
+        "apd": 0,
+        "napd": 2102700.5897273263,
+        "total": 2102700.5897273263
+      },
+      "COG": {
+        "country": "CONGO",
+        "apd": 217355307.07999998,
+        "napd": 50000000.00000001,
+        "total": 267355307.07999998
+      },
+      "COD": {
+        "country": "CONGO REPUBLIQUE DEMOCRATIQUE",
+        "apd": 20881069.64,
+        "napd": 0,
+        "total": 20881069.64
+      },
+      "PRK": {
+        "country": "COREE DU NORD",
+        "apd": 0,
+        "napd": 133964062.47972856,
+        "total": 133964062.47972856
+      },
+      "CRI": {
+        "country": "COSTA RICA",
+        "apd": 282974465.427714,
+        "napd": 13555033.436,
+        "total": 296529498.863714
+      },
+      "CIV": {
+        "country": "COTE D'IVOIRE",
+        "apd": 1579876565.19,
+        "napd": 51908937.34,
+        "total": 1631785502.53
+      },
+      "CUB": {
+        "country": "CUBA",
+        "apd": 60833218.6,
+        "napd": 733387355.2196969,
+        "total": 794220573.8196969
+      },
+      "DJI": {
+        "country": "DJIBOUTI",
+        "apd": 15200868.663339095,
+        "napd": 1721194.534481103,
+        "total": 16922063.197820198
+      },
+      "EGY": {
+        "country": "EGYPTE",
+        "apd": 1911034677.64292,
+        "napd": 4160211.7592871897,
+        "total": 1915194889.4022071
+      },
+      "ECU": {
+        "country": "EQUATEUR",
+        "apd": 748475865.909029,
+        "napd": 0,
+        "total": 748475865.909029
+      },
+      "ETH": {
+        "country": "ETHIOPIE",
+        "apd": 200130916.95,
+        "napd": 20588235.28,
+        "total": 220719152.23
+      },
+      "GAB": {
+        "country": "GABON",
+        "apd": 445424084.57,
+        "napd": 47520140.6455,
+        "total": 492944225.2155
+      },
+      "GEO": {
+        "country": "GEORGIE",
+        "apd": 640491008.9100001,
+        "napd": 60000000.0,
+        "total": 700491008.9100001
+      },
+      "GHA": {
+        "country": "GHANA",
+        "apd": 326854813.838664,
+        "napd": 15787.7914332189,
+        "total": 326870601.6300972
+      },
+      "GRC": {
+        "country": "GRECE",
+        "apd": 0,
+        "napd": 8529623485.62,
+        "total": 8529623485.62
+      },
+      "GRD": {
+        "country": "GRENADE",
+        "apd": 2192213.73,
+        "napd": 0,
+        "total": 2192213.73
+      },
+      "GIN": {
+        "country": "GUINEE",
+        "apd": 156778913.11,
+        "napd": 2.98,
+        "total": 156778916.09
+      },
+      "DMA": {
+        "country": "ILE DOMINIQUE",
+        "apd": 10977487.5098265,
+        "napd": 0,
+        "total": 10977487.5098265
+      },
+      "IND": {
+        "country": "INDE",
+        "apd": 1360740255.4299998,
+        "napd": 0,
+        "total": 1360740255.4299998
+      },
+      "IDN": {
+        "country": "INDONESIE",
+        "apd": 1654732911.73928,
+        "napd": 25126253.249999996,
+        "total": 1679859164.98928
+      },
+      "IRQ": {
+        "country": "IRAK",
+        "apd": 349872228.74,
+        "napd": 349849738.9557565,
+        "total": 699721967.6957564
+      },
+      "JOR": {
+        "country": "JORDANIE",
+        "apd": 1018385976.986486,
+        "napd": 15000000.0,
+        "total": 1033385976.986486
+      },
+      "KEN": {
+        "country": "KENYA",
+        "apd": 709276902.972512,
+        "napd": 77209358.5577444,
+        "total": 786486261.5302564
+      },
+      "KGZ": {
+        "country": "KIRGHIZISTAN",
+        "apd": 3597429.8400000012,
+        "napd": 0,
+        "total": 3597429.8400000012
+      },
+      "XKX": {
+        "country": "KOSOVO",
+        "apd": 528356.8,
+        "napd": 0,
+        "total": 528356.8
+      },
+      "LSO": {
+        "country": "LESOTHO",
+        "apd": 2265918.78,
+        "napd": 0,
+        "total": 2265918.78
+      },
+      "LBN": {
+        "country": "LIBAN",
+        "apd": 77602560.17999999,
+        "napd": 0,
+        "total": 77602560.17999999
+      },
+      "MKD": {
+        "country": "MACEDOINE DU NORD",
+        "apd": 200000.0,
+        "napd": 0,
+        "total": 200000.0
+      },
+      "MDG": {
+        "country": "MADAGASCAR",
+        "apd": 160074834.42,
+        "napd": 0,
+        "total": 160074834.42
+      },
+      "MDV": {
+        "country": "MALDIVES",
+        "apd": 7709896.79,
+        "napd": 0,
+        "total": 7709896.79
+      },
+      "MLI": {
+        "country": "MALI",
+        "apd": 205580655.85,
+        "napd": 38003593.720000006,
+        "total": 243584249.57
+      },
+      "MAR": {
+        "country": "MAROC",
+        "apd": 3059726329.6516,
+        "napd": 66274418.65000002,
+        "total": 3126000748.3016
+      },
+      "MUS": {
+        "country": "MAURICE",
+        "apd": 458650990.6121,
+        "napd": 0,
+        "total": 458650990.6121
+      },
+      "MRT": {
+        "country": "MAURITANIE",
+        "apd": 74498177.24000001,
+        "napd": 1169.184,
+        "total": 74499346.42400001
+      },
+      "MEX": {
+        "country": "MEXIQUE",
+        "apd": 1957661620.4144015,
+        "napd": 726.01,
+        "total": 1957662346.4244015
+      },
+      "MDA": {
+        "country": "MOLDAVIE",
+        "apd": 115000000.0,
+        "napd": 0,
+        "total": 115000000.0
+      },
+      "MNG": {
+        "country": "MONGOLIE",
+        "apd": 75707995.56,
+        "napd": 0,
+        "total": 75707995.56
+      },
+      "MNE": {
+        "country": "MONTENEGRO",
+        "apd": 5021316.0,
+        "napd": 603283.2862654037,
+        "total": 5624599.286265404
+      },
+      "MOZ": {
+        "country": "MOZAMBIQUE",
+        "apd": 142982302.76880002,
+        "napd": 0,
+        "total": 142982302.76880002
+      },
+      "MMR": {
+        "country": "MYANMAR",
+        "apd": 5204540.16,
+        "napd": 237689127.2316871,
+        "total": 242893667.3916871
+      },
+      "NAM": {
+        "country": "NAMIBIE",
+        "apd": 14335430.461678809,
+        "napd": 0,
+        "total": 14335430.461678809
+      },
+      "NPL": {
+        "country": "NEPAL",
+        "apd": 601353.6799999999,
+        "napd": 0,
+        "total": 601353.6799999999
+      },
+      "NIC": {
+        "country": "NICARAGUA",
+        "apd": 99188.0,
+        "napd": 0,
+        "total": 99188.0
+      },
+      "NER": {
+        "country": "NIGER",
+        "apd": 197501295.52,
+        "napd": 0,
+        "total": 197501295.52
+      },
+      "NGA": {
+        "country": "NIGERIA",
+        "apd": 629565255.040692,
+        "napd": 20900000.0,
+        "total": 650465255.040692
+      },
+      "UGA": {
+        "country": "OUGANDA",
+        "apd": 256815836.504941,
+        "napd": 7579943.8919,
+        "total": 264395780.396841
+      },
+      "UZB": {
+        "country": "OUZBEKISTAN",
+        "apd": 351388906.14,
+        "napd": 309000822.92,
+        "total": 660389729.06
+      },
+      "PAK": {
+        "country": "PAKISTAN",
+        "apd": 822059016.05112,
+        "napd": 252391656.77796823,
+        "total": 1074450672.8290882
+      },
+      "PER": {
+        "country": "PEROU",
+        "apd": 180056807.02192298,
+        "napd": 300000.0,
+        "total": 180356807.02192298
+      },
+      "PHL": {
+        "country": "PHILIPPINES",
+        "apd": 957667972.6199998,
+        "napd": 0,
+        "total": 957667972.6199998
+      },
+      "DOM": {
+        "country": "REPUBLIQUE DOMINICAINE",
+        "apd": 1117708245.57507,
+        "napd": 0,
+        "total": 1117708245.57507
+      },
+      "RWA": {
+        "country": "RWANDA",
+        "apd": 181159204.786712,
+        "napd": 10777434.2580878,
+        "total": 191936639.0447998
+      },
+      "LCA": {
+        "country": "SAINTE LUCIE",
+        "apd": 894721.48,
+        "napd": 0,
+        "total": 894721.48
+      },
+      "SLV": {
+        "country": "SALVADOR",
+        "apd": 51801237.269999996,
+        "napd": 0,
+        "total": 51801237.269999996
+      },
+      "SEN": {
+        "country": "SENEGAL",
+        "apd": 1273438642.7699997,
+        "napd": 268978491.29,
+        "total": 1542417134.0599997
+      },
+      "SRB": {
+        "country": "SERBIE",
+        "apd": 212623511.47,
+        "napd": 12615833.052727448,
+        "total": 225239344.52272746
+      },
+      "SYC": {
+        "country": "SEYCHELLES",
+        "apd": 16540067.27,
+        "napd": 1954821.1,
+        "total": 18494888.37
+      },
+      "SOM": {
+        "country": "SOMALIE",
+        "apd": 3268371.51,
+        "napd": 125178806.474515,
+        "total": 128447177.98451501
+      },
+      "SDN": {
+        "country": "SOUDAN",
+        "apd": 9513555.409999995,
+        "napd": 335183458.9977211,
+        "total": 344697014.40772104
+      },
+      "LKA": {
+        "country": "SRI LANKA",
+        "apd": 219667040.02715698,
+        "napd": 182136781.97574434,
+        "total": 401803822.0029013
+      },
+      "SUR": {
+        "country": "SURINAME",
+        "apd": 28486322.150000002,
+        "napd": 0,
+        "total": 28486322.150000002
+      },
+      "SYR": {
+        "country": "SYRIE",
+        "apd": 11454105.49000005,
+        "napd": 0,
+        "total": 11454105.49000005
+      },
+      "TJK": {
+        "country": "TADJIKISTAN",
+        "apd": 19999999.98,
+        "napd": 0,
+        "total": 19999999.98
+      },
+      "TZA": {
+        "country": "TANZANIE",
+        "apd": 327774280.78000003,
+        "napd": 0,
+        "total": 327774280.78000003
+      },
+      "TCD": {
+        "country": "TCHAD",
+        "apd": 98204435.05,
+        "napd": 0,
+        "total": 98204435.05
+      },
+      "THA": {
+        "country": "THAILANDE",
+        "apd": 0,
+        "napd": 84550195.64,
+        "total": 84550195.64
+      },
+      "TGO": {
+        "country": "TOGO",
+        "apd": 35983787.64,
+        "napd": 25775305.34000001,
+        "total": 61759092.98000001
+      },
+      "TUN": {
+        "country": "TUNISIE",
+        "apd": 1034590516.95,
+        "napd": 33888202.2320621,
+        "total": 1068478719.1820621
+      },
+      "TUR": {
+        "country": "TURQUIE",
+        "apd": 1047731536.3100001,
+        "napd": 33375000.0,
+        "total": 1081106536.31
+      },
+      "UKR": {
+        "country": "UKRAINE",
+        "apd": 406536806.0755728,
+        "napd": 48662931.86,
+        "total": 455199737.9355728
+      },
+      "URY": {
+        "country": "URUGUAY",
+        "apd": 0,
+        "napd": 305490.87,
+        "total": 305490.87
+      },
+      "VEN": {
+        "country": "VENEZUELA",
+        "apd": 0,
+        "napd": 428421685.1169999,
+        "total": 428421685.1169999
+      },
+      "VNM": {
+        "country": "VIETNAM",
+        "apd": 1197471109.6141028,
+        "napd": 0,
+        "total": 1197471109.6141028
+      },
+      "YEM": {
+        "country": "YEMEN",
+        "apd": 63763473.34,
+        "napd": 4685522.125030165,
+        "total": 68448995.46503016
+      },
+      "ZMB": {
+        "country": "ZAMBIE",
+        "apd": 92122342.0270558,
+        "napd": 0,
+        "total": 92122342.0270558
+      },
+      "ZWE": {
+        "country": "ZIMBABWE",
+        "apd": 124930554.1800001,
+        "napd": 85035073.45761311,
+        "total": 209965627.6376132
+      }
+    },
+    "totals": {
+      "apd": 38529147074.519806,
+      "napd": 13483728592.918167,
+      "total": 52012875667.43797,
+      "countryCount": 98
+    }
+  },
+  "2024": {
+    "countries": {
+      "ZAF": {
+        "country": "AFRIQUE DU SUD",
+        "apd": 953618984.9293501,
+        "napd": 136016598.8905649,
+        "total": 1089635583.819915
+      },
+      "ALB": {
+        "country": "ALBANIE",
+        "apd": 160840307.54000002,
+        "napd": 51186235.74,
+        "total": 212026543.28000003
+      },
+      "DZA": {
+        "country": "ALGERIE",
+        "apd": 13379669.35,
+        "napd": 1621389.52,
+        "total": 15001058.87
+      },
+      "AGO": {
+        "country": "ANGOLA",
+        "apd": 255470140.89,
+        "napd": 16299150.0,
+        "total": 271769290.89
+      },
+      "ATG": {
+        "country": "ANTIGUE-ET-BARBUDE",
+        "apd": 0,
+        "napd": 37753956.07,
+        "total": 37753956.07
+      },
+      "SAU": {
+        "country": "ARABIE SAOUDITE",
+        "apd": 0,
+        "napd": 6724468.16,
+        "total": 6724468.16
+      },
+      "ARG": {
+        "country": "ARGENTINE",
+        "apd": 79016810.3458062,
+        "napd": 74454023.29008593,
+        "total": 153470833.63589212
+      },
+      "ARM": {
+        "country": "ARMENIE",
+        "apd": 338553727.4379751,
+        "napd": 0,
+        "total": 338553727.4379751
+      },
+      "AZE": {
+        "country": "AZERBAIDJAN",
+        "apd": 267552848.5,
+        "napd": 0,
+        "total": 267552848.5
+      },
+      "BGD": {
+        "country": "BANGLADESH",
+        "apd": 835058899.2399999,
+        "napd": 7116014.089999993,
+        "total": 842174913.3299999
+      },
+      "BEN": {
+        "country": "BENIN",
+        "apd": 327921564.39,
+        "napd": 60770.18,
+        "total": 327982334.57
+      },
+      "BOL": {
+        "country": "BOLIVIE",
+        "apd": 622494063.0,
+        "napd": 0,
+        "total": 622494063.0
+      },
+      "BIH": {
+        "country": "BOSNIE",
+        "apd": 0,
+        "napd": 97070103.59,
+        "total": 97070103.59
+      },
+      "BWA": {
+        "country": "BOTSWANA",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "BRA": {
+        "country": "BRESIL",
+        "apd": 1371386609.9628549,
+        "napd": 63227582.4865298,
+        "total": 1434614192.4493847
+      },
+      "BFA": {
+        "country": "BURKINA FASO",
+        "apd": 291871839.71000004,
+        "napd": 3126.75,
+        "total": 291874966.46000004
+      },
+      "BDI": {
+        "country": "BURUNDI",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "KHM": {
+        "country": "CAMBODGE",
+        "apd": 631766529.7499999,
+        "napd": 19321804.6565549,
+        "total": 651088334.4065548
+      },
+      "CMR": {
+        "country": "CAMEROUN",
+        "apd": 1153777148.1299999,
+        "napd": 0,
+        "total": 1153777148.1299999
+      },
+      "CPV": {
+        "country": "CAP-VERT",
+        "apd": 41271936.81,
+        "napd": 0,
+        "total": 41271936.81
+      },
+      "CAF": {
+        "country": "CENTRAFRIQUE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "CHL": {
+        "country": "CHILI",
+        "apd": 0,
+        "napd": 9081140.63,
+        "total": 9081140.63
+      },
+      "CHN": {
+        "country": "CHINE",
+        "apd": 549495119.968663,
+        "napd": 219523344.8,
+        "total": 769018464.7686629
+      },
+      "COL": {
+        "country": "COLOMBIE",
+        "apd": 2193304272.9022837,
+        "napd": 81681721.6307603,
+        "total": 2274985994.533044
+      },
+      "COM": {
+        "country": "COMORES",
+        "apd": 0,
+        "napd": 1806920.59,
+        "total": 1806920.59
+      },
+      "COG": {
+        "country": "CONGO",
+        "apd": 223786212.56,
+        "napd": 67500000.0,
+        "total": 291286212.56
+      },
+      "COD": {
+        "country": "CONGO REPUBLIQUE DEMOCRATIQUE",
+        "apd": 13805550.25,
+        "napd": 0,
+        "total": 13805550.25
+      },
+      "PRK": {
+        "country": "COREE DU NORD",
+        "apd": 0,
+        "napd": 151075985.66,
+        "total": 151075985.66
+      },
+      "CRI": {
+        "country": "COSTA RICA",
+        "apd": 325629919.4526171,
+        "napd": 38643609.313109905,
+        "total": 364273528.76572704
+      },
+      "CIV": {
+        "country": "COTE D'IVOIRE",
+        "apd": 1431396460.7900002,
+        "napd": 137598967.048,
+        "total": 1568995427.8380003
+      },
+      "CUB": {
+        "country": "CUBA",
+        "apd": 70453443.92,
+        "napd": 759126754.157,
+        "total": 829580198.0769999
+      },
+      "DJI": {
+        "country": "DJIBOUTI",
+        "apd": 9893490.451557102,
+        "napd": 1885402.87,
+        "total": 11778893.3215571
+      },
+      "EGY": {
+        "country": "EGYPTE",
+        "apd": 2043296800.740694,
+        "napd": 2094427.35,
+        "total": 2045391228.090694
+      },
+      "ECU": {
+        "country": "EQUATEUR",
+        "apd": 884368496.3686012,
+        "napd": 0,
+        "total": 884368496.3686012
+      },
+      "ETH": {
+        "country": "ETHIOPIE",
+        "apd": 198325880.91,
+        "napd": 12352941.16,
+        "total": 210678822.07
+      },
+      "GAB": {
+        "country": "GABON",
+        "apd": 439821446.85,
+        "napd": 47368666.949999996,
+        "total": 487190113.8
+      },
+      "GEO": {
+        "country": "GEORGIE",
+        "apd": 667182948.66,
+        "napd": 60000000.0,
+        "total": 727182948.66
+      },
+      "GHA": {
+        "country": "GHANA",
+        "apd": 373256583.8662197,
+        "napd": 3381315.81489711,
+        "total": 376637899.6811168
+      },
+      "GRC": {
+        "country": "GRECE",
+        "apd": 0,
+        "napd": 6818896745.14,
+        "total": 6818896745.14
+      },
+      "GRD": {
+        "country": "GRENADE",
+        "apd": 1877025.6839503318,
+        "napd": 0,
+        "total": 1877025.6839503318
+      },
+      "GIN": {
+        "country": "GUINEE",
+        "apd": 197993510.40999997,
+        "napd": 0,
+        "total": 197993510.40999997
+      },
+      "GNQ": {
+        "country": "GUINEE EQUATORIALE",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "DMA": {
+        "country": "ILE DOMINIQUE",
+        "apd": 8418960.66410685,
+        "napd": 0,
+        "total": 8418960.66410685
+      },
+      "IND": {
+        "country": "INDE",
+        "apd": 1410775020.23,
+        "napd": 0,
+        "total": 1410775020.23
+      },
+      "IDN": {
+        "country": "INDONESIE",
+        "apd": 1443582760.7045455,
+        "napd": 287528154.75,
+        "total": 1731110915.4545455
+      },
+      "IRQ": {
+        "country": "IRAK",
+        "apd": 318065662.48,
+        "napd": 275115786.91,
+        "total": 593181449.3900001
+      },
+      "IRN": {
+        "country": "IRAN",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "JOR": {
+        "country": "JORDANIE",
+        "apd": 1064223664.8245882,
+        "napd": 15000000.0,
+        "total": 1079223664.8245883
+      },
+      "KEN": {
+        "country": "KENYA",
+        "apd": 703302544.3061708,
+        "napd": 76203211.5372418,
+        "total": 779505755.8434126
+      },
+      "KGZ": {
+        "country": "KIRGHIZISTAN",
+        "apd": 3393108.280000001,
+        "napd": 0,
+        "total": 3393108.280000001
+      },
+      "XKX": {
+        "country": "KOSOVO",
+        "apd": 528349.4,
+        "napd": 0,
+        "total": 528349.4
+      },
+      "LSO": {
+        "country": "LESOTHO",
+        "apd": 2116641.85,
+        "napd": 0,
+        "total": 2116641.85
+      },
+      "LBN": {
+        "country": "LIBAN",
+        "apd": 61909424.13,
+        "napd": 0,
+        "total": 61909424.13
+      },
+      "MKD": {
+        "country": "MACEDOINE DU NORD",
+        "apd": 12500000.0,
+        "napd": 0,
+        "total": 12500000.0
+      },
+      "MDG": {
+        "country": "MADAGASCAR",
+        "apd": 169187390.28999996,
+        "napd": 0,
+        "total": 169187390.28999996
+      },
+      "MYS": {
+        "country": "MALAISIE",
+        "apd": 0,
+        "napd": 14742401.480000004,
+        "total": 14742401.480000004
+      },
+      "MDV": {
+        "country": "MALDIVES",
+        "apd": 5335672.13,
+        "napd": 0,
+        "total": 5335672.13
+      },
+      "MLI": {
+        "country": "MALI",
+        "apd": 207970051.71000004,
+        "napd": 33925744.02,
+        "total": 241895795.73000005
+      },
+      "MAR": {
+        "country": "MAROC",
+        "apd": 3104459648.8933325,
+        "napd": 51430740.52,
+        "total": 3155890389.4133325
+      },
+      "MUS": {
+        "country": "MAURICE",
+        "apd": 483268540.5588416,
+        "napd": 0,
+        "total": 483268540.5588416
+      },
+      "MRT": {
+        "country": "MAURITANIE",
+        "apd": 69228907.4,
+        "napd": 35924.25,
+        "total": 69264831.65
+      },
+      "MEX": {
+        "country": "MEXIQUE",
+        "apd": 1897988187.0707138,
+        "napd": 0,
+        "total": 1897988187.0707138
+      },
+      "MDA": {
+        "country": "MOLDAVIE",
+        "apd": 160000000.0,
+        "napd": 0,
+        "total": 160000000.0
+      },
+      "MNG": {
+        "country": "MONGOLIE",
+        "apd": 89108953.24,
+        "napd": 0,
+        "total": 89108953.24
+      },
+      "MNE": {
+        "country": "MONTENEGRO",
+        "apd": 55001233.0,
+        "napd": 0,
+        "total": 55001233.0
+      },
+      "MOZ": {
+        "country": "MOZAMBIQUE",
+        "apd": 134554266.573187,
+        "napd": 0,
+        "total": 134554266.573187
+      },
+      "MMR": {
+        "country": "MYANMAR",
+        "apd": 4756755.010000001,
+        "napd": 266426601.74,
+        "total": 271183356.75
+      },
+      "NAM": {
+        "country": "NAMIBIE",
+        "apd": 11965214.243717879,
+        "napd": 15424023.1601012,
+        "total": 27389237.403819077
+      },
+      "NPL": {
+        "country": "NEPAL",
+        "apd": 288479.93,
+        "napd": 0,
+        "total": 288479.93
+      },
+      "NIC": {
+        "country": "NICARAGUA",
+        "apd": 63304.0,
+        "napd": 0,
+        "total": 63304.0
+      },
+      "NER": {
+        "country": "NIGER",
+        "apd": 180907379.15000004,
+        "napd": 0,
+        "total": 180907379.15000004
+      },
+      "NGA": {
+        "country": "NIGERIA",
+        "apd": 758524855.8651376,
+        "napd": 41800000.0,
+        "total": 800324855.8651376
+      },
+      "UGA": {
+        "country": "OUGANDA",
+        "apd": 305823317.61300635,
+        "napd": 0,
+        "total": 305823317.61300635
+      },
+      "UZB": {
+        "country": "OUZBEKISTAN",
+        "apd": 407455796.04999995,
+        "napd": 424972185.74,
+        "total": 832427981.79
+      },
+      "PAK": {
+        "country": "PAKISTAN",
+        "apd": 837138400.9300001,
+        "napd": 67479468.43,
+        "total": 904617869.3600001
+      },
+      "PRY": {
+        "country": "PARAGUAY",
+        "apd": 0,
+        "napd": 0,
+        "total": 0
+      },
+      "PER": {
+        "country": "PEROU",
+        "apd": 184215480.67874432,
+        "napd": 20000000.0,
+        "total": 204215480.67874432
+      },
+      "PHL": {
+        "country": "PHILIPPINES",
+        "apd": 923449750.4399999,
+        "napd": 0,
+        "total": 923449750.4399999
+      },
+      "DOM": {
+        "country": "REPUBLIQUE DOMINICAINE",
+        "apd": 1182609434.490556,
+        "napd": 96609023.2827746,
+        "total": 1279218457.7733307
+      },
+      "RUS": {
+        "country": "RUSSIE",
+        "apd": 0,
+        "napd": 8021145.739999999,
+        "total": 8021145.739999999
+      },
+      "RWA": {
+        "country": "RWANDA",
+        "apd": 229477085.25729397,
+        "napd": 8229921.69838663,
+        "total": 237707006.9556806
+      },
+      "LCA": {
+        "country": "SAINTE LUCIE",
+        "apd": 436787.59,
+        "napd": 0,
+        "total": 436787.59
+      },
+      "SLV": {
+        "country": "SALVADOR",
+        "apd": 51412111.8,
+        "napd": 0,
+        "total": 51412111.8
+      },
+      "SEN": {
+        "country": "SENEGAL",
+        "apd": 1239719402.39,
+        "napd": 183031986.97,
+        "total": 1422751389.3600001
+      },
+      "SRB": {
+        "country": "SERBIE",
+        "apd": 224672299.07,
+        "napd": 1966639.83,
+        "total": 226638938.9
+      },
+      "SYC": {
+        "country": "SEYCHELLES",
+        "apd": 13472099.469999999,
+        "napd": 1579932.2199999997,
+        "total": 15052031.689999998
+      },
+      "SOM": {
+        "country": "SOMALIE",
+        "apd": 3176832.9899999998,
+        "napd": 47479746.63,
+        "total": 50656579.620000005
+      },
+      "SDN": {
+        "country": "SOUDAN",
+        "apd": 9513555.41,
+        "napd": 192954433.78,
+        "total": 202467989.19
+      },
+      "LKA": {
+        "country": "SRI LANKA",
+        "apd": 225755853.49150106,
+        "napd": 194577333.52,
+        "total": 420333187.0115011
+      },
+      "SUR": {
+        "country": "SURINAME",
+        "apd": 25789187.53,
+        "napd": 0,
+        "total": 25789187.53
+      },
+      "SYR": {
+        "country": "SYRIE",
+        "apd": 11454158.12,
+        "napd": 0,
+        "total": 11454158.12
+      },
+      "TJK": {
+        "country": "TADJIKISTAN",
+        "apd": 20006811.64,
+        "napd": 0,
+        "total": 20006811.64
+      },
+      "TZA": {
+        "country": "TANZANIE",
+        "apd": 411032991.64,
+        "napd": 307174.64,
+        "total": 411340166.28
+      },
+      "TCD": {
+        "country": "TCHAD",
+        "apd": 95070303.79,
+        "napd": 0,
+        "total": 95070303.79
+      },
+      "THA": {
+        "country": "THAILANDE",
+        "apd": 0,
+        "napd": 91846643.75999999,
+        "total": 91846643.75999999
+      },
+      "TGO": {
+        "country": "TOGO",
+        "apd": 66589162.48,
+        "napd": 56867296.089999996,
+        "total": 123456458.57
+      },
+      "TUN": {
+        "country": "TUNISIE",
+        "apd": 997749672.2399998,
+        "napd": 24152255.8206937,
+        "total": 1021901928.0606935
+      },
+      "TUR": {
+        "country": "TURQUIE",
+        "apd": 1004924119.24,
+        "napd": 24125000.0,
+        "total": 1029049119.24
+      },
+      "UKR": {
+        "country": "UKRAINE",
+        "apd": 420005849.56,
+        "napd": 44295870.41,
+        "total": 464301719.97
+      },
+      "URY": {
+        "country": "URUGUAY",
+        "apd": 0,
+        "napd": 165997.6,
+        "total": 165997.6
+      },
+      "VEN": {
+        "country": "VENEZUELA",
+        "apd": 0,
+        "napd": 400077509.45,
+        "total": 400077509.45
+      },
+      "VNM": {
+        "country": "VIETNAM",
+        "apd": 1245433374.6258795,
+        "napd": 0,
+        "total": 1245433374.6258795
+      },
+      "YEM": {
+        "country": "YEMEN",
+        "apd": 64733411.05000001,
+        "napd": 5317402.05,
+        "total": 70050813.10000001
+      },
+      "ZMB": {
+        "country": "ZAMBIE",
+        "apd": 92692015.38,
+        "napd": 0,
+        "total": 92692015.38
+      },
+      "ZWE": {
+        "country": "ZIMBABWE",
+        "apd": 124942391.92,
+        "napd": 83691503.27000012,
+        "total": 208633895.19000012
+      }
+    },
+    "totals": {
+      "apd": 39748044876.591896,
+      "napd": 11978254225.836699,
+      "total": 51726299102.4286,
+      "countryCount": 105
+    }
+  }
+}
