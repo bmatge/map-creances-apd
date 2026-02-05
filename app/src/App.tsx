@@ -84,6 +84,14 @@ function App() {
       </header>
 
       <main className="main">
+        <KPIBar totals={yearData.totals} year={selectedYear} />
+
+        <YearSlider
+          years={YEARS}
+          selectedYear={selectedYear}
+          onYearChange={setSelectedYear}
+        />
+
         <div className="map-section">
           <WorldMap
             data={yearData}
@@ -97,14 +105,6 @@ function App() {
             onClose={handleClosePanel}
           />
         </div>
-
-        <YearSlider
-          years={YEARS}
-          selectedYear={selectedYear}
-          onYearChange={setSelectedYear}
-        />
-
-        <KPIBar totals={yearData.totals} year={selectedYear} />
       </main>
 
       <footer className="footer">
