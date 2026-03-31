@@ -4,16 +4,19 @@ import CountryPanel from './components/CountryPanel';
 import YearSlider from './components/YearSlider';
 import KPIBar from './components/KPIBar';
 import CountrySearch from './components/CountrySearch';
-import type { AllData, CountryData } from './types';
+import FilterBar from './components/FilterBar';
+import type { AllData, CountryData, FilterMode, DebtFilter } from './types';
 import './App.css';
 
-const YEARS = [2020, 2021, 2022, 2023, 2024];
+const YEARS = Array.from({ length: 15 }, (_, i) => 2010 + i);
 
 function App() {
   const [data, setData] = useState<AllData | null>(null);
   const [selectedYear, setSelectedYear] = useState(2024);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [selectedCountryData, setSelectedCountryData] = useState<CountryData | null>(null);
+  const [filterMode, setFilterMode] = useState<FilterMode>('all');
+  const [debtFilter, setDebtFilter] = useState<DebtFilter>('apd');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +36,6 @@ function App() {
       });
   }, []);
 
-  // Update country data when year changes
   useEffect(() => {
     if (data && selectedCountry) {
       const yearData = data[selectedYear.toString()];
@@ -77,15 +79,15 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="header-content">
-          <h1>Carte des créances françaises</h1>
+          <h1>Club de Paris — Carte interactive</h1>
           <p className="subtitle">
-            Encours des créances APD et Non APD de la France sur les États étrangers
+            Pays créditeurs et débiteurs du Club de Paris (2010–2024)
           </p>
         </div>
       </header>
 
       <main className="main">
-        <KPIBar totals={yearData.totals} year={selectedYear} />
+        <KPIBar totals={yearData.totals} year={selectedYear} filterMode={filterMode} />
 
         <YearSlider
           years={YEARS}
@@ -94,11 +96,20 @@ function App() {
         />
         <CountrySearch
           data={yearData}
+          filterMode={filterMode}
           onSelect={handleCountrySelect}
+        />
+        <FilterBar
+          filterMode={filterMode}
+          debtFilter={debtFilter}
+          onFilterModeChange={setFilterMode}
+          onDebtFilterChange={setDebtFilter}
         />
         <WorldMap
           data={yearData}
           selectedCountry={selectedCountry}
+          filterMode={filterMode}
+          debtFilter={debtFilter}
           onCountrySelect={handleCountrySelect}
         />
         <CountryPanel
@@ -111,8 +122,8 @@ function App() {
 
       <footer className="footer">
         <p>
-          Données: Encours de créances de la France sur les États étrangers (hors intérêts de retard) •
-          Source: Direction Générale du Trésor
+          Données: Club de Paris — Accords signés avec les pays débiteurs et créditeurs •
+          Source: Club de Paris / Direction Générale du Trésor
         </p>
       </footer>
     </div>

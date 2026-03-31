@@ -37,7 +37,7 @@ body {
   opacity: 0.9;
 }
 
-/* Main */
+/* Main Grid Layout */
 .main {
   flex: 1;
   padding: 1rem 0;
@@ -51,28 +51,34 @@ body {
   padding-right: 2rem;
 }
 
-/* Year Slider - spans left columns */
+/* Row 1: KPI Bar (full width) - handled by .kpi-bar grid-column */
+
+/* Row 2: Year Slider + Country Search */
 .year-slider {
   grid-column: 1 / 9;
   grid-row: 2 / 3;
 }
 
-/* Country Search - spans right columns, same row as slider */
 .country-search {
   grid-column: 9 / -1;
   grid-row: 2 / 3;
 }
 
-/* Map Container - below slider */
-.map-container {
-  grid-column: 1 / 9;
+/* Row 3: Filter Bar (full width) */
+.filter-bar {
+  grid-column: 1 / -1;
   grid-row: 3 / 4;
 }
 
-/* Country Panel - below search */
+/* Row 4: Map + Panel */
+.map-container {
+  grid-column: 1 / 9;
+  grid-row: 4 / 5;
+}
+
 .country-panel {
   grid-column: 9 / -1;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
 }
 
 @media (max-width: 900px) {
@@ -91,20 +97,25 @@ body {
     grid-row: 3 / 4;
   }
 
-  .map-container {
+  .filter-bar {
     grid-column: 1 / -1;
     grid-row: 4 / 5;
   }
 
-  .country-panel {
+  .map-container {
     grid-column: 1 / -1;
     grid-row: 5 / 6;
-    max-height: 300px;
+  }
+
+  .country-panel {
+    grid-column: 1 / -1;
+    grid-row: 6 / 7;
+    max-height: 400px;
     overflow-y: auto;
   }
 
   .kpi-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.75rem;
   }
 
@@ -113,7 +124,78 @@ body {
   }
 }
 
-/* Map Container */
+/* ===================== */
+/* Filter Bar            */
+/* ===================== */
+.filter-bar {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.filter-btn {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  font-size: 0.8rem;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.filter-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.filter-btn-debtor.active {
+  background: #f97316;
+  border-color: #f97316;
+}
+
+.filter-btn-creditor.active {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.filter-btn-small {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+/* ===================== */
+/* Map Container         */
+/* ===================== */
 .map-container {
   background: white;
   border-radius: 8px;
@@ -150,13 +232,21 @@ body {
   padding: 0.75rem 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.legend-section {
+  display: flex;
+  flex-direction: column;
 }
 
 .legend-title {
   font-size: 0.75rem;
   font-weight: 600;
   color: #64748b;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .gradient-bar {
@@ -170,10 +260,12 @@ body {
   justify-content: space-between;
   font-size: 0.7rem;
   color: #64748b;
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
 }
 
-/* Country Panel */
+/* ===================== */
+/* Country Panel         */
+/* ===================== */
 .country-panel {
   background: white;
   border-radius: 8px;
@@ -221,8 +313,8 @@ body {
 }
 
 .panel-header {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid #e2e8f0;
 }
 
@@ -241,14 +333,40 @@ body {
 .panel-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+}
+
+.section-title-debtor {
+  color: #c2410c;
+  background: #fff7ed;
+  border-left: 3px solid #f97316;
+}
+
+.section-title-creditor {
+  color: #047857;
+  background: #ecfdf5;
+  border-left: 3px solid #10b981;
 }
 
 .stat-item {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 8px;
   background: #f8fafc;
 }
@@ -266,22 +384,8 @@ body {
   background: #f0fdf4;
 }
 
-.stat-icon {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-}
-
-.stat-item.apd .stat-icon {
-  color: #f97316;
-}
-
-.stat-item.napd .stat-icon {
-  color: #3b82f6;
-}
-
-.stat-item.total .stat-icon {
-  color: #10b981;
+.stat-item.creditor-stat {
+  border-left: 3px solid #10b981;
 }
 
 .stat-info {
@@ -310,19 +414,48 @@ body {
   color: #94a3b8;
 }
 
+/* Panel links */
+.panel-link {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  margin-top: 0.25rem;
+}
+
+.panel-link:hover {
+  opacity: 0.85;
+}
+
+.panel-link-debtor {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.panel-link-creditor {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
 .update-info {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   background: #fef3c7;
   border-radius: 8px;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .update-info svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
   color: #d97706;
 }
 
@@ -337,7 +470,7 @@ body {
 }
 
 .update-date {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #78350f;
 }
@@ -347,7 +480,7 @@ body {
   height: 8px;
   border-radius: 4px;
   overflow: hidden;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   background: #e2e8f0;
 }
 
@@ -363,7 +496,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
   font-size: 0.75rem;
   color: #64748b;
 }
@@ -388,7 +521,9 @@ body {
   background: #3b82f6;
 }
 
-/* Year Slider */
+/* ===================== */
+/* Year Slider           */
+/* ===================== */
 .year-slider {
   background: white;
   border-radius: 8px;
@@ -479,13 +614,13 @@ body {
 .year-marker {
   background: none;
   border: none;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #94a3b8;
   cursor: pointer;
-  padding: 0.15rem 0.25rem;
+  padding: 0.1rem 0.15rem;
   border-radius: 4px;
   transition: all 0.2s;
-  min-width: 40px;
+  min-width: 30px;
   text-align: center;
 }
 
@@ -508,7 +643,9 @@ body {
   font-size: 1.1rem;
 }
 
-/* KPI Bar */
+/* ===================== */
+/* KPI Bar               */
+/* ===================== */
 .kpi-bar {
   grid-column: 1 / -1;
   background: white;
@@ -528,32 +665,13 @@ body {
 
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   gap: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .kpi-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .kpi-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .kpi-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-.kpi-icon {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
 }
 
 .kpi-content {
@@ -571,7 +689,9 @@ body {
   color: #64748b;
 }
 
-/* Footer */
+/* ===================== */
+/* Footer                */
+/* ===================== */
 .footer {
   background: #1e293b;
   color: #94a3b8;
@@ -580,7 +700,9 @@ body {
   font-size: 0.7rem;
 }
 
-/* Loading */
+/* ===================== */
+/* Loading / Error       */
+/* ===================== */
 .loading {
   display: flex;
   flex-direction: column;
@@ -605,7 +727,6 @@ body {
   }
 }
 
-/* Error */
 .error {
   display: flex;
   align-items: center;
@@ -615,7 +736,9 @@ body {
   font-size: 1.1rem;
 }
 
-/* Country Search */
+/* ===================== */
+/* Country Search        */
+/* ===================== */
 .country-search {
   position: relative;
   background: white;
@@ -696,4 +819,3 @@ body {
 .search-suggestion:last-child {
   border-radius: 0 0 6px 6px;
 }
-

@@ -1,15 +1,29 @@
-export interface CountryData {
-  country: string;
+export interface DebtorData {
   apd: number;
   napd: number;
   total: number;
+  url: string | null;
+}
+
+export interface CreditorData {
+  nbAccords: number;
+  statut: string | null;
+  premiereParticipation: number | null;
+  url: string | null;
+}
+
+export interface CountryData {
+  country: string;
+  debtor?: DebtorData;
+  creditor?: CreditorData;
 }
 
 export interface YearTotals {
-  apd: number;
-  napd: number;
-  total: number;
-  countryCount: number;
+  debtorApd: number;
+  debtorNapd: number;
+  debtorTotal: number;
+  debtorCount: number;
+  creditorCount: number;
 }
 
 export interface YearData {
@@ -20,3 +34,6 @@ export interface YearData {
 export interface AllData {
   [year: string]: YearData;
 }
+
+export type FilterMode = 'all' | 'débiteur' | 'créditeur';
+export type DebtFilter = 'apd' | 'napd';
