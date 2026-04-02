@@ -44,6 +44,10 @@ class ClubParisMap extends HTMLElement {
             <button class="filter-btn sub active" data-debt="apd">APD</button>
             <button class="filter-btn sub" data-debt="napd">Hors APD</button>
           </div>
+          <div class="search-container" id="search-container">
+            <input type="text" class="search-input" id="search-input" placeholder="Rechercher un pays…" autocomplete="off" />
+            <div class="search-dropdown" id="search-dropdown"></div>
+          </div>
           <div class="legend-bar">
             <div class="legend-item">
               <div class="legend-gradient debtor-gradient"></div>
@@ -130,6 +134,69 @@ class ClubParisMap extends HTMLElement {
       }
     });
     sr.getElementById('panel-close').addEventListener('click', () => this._closePanel());
+
+    // Search autocomplete
+    const searchInput = sr.getElementById('search-input');
+    const searchDropdown = sr.getElementById('search-dropdown');
+    let activeIdx = -1;
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) { searchDropdown.classList.remove('open'); return; }
+      const results = this._searchCountries(query);
+      activeIdx = -1;
+      if (results.length === 0) {
+        searchDropdown.innerHTML = '<div class="search-no-result">Aucun résultat</div>';
+      } else {
+        searchDropdown.innerHTML = results.map((r, i) =>
+          `<div class="search-option" data-iso="${r.iso}" data-index="${i}">${r.highlighted}</div>`
+        ).join('');
+      }
+      searchDropdown.classList.add('open');
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      const options = searchDropdown.querySelectorAll('.search-option');
+      if (!options.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, options.length - 1);
+        options.forEach((o, i) => o.classList.toggle('active', i === activeIdx));
+        options[activeIdx]?.scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = Math.max(activeIdx - 1, 0);
+        options.forEach((o, i) => o.classList.toggle('active', i === activeIdx));
+        options[activeIdx]?.scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const sel = activeIdx >= 0 ? options[activeIdx] : options[0];
+        if (sel) {
+          this._selectCountry(sel.dataset.iso);
+          searchInput.value = this._isoToName(sel.dataset.iso);
+          searchDropdown.classList.remove('open');
+        }
+      } else if (e.key === 'Escape') {
+        searchDropdown.classList.remove('open');
+        searchInput.blur();
+      }
+    });
+
+    searchDropdown.addEventListener('click', (e) => {
+      const opt = e.target.closest('.search-option');
+      if (opt) {
+        this._selectCountry(opt.dataset.iso);
+        searchInput.value = this._isoToName(opt.dataset.iso);
+        searchDropdown.classList.remove('open');
+      }
+    });
+
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!this.shadowRoot.getElementById('search-container').contains(e.composedPath()[0])) {
+        searchDropdown.classList.remove('open');
+      }
+    });
   }
 
   _updateYearLabels() {
@@ -273,6 +340,74 @@ class ClubParisMap extends HTMLElement {
     this.shadowRoot.getElementById('panel').classList.remove('open');
     this._selectedIso = null;
     this._updateColors();
+  }
+
+  // ---- Search helper ----
+  _searchCountries(query) {
+    const yd = this._getYearData();
+    if (!yd) return [];
+    const names = this._isoToNameMap();
+    const results = [];
+    for (const [iso, name] of Object.entries(names)) {
+      const country = yd.countries[iso];
+      if (!country) continue;
+      if (this._filterMode === 'débiteur' && !(country.debtor && country.debtor.total > 0)) continue;
+      if (this._filterMode === 'créditeur' && !country.creditor) continue;
+      const lower = name.toLowerCase();
+      const idx = lower.indexOf(query);
+      if (idx === -1) continue;
+      const highlighted = name.substring(0, idx)
+        + '<span class="match">' + name.substring(idx, idx + query.length) + '</span>'
+        + name.substring(idx + query.length);
+      results.push({ iso, name, highlighted, startsWithMatch: idx === 0 });
+    }
+    results.sort((a, b) => {
+      if (a.startsWithMatch !== b.startsWithMatch) return a.startsWithMatch ? -1 : 1;
+      return a.name.localeCompare(b.name, 'fr');
+    });
+    return results.slice(0, 6);
+  }
+
+  _isoToNameMap() {
+    return {
+      'ZAF':'Afrique du Sud','ALB':'Albanie','DZA':'Algérie','AGO':'Angola',
+      'ATG':'Antigua-et-Barbuda','SAU':'Arabie Saoudite','ARG':'Argentine',
+      'AUS':'Australie','AUT':'Autriche','AZE':'Azerbaïdjan','BGD':'Bangladesh',
+      'BEL':'Belgique','BEN':'Bénin','BOL':'Bolivie','BIH':'Bosnie-Herzégovine',
+      'BRA':'Brésil','BFA':'Burkina Faso','BDI':'Burundi','KHM':'Cambodge',
+      'CMR':'Cameroun','CAN':'Canada','CPV':'Cap-Vert','CAF':'Centrafrique',
+      'TCD':'Tchad','CHL':'Chili','CHN':'Chine','COL':'Colombie','COM':'Comores',
+      'COG':'Congo','COD':'RD Congo','CRI':'Costa Rica','CIV':"Côte d'Ivoire",
+      'HRV':'Croatie','CUB':'Cuba','CZE':'Rép. Tchèque','DNK':'Danemark',
+      'DJI':'Djibouti','DMA':'Dominique','DOM':'Rép. Dominicaine','EGY':'Égypte',
+      'SLV':'El Salvador','ARE':'Émirats Arabes Unis','ECU':'Équateur',
+      'ERI':'Érythrée','ESP':'Espagne','ETH':'Éthiopie','FJI':'Fidji',
+      'FIN':'Finlande','FRA':'France','GAB':'Gabon','GMB':'Gambie','GEO':'Géorgie',
+      'DEU':'Allemagne','GHA':'Ghana','GRD':'Grenade','GTM':'Guatemala',
+      'GIN':'Guinée','GNB':'Guinée-Bissau','GNQ':'Guinée Équatoriale',
+      'GUY':'Guyana','HTI':'Haïti','HND':'Honduras','HUN':'Hongrie','IND':'Inde',
+      'IDN':'Indonésie','IRQ':'Irak','IRN':'Iran','IRL':'Irlande','ISR':'Israël',
+      'ITA':'Italie','JAM':'Jamaïque','JPN':'Japon','JOR':'Jordanie',
+      'KAZ':'Kazakhstan','KEN':'Kenya','KGZ':'Kirghizistan','KNA':'St-Christophe-et-Niévès',
+      'KOR':'Corée du Sud','KWT':'Koweït','LAO':'Laos','LBN':'Liban',
+      'LSO':'Lesotho','LBR':'Liberia','LBY':'Libye','MKD':'Macédoine du Nord',
+      'MDG':'Madagascar','MWI':'Malawi','MDV':'Maldives','MLI':'Mali','MAR':'Maroc',
+      'MRT':'Mauritanie','MUS':'Maurice','MEX':'Mexique','MDA':'Moldavie',
+      'MNG':'Mongolie','MNE':'Monténégro','MOZ':'Mozambique','MMR':'Myanmar',
+      'NAM':'Namibie','NPL':'Népal','NLD':'Pays-Bas','NZL':'Nouvelle-Zélande',
+      'NIC':'Nicaragua','NER':'Niger','NGA':'Nigeria','NOR':'Norvège',
+      'PAK':'Pakistan','PAN':'Panama','PNG':'Papouasie-N.-Guinée','PRY':'Paraguay',
+      'PER':'Pérou','PHL':'Philippines','POL':'Pologne','PRT':'Portugal',
+      'ROU':'Roumanie','RUS':'Russie','RWA':'Rwanda','LCA':'Sainte-Lucie',
+      'VCT':'St-Vincent-et-les-Grenadines','STP':'Sao Tomé-et-Principe',
+      'SEN':'Sénégal','SRB':'Serbie','SYC':'Seychelles','SLE':'Sierra Leone',
+      'SVN':'Slovénie','SOM':'Somalie','SDN':'Soudan','LKA':'Sri Lanka',
+      'SUR':'Suriname','SWE':'Suède','CHE':'Suisse','SYR':'Syrie',
+      'TJK':'Tadjikistan','TZA':'Tanzanie','TGO':'Togo','TTO':'Trinité-et-Tobago',
+      'TUN':'Tunisie','TUR':'Turquie','UKR':'Ukraine','GBR':'Royaume-Uni',
+      'USA':'États-Unis','URY':'Uruguay','VEN':'Venezuela','VNM':'Vietnam',
+      'WSM':'Samoa','YEM':'Yémen','ZMB':'Zambie','ZWE':'Zimbabwe'
+    };
   }
 
   // ---- Data helpers ----
@@ -501,6 +636,35 @@ class ClubParisMap extends HTMLElement {
       .filter-btn.filter-debtor.active { background: #f97316; border-color: #f97316; }
       .filter-btn.filter-creditor.active { background: #10b981; border-color: #10b981; }
       .filter-btn.sub { padding: 0.25rem 0.55rem; font-size: 0.72rem; }
+
+      /* ---- SEARCH ---- */
+      .search-container { position: relative; }
+      .search-input {
+        padding: 0.35rem 0.65rem; border: 1px solid #e2e8f0; border-radius: 6px;
+        font-size: 0.78rem; color: #1e293b; background: #fff; outline: none;
+        width: 180px; transition: border-color .15s, box-shadow .15s;
+        font-family: inherit;
+      }
+      .search-input::placeholder { color: #94a3b8; }
+      .search-input:focus { border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37,99,235,.15); }
+      .search-dropdown {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; border: 1px solid #e2e8f0; border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0,0,0,.12);
+        margin-top: 2px; display: none; z-index: 900;
+        max-height: 220px; overflow-y: auto;
+      }
+      .search-dropdown.open { display: block; }
+      .search-option {
+        padding: 0.4rem 0.65rem; font-size: 0.78rem; cursor: pointer;
+        color: #1e293b; transition: background .1s;
+      }
+      .search-option:hover, .search-option.active { background: #eff6ff; color: #2563eb; }
+      .search-option .match { font-weight: 700; }
+      .search-no-result {
+        padding: 0.5rem 0.65rem; font-size: 0.75rem; color: #94a3b8;
+        font-style: italic;
+      }
 
       .legend-bar { margin-left: auto; display: flex; gap: 0.75rem; align-items: center; }
       .legend-item { display: flex; align-items: center; gap: 0.35rem; }
