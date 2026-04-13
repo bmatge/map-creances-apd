@@ -111,9 +111,104 @@ Pour le dataset complet 2010-2024, consulter directement `sources/debtors.csv` e
 
 ## Accessibilité
 
-- **Skip link** (premier tab à l'arrivée sur la page) → ouvre l'accordéon `<details>` en bas, focus le titre.
-- L'accordéon contient une description textuelle de la carte et les liens de téléchargement des 4 CSV ci-dessus — permet d'accéder aux données sans utiliser la visualisation graphique.
-- i18n FR/EN automatique (param `?lang=en` ou `html[lang]`).
+Audit mené face à la checklist du support [*Cartographie accessible*](https://beta.gouv.fr/) (Pôle Numérique Inclusif, beta.gouv.fr) et aux critères **WCAG 2.1 niveau AA**. Ci-dessous la liste exhaustive de ce qui est en place.
+
+### Contrastes — WCAG 2.1 AA validé
+
+Audit Python interne sur **33 combinaisons** texte/bordure/UI-component : 0 fail. Ratios minimum atteints :
+
+- **Texte normal** (requis ≥ 4.5:1) : minimum 4.76:1 (year-labels inactifs), plupart ≥ 7:1.
+- **UI components & graphiques** (requis ≥ 3:1) : minimum 4.62:1 (chevron `⬇`), plupart ≥ 5:1.
+
+Ajustements clés par rapport à un design « orange vif + bleu » naïf :
+
+- **Orange débiteur** : `#f97316` est conservé en **fill des pays sur la carte** (identité visuelle, pas un UI component au sens WCAG), mais tout **texte, bordure ou background actif de bouton** passe à `#c2410c` (ratio 5.18:1 sur fond blanc).
+- **Swatch debtor de la légende** : fond `#f97316` avec bordure `#c2410c` pour garantir 3:1 vs bg blanc sans sacrifier l'identité.
+- **Bordures grises** de boutons : `#d1d5db` → `#6b7280` (4.83:1).
+- **Textes gris** : `#94a3b8` → `#64748b` pour year-labels et `.no-data`, `#64748b` → `#475569` pour légende et summary.
+
+### Double codage couleur + motif
+
+Toggle **« Couleurs / Motifs »** dans la `bottom-bar`, à côté d'un libellé « Légende ». Mode « Motifs » applique :
+
+- **Débiteurs** : rayures diagonales orange sur fond clair (`<pattern>` SVG + CSS `repeating-linear-gradient` pour les swatches).
+- **Créditeurs** : pointillés bleus sur fond clair.
+
+Motifs volontairement sparse (couverture ~20 %) pour ne pas écraser la géographie. L'info passe par **couleur ET motif** simultanément : daltoniens et impression N/B restent servis.
+
+### Navigation au clavier
+
+Pattern standard **[roving tabindex](https://www.w3.org/WAI/ARIA/apg/patterns/)** de la WAI-ARIA Authoring Practices Guide :
+
+- **`Tab`** depuis le skip-link → focus arrive sur le **premier pays alphabétique** ayant des données pour l'année courante. Un seul stop Tab pour la carte entière.
+- **Flèches `←` `↑` `→` `↓`** → parcours les pays par ordre alphabétique (tri `Intl.Collator` localisé).
+- **`Home` / `End`** → premier / dernier pays.
+- **`Entrée` ou `Espace`** → sélectionne le pays focusé, ouvre le panel latéral.
+- **`Tab` suivant** → sort de la carte vers la recherche, puis les filtres, le toggle, le slider, l'accordéon.
+
+Ordre global de Tab : `skip-link` → premier pays de la carte → recherche → filtres (`Tous / Créanciers / Débiteurs`) → toggle (`Couleurs / Motifs`) → slider année → labels années → accordéon descriptif/téléchargements.
+
+L'ensemble des boutons, inputs et liens utilisent des éléments HTML natifs (pas de `<div role="button">`) : tous accessibles clavier par défaut.
+
+### Focus visible
+
+Les pays focusés reçoivent une **surcouche CSS `:focus-visible`** avec stroke blanc + double `drop-shadow` sombre. Rendu contrasté garanti sur les trois fonds possibles (orange débiteur, bleu créditeur, cream pas-de-donnée).
+
+Tous les boutons ont un `outline: 2px solid #c2410c` ou `#fbbf24` selon le contexte.
+
+### Skip link
+
+Premier élément focusable de la page, visuellement caché (`top: -100px`) jusqu'au focus. Pastille jaune (`#fbbf24` sur `#1a1a2e`, ratio 10.22:1) en haut-gauche au focus. Sa cible est l'accordéon descriptif en bas de page, avec ouverture programmatique du `<details>` et focus sur le summary à l'activation.
+
+### Attributs ARIA
+
+- `<svg role="img" aria-label="Carte mondiale des créances du Club de Paris pour l'année 2024" aria-describedby="map-instructions">` — mis à jour à chaque changement d'année.
+- Paragraphe `.sr-only#map-instructions` lu par les lecteurs d'écran : explique `Tab`, flèches, `Entrée`, et renvoie vers le panneau descriptif.
+- Région `aria-live="polite"` (`#sr-announce`) qui annonce `« {Pays} sélectionné »` aux lecteurs d'écran quand un pays est choisi.
+- `<details>` natif pour l'accordéon (support clavier et ARIA inclus).
+- Toggle mode rendu : `role="radiogroup"` + `role="radio"` avec `aria-checked`.
+- Bouton fermeture panel : `aria-label` explicite.
+- Panel pays : attribut `inert` quand fermé → retiré du tab order, pas de focus fantôme sur le bouton `×` invisible.
+
+### Alternative textuelle — tableaux dans l'accordéon
+
+Le PDF *Cartographie accessible* insiste : une carte interactive doit offrir **une alternative textuelle adjacente** (pas juste un téléchargement externe). L'accordéon `<details>` en bas de page contient, en plus des 4 liens CSV, **2 tableaux HTML** :
+
+- **Pays créditeurs** — colonnes : pays, nb accords, statut, première participation, fiche pays
+- **Pays débiteurs** — colonnes : pays, APD, non-APD, total, fiche pays
+
+Régénérés automatiquement à chaque changement d'année. Un **champ de recherche** au-dessus filtre les lignes des deux tableaux en temps réel, insensible à la casse et aux accents (même logique que la recherche sur la carte). Si aucun résultat, une région `aria-live` annonce « aucun pays ne correspond ».
+
+Les tableaux utilisent `<caption>`, `<th scope="col">` et `<th scope="row">` pour une sémantique correcte.
+
+### Header contextuel
+
+Au-dessus de la carte, une bande `<header>` avec :
+
+- **Titre** (`<h1>`) : « Créances APD gérées par le Club de Paris — {année} », mis à jour dynamiquement au changement d'année.
+- **Source** : `clubdeparis.org` (texte simple, pas de lien parasite dans le tab order).
+- **Date de mise à jour**.
+
+Satisfait les critères cartographiques classiques (titre, source, date) rappelés par le support [*Cartographie accessible*](https://beta.gouv.fr/).
+
+### i18n FR/EN
+
+Bascule automatique via `?lang=en` ou `html[lang]`. Toutes les chaînes a11y (instructions clavier, aria-labels, annonces, titres de tableaux, placeholders) sont traduites dans `TRANSLATIONS.fr` et `TRANSLATIONS.en`.
+
+### Ce qui reste à améliorer (palier 2 potentiel)
+
+- Zoom/pan de la carte non accessibles au clavier (mais le parcours des pays via flèches couvre l'essentiel du cas d'usage « trouver un pays »).
+- Pas de mode sombre auto (mais bon contraste garanti en mode clair).
+- Alternative tableau ne couvre que l'**année courante** — le dataset complet 2010-2024 reste accessible via le téléchargement CSV long format dans `sources/`.
+
+### Tester l'accessibilité
+
+```bash
+python3 -m http.server 8000
+# puis : Tab, Shift+Tab, flèches, Entrée, Espace
+# simuler en N/B via extension browser (daltonisme)
+# vérifier avec NVDA / VoiceOver que l'aria-live annonce bien les sélections
+```
 
 ## Tester localement
 
