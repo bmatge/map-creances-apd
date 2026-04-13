@@ -1,0 +1,1552 @@
+# Source of truth for country ingestion and display.
+# Keyed by ISO 3166-1 alpha-3.
+#
+# Fields
+#   name_fr, name_en     Canonical display names (authoritative).
+#   aliases              Raw strings as they may appear in source CSV/Excel.
+#                        Matching is case-sensitive after whitespace collapse;
+#                        add new variants here when the pipeline reports 'unmapped'.
+#   url_slug_debtor      Slug under clubdeparis.org .../par pays-debiteurs/<slug>.html
+#   url_slug_creditor    Slug under clubdeparis.org .../par-pays-crediteurs/<slug>.html
+#
+# Editing rules
+#   - ISO keys kept sorted alphabetically.
+#   - A country may have only one of the two url_slug_* fields set.
+#   - Historical debtor URLs on clubdeparis.org use a literal space in the segment
+#     'par pays-debiteurs' — the pipeline URL-encodes it as '%20'.
+
+AFG:
+  name_fr: 'Afghanistan'
+  name_en: 'Afghanistan'
+  aliases:
+    - 'AFGHANISTAN'
+    - 'Afghanistan'
+  url_slug_debtor: 'afghanistan'
+  url_slug_creditor: null
+
+AGO:
+  name_fr: 'Angola'
+  name_en: 'Angola'
+  aliases:
+    - 'ANGOLA'
+    - 'Angola'
+  url_slug_debtor: 'angola'
+  url_slug_creditor: null
+
+ALB:
+  name_fr: 'Albanie'
+  name_en: 'Albania'
+  aliases:
+    - 'ALBANIE'
+    - 'Albanie'
+  url_slug_debtor: 'albanie'
+  url_slug_creditor: null
+
+ARE:
+  name_fr: 'Émirats Arabes Unis'
+  name_en: 'United Arab Emirates'
+  aliases:
+    - 'EMIRATS ARABES UNIS'
+    - 'ÉMIRATS ARABES UNIS'
+    - 'Émirats Arabes Unis'
+  url_slug_debtor: null
+  url_slug_creditor: 'emirats-arabes-unis'
+
+ARG:
+  name_fr: 'Argentine'
+  name_en: 'Argentina'
+  aliases:
+    - 'ARGENTINE'
+    - 'Argentine'
+  url_slug_debtor: 'argentine'
+  url_slug_creditor: null
+
+ATG:
+  name_fr: 'Antigua-et-Barbuda'
+  name_en: 'Antigua and Barbuda'
+  aliases:
+    - 'ANTIGUA-ET-BARBUDA'
+    - 'Antigua-et-Barbuda'
+  url_slug_debtor: 'antigua-et-barbuda'
+  url_slug_creditor: null
+
+AUS:
+  name_fr: 'Australie'
+  name_en: 'Australia'
+  aliases:
+    - 'AUSTRALIE'
+    - 'Australie'
+  url_slug_debtor: null
+  url_slug_creditor: 'australie'
+
+AUT:
+  name_fr: 'Autriche'
+  name_en: 'Austria'
+  aliases:
+    - 'AUTRICHE'
+    - 'Autriche'
+  url_slug_debtor: null
+  url_slug_creditor: 'autriche'
+
+AZE:
+  name_fr: 'Azerbaïdjan'
+  name_en: 'Azerbaijan'
+  aliases:
+    - 'AZERBAÏDJAN'
+    - 'Azerbaïdjan'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+BDI:
+  name_fr: 'Burundi'
+  name_en: 'Burundi'
+  aliases:
+    - 'BURUNDI'
+    - 'Burundi'
+  url_slug_debtor: 'burundi'
+  url_slug_creditor: null
+
+BEL:
+  name_fr: 'Belgique'
+  name_en: 'Belgium'
+  aliases:
+    - 'BELGIQUE'
+    - 'Belgique'
+  url_slug_debtor: null
+  url_slug_creditor: 'belgique'
+
+BEN:
+  name_fr: 'Bénin'
+  name_en: 'Benin'
+  aliases:
+    - 'BÉNIN'
+    - 'Bénin'
+  url_slug_debtor: 'benin'
+  url_slug_creditor: null
+
+BFA:
+  name_fr: 'Burkina Faso'
+  name_en: 'Burkina Faso'
+  aliases:
+    - 'BURKINA FASO'
+    - 'Burkina Faso'
+    - 'BurkinaFaso'
+  url_slug_debtor: 'burkina-faso'
+  url_slug_creditor: null
+
+BGD:
+  name_fr: 'Bangladesh'
+  name_en: 'Bangladesh'
+  aliases:
+    - 'BANGLADESH'
+    - 'Bangladesh'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+BGR:
+  name_fr: 'BGR'
+  name_en: 'BGR'
+  aliases:
+    - 'BGR'
+    - 'Bulgarie'
+  url_slug_debtor: 'bulgarie'
+  url_slug_creditor: null
+
+BIH:
+  name_fr: 'Bosnie-Herzégovine'
+  name_en: 'Bosnia and Herzegovina'
+  aliases:
+    - 'BOSNIE-HERZÉGOVINE'
+    - 'Bosnie-Herzégovine'
+  url_slug_debtor: 'bosnie-herzegovine'
+  url_slug_creditor: null
+
+BOL:
+  name_fr: 'Bolivie'
+  name_en: 'Bolivia'
+  aliases:
+    - 'BOLIVIE'
+    - 'Bolivie'
+  url_slug_debtor: 'bolivie'
+  url_slug_creditor: null
+
+BRA:
+  name_fr: 'Brésil'
+  name_en: 'Brazil'
+  aliases:
+    - 'BRESIL'
+    - 'BRÉSIL'
+    - 'Brésil'
+  url_slug_debtor: 'bresil'
+  url_slug_creditor: 'bresil'
+
+BRB:
+  name_fr: 'Barbade'
+  name_en: 'Barbade'
+  aliases:
+    - 'BARBADE'
+    - 'Barbade'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+BWA:
+  name_fr: 'Botswana'
+  name_en: 'Botswana'
+  aliases:
+    - 'BOTSWANA'
+    - 'Botswana'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+CAF:
+  name_fr: 'Centrafrique'
+  name_en: 'Central African Republic'
+  aliases:
+    - 'CENTRAFRIQUE'
+    - 'Centrafrique'
+    - 'République Centrafricaine'
+    - 'République centrafriaine'
+    - 'République centrafricaine'
+    - 'RépubliqueCentrafricaine'
+  url_slug_debtor: 'centrafrique'
+  url_slug_creditor: null
+
+CAN:
+  name_fr: 'Canada'
+  name_en: 'Canada'
+  aliases:
+    - 'CANADA'
+    - 'Canada'
+  url_slug_debtor: null
+  url_slug_creditor: 'canada'
+
+CHE:
+  name_fr: 'Suisse'
+  name_en: 'Switzerland'
+  aliases:
+    - 'SUISSE'
+    - 'Suisse'
+  url_slug_debtor: null
+  url_slug_creditor: 'suisse'
+
+CHL:
+  name_fr: 'Chili'
+  name_en: 'Chile'
+  aliases:
+    - 'CHILI'
+    - 'Chili'
+  url_slug_debtor: 'chili'
+  url_slug_creditor: null
+
+CHN:
+  name_fr: 'Chine'
+  name_en: 'China'
+  aliases:
+    - 'CHINE'
+    - 'Chine'
+  url_slug_debtor: null
+  url_slug_creditor: 'chine'
+
+CIV:
+  name_fr: 'Côte d''Ivoire'
+  name_en: 'Côte d''Ivoire'
+  aliases:
+    - 'CÔTE D''IVOIRE'
+    - 'Côte d''Ivoire'
+    - 'Côted''Ivoire'
+  url_slug_debtor: 'cote-d-ivoire'
+  url_slug_creditor: null
+
+CMR:
+  name_fr: 'Cameroun'
+  name_en: 'Cameroon'
+  aliases:
+    - 'CAMEROUN'
+    - 'Cameroun'
+  url_slug_debtor: 'cameroun'
+  url_slug_creditor: null
+
+COD:
+  name_fr: 'République démocratique du Congo'
+  name_en: 'Democratic Republic of the Congo'
+  aliases:
+    - 'RD Congo'
+    - 'RDCongo'
+    - 'RÉPUBLIQUE DÉMOCRATIQUE DU CONGO'
+    - 'République démocratique du Congo'
+  url_slug_debtor: 'rd-congo'
+  url_slug_creditor: null
+
+COG:
+  name_fr: 'Congo'
+  name_en: 'Congo'
+  aliases:
+    - 'CONGO'
+    - 'Congo'
+  url_slug_debtor: 'congo'
+  url_slug_creditor: null
+
+COL:
+  name_fr: 'Colombie'
+  name_en: 'Colombia'
+  aliases:
+    - 'COLOMBIE'
+    - 'Colombie'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+COM:
+  name_fr: 'Comores'
+  name_en: 'Comoros'
+  aliases:
+    - 'COMORES'
+    - 'Comores'
+  url_slug_debtor: 'comores'
+  url_slug_creditor: null
+
+CPV:
+  name_fr: 'Cap-Vert'
+  name_en: 'Cape Verde'
+  aliases:
+    - 'CAP-VERT'
+    - 'Cap-Vert'
+  url_slug_debtor: 'cap-vert'
+  url_slug_creditor: null
+
+CRI:
+  name_fr: 'Costa Rica'
+  name_en: 'Costa Rica'
+  aliases:
+    - 'COSTA RICA'
+    - 'Costa Rica'
+    - 'CostaRica'
+  url_slug_debtor: 'costa-rica'
+  url_slug_creditor: null
+
+CUB:
+  name_fr: 'Cuba'
+  name_en: 'Cuba'
+  aliases:
+    - 'CUBA'
+    - 'Cuba'
+  url_slug_debtor: 'cuba'
+  url_slug_creditor: null
+
+CZE:
+  name_fr: 'République tchèque'
+  name_en: 'Czech Republic'
+  aliases:
+    - 'REPUBLIQUE TCHEQUE'
+    - 'RÉPUBLIQUE TCHÈQUE'
+    - 'République tchèque'
+  url_slug_debtor: null
+  url_slug_creditor: 'republique-tcheque'
+
+DEU:
+  name_fr: 'Allemagne'
+  name_en: 'Germany'
+  aliases:
+    - 'ALLEMAGNE'
+    - 'Allemagne'
+  url_slug_debtor: null
+  url_slug_creditor: 'allemagne'
+
+DJI:
+  name_fr: 'Djibouti'
+  name_en: 'Djibouti'
+  aliases:
+    - 'DJIBOUTI'
+    - 'Djibouti'
+  url_slug_debtor: 'djibouti'
+  url_slug_creditor: null
+
+DMA:
+  name_fr: 'Dominique'
+  name_en: 'Dominica'
+  aliases:
+    - 'DOMINIQUE'
+    - 'Dominique'
+  url_slug_debtor: 'dominique'
+  url_slug_creditor: null
+
+DNK:
+  name_fr: 'Danemark'
+  name_en: 'Denmark'
+  aliases:
+    - 'DANEMARK'
+    - 'Danemark'
+  url_slug_debtor: null
+  url_slug_creditor: 'danemark'
+
+DOM:
+  name_fr: 'République dominicaine'
+  name_en: 'Dominican Republic'
+  aliases:
+    - 'RÉPUBLIQUE DOMINICAINE'
+    - 'République Dominicaine'
+    - 'République dominicaine'
+    - 'RépubliqueDominicaine'
+  url_slug_debtor: 'republique-dominicaine'
+  url_slug_creditor: null
+
+DZA:
+  name_fr: 'Algérie'
+  name_en: 'Algeria'
+  aliases:
+    - 'ALGÉRIE'
+    - 'Algérie'
+  url_slug_debtor: 'algerie'
+  url_slug_creditor: null
+
+ECU:
+  name_fr: 'Équateur'
+  name_en: 'Ecuador'
+  aliases:
+    - 'Equateur'
+    - 'ÉQUATEUR'
+    - 'Équateur'
+  url_slug_debtor: 'equateur'
+  url_slug_creditor: null
+
+EGY:
+  name_fr: 'Égypte'
+  name_en: 'Egypt'
+  aliases:
+    - 'Egypte'
+    - 'ÉGYPTE'
+    - 'Égypte'
+  url_slug_debtor: 'egypte'
+  url_slug_creditor: null
+
+ERI:
+  name_fr: 'Érythrée'
+  name_en: 'Eritrea'
+  aliases:
+    - 'Erythrée'
+    - 'ÉRYTHRÉE'
+    - 'Érythrée'
+  url_slug_debtor: 'erythree'
+  url_slug_creditor: null
+
+ESP:
+  name_fr: 'Espagne'
+  name_en: 'Spain'
+  aliases:
+    - 'ESPAGNE'
+    - 'Espagne'
+  url_slug_debtor: null
+  url_slug_creditor: 'espagne'
+
+ETH:
+  name_fr: 'Éthiopie'
+  name_en: 'Ethiopia'
+  aliases:
+    - 'Ethiopie'
+    - 'ÉTHIOPIE'
+    - 'Éthiopie'
+  url_slug_debtor: 'ethiopie'
+  url_slug_creditor: null
+
+FIN:
+  name_fr: 'Finlande'
+  name_en: 'Finland'
+  aliases:
+    - 'FINLANDE'
+    - 'Finlande'
+  url_slug_debtor: null
+  url_slug_creditor: 'finlande'
+
+FJI:
+  name_fr: 'Fidji'
+  name_en: 'Fiji'
+  aliases:
+    - 'FIDJI'
+    - 'Fidji'
+  url_slug_debtor: 'fidji'
+  url_slug_creditor: null
+
+FRA:
+  name_fr: 'France'
+  name_en: 'France'
+  aliases:
+    - 'FRANCE'
+    - 'France'
+  url_slug_debtor: null
+  url_slug_creditor: 'france'
+
+GAB:
+  name_fr: 'Gabon'
+  name_en: 'Gabon'
+  aliases:
+    - 'GABON'
+    - 'Gabon'
+  url_slug_debtor: 'gabon'
+  url_slug_creditor: null
+
+GBR:
+  name_fr: 'Royaume-Uni'
+  name_en: 'United Kingdom'
+  aliases:
+    - 'ROYAUME-UNI'
+    - 'Royaume-Uni'
+  url_slug_debtor: null
+  url_slug_creditor: 'royaume-uni'
+
+GEO:
+  name_fr: 'Géorgie'
+  name_en: 'Georgia'
+  aliases:
+    - 'Georgie'
+    - 'GÉORGIE'
+    - 'Géorgie'
+  url_slug_debtor: 'georgie'
+  url_slug_creditor: null
+
+GHA:
+  name_fr: 'Ghana'
+  name_en: 'Ghana'
+  aliases:
+    - 'GHANA'
+    - 'Ghana'
+  url_slug_debtor: 'ghana'
+  url_slug_creditor: null
+
+GIN:
+  name_fr: 'Guinée'
+  name_en: 'Guinea'
+  aliases:
+    - 'GUINÉE'
+    - 'Guinée'
+  url_slug_debtor: 'guinee'
+  url_slug_creditor: null
+
+GMB:
+  name_fr: 'Gambie'
+  name_en: 'Gambia'
+  aliases:
+    - 'GAMBIE'
+    - 'Gambie'
+  url_slug_debtor: 'gambie'
+  url_slug_creditor: null
+
+GNB:
+  name_fr: 'Guinée-Bissau'
+  name_en: 'Guinea-Bissau'
+  aliases:
+    - 'GUINÉE-BISSAU'
+    - 'Guinée-Bissau'
+  url_slug_debtor: 'guinee-bissau'
+  url_slug_creditor: null
+
+GNQ:
+  name_fr: 'Guinée Équatoriale'
+  name_en: 'Equatorial Guinea'
+  aliases:
+    - 'GUINÉE ÉQUATORIALE'
+    - 'Guinée Equatoriale'
+    - 'Guinée Équatoriale'
+    - 'Guinée équatoriale'
+    - 'Guinéeéquatoriale'
+  url_slug_debtor: 'guinee-equatoriale'
+  url_slug_creditor: null
+
+GRC:
+  name_fr: 'Grèce'
+  name_en: 'Grèce'
+  aliases:
+    - 'GRÈCE'
+    - 'Grèce'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+GRD:
+  name_fr: 'Grenade'
+  name_en: 'Grenada'
+  aliases:
+    - 'GRENADE'
+    - 'Grenade'
+  url_slug_debtor: 'grenade'
+  url_slug_creditor: null
+
+GTM:
+  name_fr: 'Guatemala'
+  name_en: 'Guatemala'
+  aliases:
+    - 'GUATEMALA'
+    - 'Guatemala'
+  url_slug_debtor: 'guatemala'
+  url_slug_creditor: null
+
+GUY:
+  name_fr: 'Guyana'
+  name_en: 'Guyana'
+  aliases:
+    - 'GUYANA'
+    - 'Guyana'
+  url_slug_debtor: 'guyana'
+  url_slug_creditor: null
+
+HND:
+  name_fr: 'Honduras'
+  name_en: 'Honduras'
+  aliases:
+    - 'HONDURAS'
+    - 'Honduras'
+  url_slug_debtor: 'honduras'
+  url_slug_creditor: null
+
+HRV:
+  name_fr: 'Croatie'
+  name_en: 'Croatia'
+  aliases:
+    - 'CROATIE'
+    - 'Croatie'
+  url_slug_debtor: 'croatie'
+  url_slug_creditor: null
+
+HTI:
+  name_fr: 'Haïti'
+  name_en: 'Haiti'
+  aliases:
+    - 'HAÏTI'
+    - 'Haiti'
+    - 'Haïti'
+  url_slug_debtor: 'haiti'
+  url_slug_creditor: null
+
+HUN:
+  name_fr: 'Hongrie'
+  name_en: 'Hungary'
+  aliases:
+    - 'HONGRIE'
+    - 'Hongrie'
+  url_slug_debtor: null
+  url_slug_creditor: 'hongrie'
+
+IDN:
+  name_fr: 'Indonésie'
+  name_en: 'Indonesia'
+  aliases:
+    - 'INDONÉSIE'
+    - 'Indonésie'
+  url_slug_debtor: 'indonesie'
+  url_slug_creditor: null
+
+IND:
+  name_fr: 'Inde'
+  name_en: 'India'
+  aliases:
+    - 'INDE'
+    - 'Inde'
+  url_slug_debtor: null
+  url_slug_creditor: 'inde'
+
+IRL:
+  name_fr: 'Irlande'
+  name_en: 'Ireland'
+  aliases:
+    - 'IRLANDE'
+    - 'Irlande'
+  url_slug_debtor: null
+  url_slug_creditor: 'irlande'
+
+IRN:
+  name_fr: 'Iran'
+  name_en: 'Iran'
+  aliases:
+    - 'IRAN'
+    - 'Iran'
+  url_slug_debtor: 'iran'
+  url_slug_creditor: null
+
+IRQ:
+  name_fr: 'Irak'
+  name_en: 'Iraq'
+  aliases:
+    - 'IRAK'
+    - 'Irak'
+  url_slug_debtor: 'irak'
+  url_slug_creditor: null
+
+ISR:
+  name_fr: 'Israël'
+  name_en: 'Israel'
+  aliases:
+    - 'ISRAEL'
+    - 'ISRAËL'
+    - 'Israël'
+  url_slug_debtor: null
+  url_slug_creditor: 'israel'
+
+ITA:
+  name_fr: 'Italie'
+  name_en: 'Italy'
+  aliases:
+    - 'ITALIE'
+    - 'Italie'
+  url_slug_debtor: null
+  url_slug_creditor: 'italie'
+
+JAM:
+  name_fr: 'Jamaïque'
+  name_en: 'Jamaica'
+  aliases:
+    - 'JAMAÏQUE'
+    - 'Jamaïque'
+  url_slug_debtor: 'jamaique'
+  url_slug_creditor: null
+
+JOR:
+  name_fr: 'Jordanie'
+  name_en: 'Jordan'
+  aliases:
+    - 'JORDANIE'
+    - 'Jordanie'
+  url_slug_debtor: 'jordanie'
+  url_slug_creditor: null
+
+JPN:
+  name_fr: 'Japon'
+  name_en: 'Japan'
+  aliases:
+    - 'JAPON'
+    - 'Japon'
+  url_slug_debtor: null
+  url_slug_creditor: 'japon'
+
+KAZ:
+  name_fr: 'Kazakhstan'
+  name_en: 'Kazakhstan'
+  aliases:
+    - 'KAZAKHSTAN'
+    - 'Kazakhstan'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+KEN:
+  name_fr: 'Kenya'
+  name_en: 'Kenya'
+  aliases:
+    - 'KENYA'
+    - 'Kenya'
+  url_slug_debtor: 'kenya'
+  url_slug_creditor: null
+
+KGZ:
+  name_fr: 'Kirghizistan'
+  name_en: 'Kyrgyzstan'
+  aliases:
+    - 'KIRGHIZISTAN'
+    - 'Kirghizie'
+    - 'Kirghizistan'
+  url_slug_debtor: 'kirghizie'
+  url_slug_creditor: null
+
+KHM:
+  name_fr: 'Cambodge'
+  name_en: 'Cambodia'
+  aliases:
+    - 'CAMBODGE'
+    - 'Cambodge'
+  url_slug_debtor: 'cambodge'
+  url_slug_creditor: null
+
+KNA:
+  name_fr: 'St-Christophe-et-Niévès'
+  name_en: 'Saint Kitts and Nevis'
+  aliases:
+    - 'ST-CHRISTOPHE-ET-NIÉVÈS'
+    - 'Saint-Christophe et Niévès'
+    - 'Saint-Christophe-et-Niévès'
+    - 'St-Christophe-et-Niévès'
+  url_slug_debtor: 'saint-christophe-et-nieves'
+  url_slug_creditor: null
+
+KOR:
+  name_fr: 'République de Corée'
+  name_en: 'Republic of Korea'
+  aliases:
+    - 'REPUBLIQUE DE COREE'
+    - 'RÉPUBLIQUE DE CORÉE'
+    - 'République de Corée'
+  url_slug_debtor: null
+  url_slug_creditor: 'republique-de-coree'
+
+KWT:
+  name_fr: 'Koweït'
+  name_en: 'Kuwait'
+  aliases:
+    - 'KOWEIT'
+    - 'KOWEÏT'
+    - 'Koweït'
+  url_slug_debtor: null
+  url_slug_creditor: 'koweit'
+
+LAO:
+  name_fr: 'Laos'
+  name_en: 'Laos'
+  aliases:
+    - 'LAOS'
+    - 'Laos'
+  url_slug_debtor: 'laos'
+  url_slug_creditor: null
+
+LBN:
+  name_fr: 'Liban'
+  name_en: 'Lebanon'
+  aliases:
+    - 'LIBAN'
+    - 'Liban'
+  url_slug_debtor: 'liban'
+  url_slug_creditor: null
+
+LBR:
+  name_fr: 'Liberia'
+  name_en: 'Liberia'
+  aliases:
+    - 'LIBERIA'
+    - 'Liberia'
+    - 'Libéria'
+  url_slug_debtor: 'liberia'
+  url_slug_creditor: null
+
+LBY:
+  name_fr: 'Libye'
+  name_en: 'Libya'
+  aliases:
+    - 'LIBYE'
+    - 'Libye'
+  url_slug_debtor: 'libye'
+  url_slug_creditor: null
+
+LCA:
+  name_fr: 'Sainte-Lucie'
+  name_en: 'Saint Lucia'
+  aliases:
+    - 'SAINTE-LUCIE'
+    - 'Sainte Lucie'
+    - 'Sainte-Lucie'
+    - 'SainteLucie'
+  url_slug_debtor: 'sainte-lucie'
+  url_slug_creditor: null
+
+LKA:
+  name_fr: 'Sri Lanka'
+  name_en: 'Sri Lanka'
+  aliases:
+    - 'SRI LANKA'
+    - 'Sri Lanka'
+    - 'SriLanka'
+  url_slug_debtor: 'sri-lanka'
+  url_slug_creditor: null
+
+LSO:
+  name_fr: 'Lesotho'
+  name_en: 'Lesotho'
+  aliases:
+    - 'LESOTHO'
+    - 'Lesotho'
+  url_slug_debtor: 'lesotho'
+  url_slug_creditor: null
+
+MAR:
+  name_fr: 'Maroc'
+  name_en: 'Morocco'
+  aliases:
+    - 'MAROC'
+    - 'Maroc'
+  url_slug_debtor: 'maroc'
+  url_slug_creditor: null
+
+MDA:
+  name_fr: 'Moldavie'
+  name_en: 'Moldova'
+  aliases:
+    - 'MOLDAVIE'
+    - 'Moldavie'
+  url_slug_debtor: 'moldavie'
+  url_slug_creditor: null
+
+MDG:
+  name_fr: 'Madagascar'
+  name_en: 'Madagascar'
+  aliases:
+    - 'MADAGASCAR'
+    - 'Madagascar'
+  url_slug_debtor: 'madagascar'
+  url_slug_creditor: null
+
+MDV:
+  name_fr: 'Maldives'
+  name_en: 'Maldives'
+  aliases:
+    - 'MALDIVES'
+    - 'Maldives'
+  url_slug_debtor: 'maldives'
+  url_slug_creditor: null
+
+MEX:
+  name_fr: 'Mexique'
+  name_en: 'Mexico'
+  aliases:
+    - 'MEXIQUE'
+    - 'Mexique'
+  url_slug_debtor: 'mexique'
+  url_slug_creditor: null
+
+MKD:
+  name_fr: 'Macédoine du Nord'
+  name_en: 'North Macedonia'
+  aliases:
+    - 'MACÉDOINE DU NORD'
+    - 'Macédoine du Nord'
+    - 'Macédoine, ex République yougoslave de'
+    - 'Macédoine, ex Yougoslavie'
+    - 'Macédoine, ex-RépubliqueYougoslavede'
+  url_slug_debtor: 'macedoine-du-nord'
+  url_slug_creditor: null
+
+MLI:
+  name_fr: 'Mali'
+  name_en: 'Mali'
+  aliases:
+    - 'MALI'
+    - 'Mali'
+  url_slug_debtor: 'mali'
+  url_slug_creditor: null
+
+MMR:
+  name_fr: 'Myanmar'
+  name_en: 'Myanmar'
+  aliases:
+    - 'MYANMAR'
+    - 'Myanmar'
+  url_slug_debtor: 'myanmar'
+  url_slug_creditor: null
+
+MNE:
+  name_fr: 'Monténégro'
+  name_en: 'Montenegro'
+  aliases:
+    - 'MONTÉNÉGRO'
+    - 'Montenegro'
+    - 'Monténégro'
+  url_slug_debtor: 'montenegro'
+  url_slug_creditor: null
+
+MNG:
+  name_fr: 'Mongolie'
+  name_en: 'Mongolia'
+  aliases:
+    - 'MONGOLIE'
+    - 'Mongolie'
+  url_slug_debtor: 'mongolie'
+  url_slug_creditor: null
+
+MOZ:
+  name_fr: 'Mozambique'
+  name_en: 'Mozambique'
+  aliases:
+    - 'MOZAMBIQUE'
+    - 'Mozambique'
+  url_slug_debtor: 'mozambique'
+  url_slug_creditor: null
+
+MRT:
+  name_fr: 'Mauritanie'
+  name_en: 'Mauritania'
+  aliases:
+    - 'MAURITANIE'
+    - 'Mauritanie'
+  url_slug_debtor: 'mauritanie'
+  url_slug_creditor: null
+
+MUS:
+  name_fr: 'Maurice'
+  name_en: 'Mauritius'
+  aliases:
+    - 'MAURICE'
+    - 'Maurice'
+  url_slug_debtor: 'maurice'
+  url_slug_creditor: null
+
+MWI:
+  name_fr: 'Malawi'
+  name_en: 'Malawi'
+  aliases:
+    - 'MALAWI'
+    - 'Malawi'
+  url_slug_debtor: 'malawi'
+  url_slug_creditor: null
+
+MYS:
+  name_fr: 'Malaisie'
+  name_en: 'Malaisie'
+  aliases:
+    - 'MALAISIE'
+    - 'Malaisie'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+NAM:
+  name_fr: 'Namibie'
+  name_en: 'Namibia'
+  aliases:
+    - 'NAMIBIE'
+    - 'Namibie'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+NER:
+  name_fr: 'Niger'
+  name_en: 'Niger'
+  aliases:
+    - 'NIGER'
+    - 'Niger'
+  url_slug_debtor: 'niger'
+  url_slug_creditor: null
+
+NGA:
+  name_fr: 'Nigeria'
+  name_en: 'Nigeria'
+  aliases:
+    - 'NIGERIA'
+    - 'Nigeria'
+    - 'Nigéria'
+  url_slug_debtor: 'nigeria'
+  url_slug_creditor: null
+
+NIC:
+  name_fr: 'Nicaragua'
+  name_en: 'Nicaragua'
+  aliases:
+    - 'NICARAGUA'
+    - 'Nicaragua'
+  url_slug_debtor: 'nicaragua'
+  url_slug_creditor: null
+
+NLD:
+  name_fr: 'Pays-Bas'
+  name_en: 'Netherlands'
+  aliases:
+    - 'PAYS-BAS'
+    - 'Pays-Bas'
+  url_slug_debtor: null
+  url_slug_creditor: 'pays-bas'
+
+NOR:
+  name_fr: 'Norvège'
+  name_en: 'Norway'
+  aliases:
+    - 'NORVEGE'
+    - 'NORVÈGE'
+    - 'Norvège'
+  url_slug_debtor: null
+  url_slug_creditor: 'norvege'
+
+NPL:
+  name_fr: 'Népal'
+  name_en: 'Nepal'
+  aliases:
+    - 'NÉPAL'
+    - 'Népal'
+  url_slug_debtor: 'nepal'
+  url_slug_creditor: null
+
+NZL:
+  name_fr: 'Nouvelle-Zélande'
+  name_en: 'New Zealand'
+  aliases:
+    - 'NOUVELLE-ZELANDE'
+    - 'NOUVELLE-ZÉLANDE'
+    - 'Nouvelle-Zélande'
+  url_slug_debtor: null
+  url_slug_creditor: 'nouvelle-zelande'
+
+OMN:
+  name_fr: 'Oman'
+  name_en: 'Oman'
+  aliases:
+    - 'OMAN'
+    - 'Oman'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+PAK:
+  name_fr: 'Pakistan'
+  name_en: 'Pakistan'
+  aliases:
+    - 'PAKISTAN'
+    - 'Pakistan'
+  url_slug_debtor: 'pakistan'
+  url_slug_creditor: null
+
+PAN:
+  name_fr: 'Panama'
+  name_en: 'Panama'
+  aliases:
+    - 'PANAMA'
+    - 'Panama'
+  url_slug_debtor: 'panama'
+  url_slug_creditor: null
+
+PER:
+  name_fr: 'Pérou'
+  name_en: 'Peru'
+  aliases:
+    - 'Peru'
+    - 'PÉROU'
+    - 'Pérou'
+  url_slug_debtor: 'perou'
+  url_slug_creditor: null
+
+PHL:
+  name_fr: 'Philippines'
+  name_en: 'Philippines'
+  aliases:
+    - 'PHILIPPINES'
+    - 'Philippines'
+  url_slug_debtor: 'philippines'
+  url_slug_creditor: null
+
+PNG:
+  name_fr: 'Papouasie-N.-Guinée'
+  name_en: 'Papua New Guinea'
+  aliases:
+    - 'PAPOUASIE-N.-GUINÉE'
+    - 'Papouasie Nouvelle Guinée'
+    - 'Papouasie-N.-Guinée'
+    - 'Papouasie-Nouvelle-Guinée'
+  url_slug_debtor: 'papouasie-nouvelle-guinee'
+  url_slug_creditor: null
+
+POL:
+  name_fr: 'Pologne'
+  name_en: 'Poland'
+  aliases:
+    - 'POLOGNE'
+    - 'Pologne'
+  url_slug_debtor: 'pologne'
+  url_slug_creditor: null
+
+PRK:
+  name_fr: 'Corée du Nord'
+  name_en: 'Corée du Nord'
+  aliases:
+    - 'CORÉE DU NORD'
+    - 'Corée du Nord'
+    - 'CoréeduNord'
+  url_slug_debtor: 'coree-du-nord'
+  url_slug_creditor: null
+
+PRT:
+  name_fr: 'Portugal'
+  name_en: 'Portugal'
+  aliases:
+    - 'PORTUGAL'
+    - 'Portugal'
+  url_slug_debtor: null
+  url_slug_creditor: 'portugal'
+
+PRY:
+  name_fr: 'Paraguay'
+  name_en: 'Paraguay'
+  aliases:
+    - 'PARAGUAY'
+    - 'Paraguay'
+  url_slug_debtor: 'paraguay'
+  url_slug_creditor: null
+
+QAT:
+  name_fr: 'Qatar'
+  name_en: 'Qatar'
+  aliases:
+    - 'QATAR'
+    - 'Qatar'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+ROU:
+  name_fr: 'Roumanie'
+  name_en: 'Romania'
+  aliases:
+    - 'ROUMANIE'
+    - 'Roumanie'
+  url_slug_debtor: 'roumanie'
+  url_slug_creditor: null
+
+RUS:
+  name_fr: 'Fédération de Russie'
+  name_en: 'Russian Federation'
+  aliases:
+    - 'FEDERATION DE RUSSIE'
+    - 'FÉDÉRATION DE RUSSIE'
+    - 'Fédération de Russie'
+    - 'FédérationdeRussie'
+  url_slug_debtor: 'federation-de-russie'
+  url_slug_creditor: 'federation-de-russie'
+
+RWA:
+  name_fr: 'Rwanda'
+  name_en: 'Rwanda'
+  aliases:
+    - 'RWANDA'
+    - 'Rwanda'
+  url_slug_debtor: 'rwanda'
+  url_slug_creditor: null
+
+SAU:
+  name_fr: 'Arabie Saoudite'
+  name_en: 'Saudi Arabia'
+  aliases:
+    - 'ARABIE SAOUDITE'
+    - 'Arabie Saoudite'
+  url_slug_debtor: null
+  url_slug_creditor: 'arabie-saoudite'
+
+SDN:
+  name_fr: 'Soudan'
+  name_en: 'Sudan'
+  aliases:
+    - 'SOUDAN'
+    - 'Soudan'
+  url_slug_debtor: 'soudan'
+  url_slug_creditor: null
+
+SEN:
+  name_fr: 'Sénégal'
+  name_en: 'Senegal'
+  aliases:
+    - 'Senegal'
+    - 'SÉNÉGAL'
+    - 'Sénégal'
+  url_slug_debtor: 'senegal'
+  url_slug_creditor: null
+
+SLE:
+  name_fr: 'Sierra Leone'
+  name_en: 'Sierra Leone'
+  aliases:
+    - 'SIERRA LEONE'
+    - 'Sierra Leone'
+    - 'SierraLeone'
+  url_slug_debtor: 'sierra-leone'
+  url_slug_creditor: null
+
+SLV:
+  name_fr: 'El Salvador'
+  name_en: 'El Salvador'
+  aliases:
+    - 'EL SALVADOR'
+    - 'El Salvador'
+    - 'ElSalvador'
+  url_slug_debtor: 'el-salvador'
+  url_slug_creditor: null
+
+SOM:
+  name_fr: 'Somalie'
+  name_en: 'Somalia'
+  aliases:
+    - 'SOMALIE'
+    - 'Somalie'
+  url_slug_debtor: 'somalie'
+  url_slug_creditor: null
+
+SRB:
+  name_fr: 'Serbie'
+  name_en: 'Serbia'
+  aliases:
+    - 'SERBIE'
+    - 'Serbie'
+  url_slug_debtor: 'serbie'
+  url_slug_creditor: null
+
+SSD:
+  name_fr: 'Soudan du Sud'
+  name_en: 'Soudan du Sud'
+  aliases:
+    - 'SOUDAN DU SUD'
+    - 'Soudan du Sud'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+STP:
+  name_fr: 'Sao Tomé-et-Principe'
+  name_en: 'São Tomé and Príncipe'
+  aliases:
+    - 'SAO TOMÉ-ET-PRINCIPE'
+    - 'Sao Tomé et Principe'
+    - 'Sao Tomé-et-Principe'
+    - 'SaoTomé-et-Principe'
+    - 'SaoToméetPrincipe'
+  url_slug_debtor: 'sao-tome-et-principe'
+  url_slug_creditor: null
+
+SUR:
+  name_fr: 'Suriname'
+  name_en: 'Suriname'
+  aliases:
+    - 'SURINAME'
+    - 'Suriname'
+  url_slug_debtor: 'suriname'
+  url_slug_creditor: null
+
+SVN:
+  name_fr: 'Slovénie'
+  name_en: 'Slovenia'
+  aliases:
+    - 'SLOVÉNIE'
+    - 'Slovénie'
+  url_slug_debtor: 'slovenie'
+  url_slug_creditor: null
+
+SWE:
+  name_fr: 'Suède'
+  name_en: 'Sweden'
+  aliases:
+    - 'SUEDE'
+    - 'SUÈDE'
+    - 'Suède'
+  url_slug_debtor: null
+  url_slug_creditor: 'suede'
+
+SWZ:
+  name_fr: 'Eswatini'
+  name_en: 'Eswatini'
+  aliases:
+    - 'ESWATINI'
+    - 'Eswatini'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+SYC:
+  name_fr: 'Seychelles'
+  name_en: 'Seychelles'
+  aliases:
+    - 'SEYCHELLES'
+    - 'Seychelles'
+  url_slug_debtor: 'seychelles'
+  url_slug_creditor: null
+
+SYR:
+  name_fr: 'Syrie'
+  name_en: 'Syria'
+  aliases:
+    - 'SYRIE'
+    - 'Syrie'
+  url_slug_debtor: 'syrie'
+  url_slug_creditor: null
+
+TCD:
+  name_fr: 'Tchad'
+  name_en: 'Chad'
+  aliases:
+    - 'TCHAD'
+    - 'Tchad'
+  url_slug_debtor: 'tchad'
+  url_slug_creditor: null
+
+TGO:
+  name_fr: 'Togo'
+  name_en: 'Togo'
+  aliases:
+    - 'TOGO'
+    - 'Togo'
+  url_slug_debtor: 'togo'
+  url_slug_creditor: null
+
+THA:
+  name_fr: 'Thaïlande'
+  name_en: 'Thaïlande'
+  aliases:
+    - 'THAÏLANDE'
+    - 'Thaïlande'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+TJK:
+  name_fr: 'Tadjikistan'
+  name_en: 'Tajikistan'
+  aliases:
+    - 'TADJIKISTAN'
+    - 'Tadjikistan'
+  url_slug_debtor: 'tadjikistan'
+  url_slug_creditor: null
+
+TKM:
+  name_fr: 'Turkménistan'
+  name_en: 'Turkménistan'
+  aliases:
+    - 'TURKMÉNISTAN'
+    - 'Turkménistan'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+TTO:
+  name_fr: 'Trinité-et-Tobago'
+  name_en: 'Trinidad and Tobago'
+  aliases:
+    - 'TRINITE & TOBAGGO'
+    - 'TRINITÉ-ET-TOBAGO'
+    - 'Trinité-et-Tobago'
+  url_slug_debtor: 'trinite-et-tobago'
+  url_slug_creditor: 'trinite-tobaggo'
+
+TUN:
+  name_fr: 'Tunisie'
+  name_en: 'Tunisia'
+  aliases:
+    - 'TUNISIE'
+    - 'Tunisie'
+  url_slug_debtor: 'tunisie'
+  url_slug_creditor: null
+
+TUR:
+  name_fr: 'Turquie'
+  name_en: 'Turkey'
+  aliases:
+    - 'TURQUIE'
+    - 'Turquie'
+  url_slug_debtor: 'turquie'
+  url_slug_creditor: null
+
+TZA:
+  name_fr: 'Tanzanie'
+  name_en: 'Tanzania'
+  aliases:
+    - 'TANZANIE'
+    - 'Tanzanie'
+  url_slug_debtor: 'tanzanie'
+  url_slug_creditor: null
+
+UGA:
+  name_fr: 'Ouganda'
+  name_en: 'Ouganda'
+  aliases:
+    - 'OUGANDA'
+    - 'Ouganda'
+  url_slug_debtor: 'ouganda'
+  url_slug_creditor: null
+
+UKR:
+  name_fr: 'Ukraine'
+  name_en: 'Ukraine'
+  aliases:
+    - 'UKRAINE'
+    - 'Ukraine'
+  url_slug_debtor: 'ukraine'
+  url_slug_creditor: null
+
+URY:
+  name_fr: 'Uruguay'
+  name_en: 'Uruguay'
+  aliases:
+    - 'URUGUAY'
+    - 'Uruguay'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+USA:
+  name_fr: 'États-Unis d''Amérique'
+  name_en: 'United States of America'
+  aliases:
+    - 'ETATS-UNIS D''AMERIQUE'
+    - 'ÉTATS-UNIS D''AMÉRIQUE'
+    - 'États-Unis d''Amérique'
+  url_slug_debtor: null
+  url_slug_creditor: 'etats-unis-d-amerique'
+
+UZB:
+  name_fr: 'Ouzbékistan'
+  name_en: 'Ouzbékistan'
+  aliases:
+    - 'OUZBÉKISTAN'
+    - 'Ouzbékistan'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+VCT:
+  name_fr: 'St-Vincent-et-les-Grenadines'
+  name_en: 'Saint Vincent and the Grenadines'
+  aliases:
+    - 'ST-VINCENT-ET-LES-GRENADINES'
+    - 'Saint-Vincent et les Grenadines'
+    - 'Saint-Vincent-et-les-Grenadines'
+    - 'St Vincent'
+    - 'St-Vincent-et-les-Grenadines'
+    - 'StVincent'
+  url_slug_debtor: 'st-vincent'
+  url_slug_creditor: null
+
+VEN:
+  name_fr: 'Venezuela'
+  name_en: 'Venezuela'
+  aliases:
+    - 'VENEZUELA'
+    - 'Venezuela'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+VNM:
+  name_fr: 'Vietnam'
+  name_en: 'Vietnam'
+  aliases:
+    - 'VIETNAM'
+    - 'Vietnam'
+  url_slug_debtor: 'vietnam'
+  url_slug_creditor: null
+
+WSM:
+  name_fr: 'Samoa'
+  name_en: 'Samoa'
+  aliases:
+    - 'SAMOA'
+    - 'Samoa'
+  url_slug_debtor: 'samoa'
+  url_slug_creditor: null
+
+XKX:
+  name_fr: 'Kosovo'
+  name_en: 'Kosovo'
+  aliases:
+    - 'KOSOVO'
+    - 'Kosovo'
+  url_slug_debtor: null
+  url_slug_creditor: null
+
+YEM:
+  name_fr: 'Yémen'
+  name_en: 'Yemen'
+  aliases:
+    - 'Yemen'
+    - 'YÉMEN'
+    - 'Yémen'
+  url_slug_debtor: 'yemen'
+  url_slug_creditor: null
+
+ZAF:
+  name_fr: 'Afrique du Sud'
+  name_en: 'South Africa'
+  aliases:
+    - 'AFRIQUE DU SUD'
+    - 'Afrique du Sud'
+  url_slug_debtor: null
+  url_slug_creditor: 'afrique-du-sud'
+
+ZMB:
+  name_fr: 'Zambie'
+  name_en: 'Zambia'
+  aliases:
+    - 'ZAMBIE'
+    - 'Zambie'
+  url_slug_debtor: 'zambie'
+  url_slug_creditor: null
+
+ZWE:
+  name_fr: 'Zimbabwe'
+  name_en: 'Zimbabwe'
+  aliases:
+    - 'ZIMBABWE'
+    - 'Zimbabwe'
+  url_slug_debtor: null
+  url_slug_creditor: null
