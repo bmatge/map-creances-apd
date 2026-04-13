@@ -1,59 +1,38 @@
-# Repo memory — Club de Paris map
+# CLAUDE.md — map-creances-apd
 
-## Target file
+> **Important** : ce fichier ne réécrit pas la doc du projet. Avant toute tâche, **lire d'abord** les docs listées ci-dessous.
 
-**The live file for this project is `app/public/club-paris-map-v2.html`.**
+## 📚 Documentation à lire en priorité
 
-All feature work, bug fixes, and design changes for the Club de Paris map must
-be made in this file. It is a standalone HTML document built around a Web
-Component (`<club-paris-map>`) that uses D3 v7 + topojson-client. It is
-self-contained: translations (`TRANSLATIONS`), country name dictionaries
-(`COUNTRY_NAMES`), styles (`_getStyles()`), and all component logic live inside
-the single `<script>` block.
+- [README.md](README.md) — structure du repo, schéma des CSV, pipeline
+- Fiche vault : `~/Documents/Obsidian/10-Projects/map-creances-apd.md`
 
-### Do NOT modify for feature work
-- `app/src/**` — a legacy React/Vite + `react-simple-maps` implementation.
-  Kept in the repo but no longer the live file. Do not add features there.
-  Existing code may remain in sync for parity, but the v2 HTML is canonical.
-- `app/public/club-paris-map.html` — earlier standalone version, superseded.
-- `club-paris-map.html` (repo root) — older copy.
+## 🧰 Indices de stack
 
-### Data source
-- `app/public/data.json` — loaded at runtime by the component
-  (`fetch(base + 'data.json')`).
-- World topology: `https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json`
-  (Natural Earth via `world-atlas@2`, **not** the IMF boundaries).
+Site statique **zéro build** :
+- `index.html` — Web Component autonome (`<club-paris-map>`), Shadow DOM, D3 v7 + TopoJSON en CDN, i18n FR/EN intégrée.
+- `data.json` — dataset généré, **ne pas éditer à la main**.
+- `sources/*.csv` — source de vérité (4 CSV : countries, debtors, creditors, country_urls).
+- `processing/build_data.py` — stdlib Python pure, transforme les CSV → `data.json`.
+- `.github/workflows/` : `build-data.yml` (auto-regen sur modif de `sources/`) + `deploy.yml` (GitHub Pages).
 
-### i18n
-- Languages: `fr` (default), `en`. Detected from `lang` attribute,
-  `?lang=` query param, or `<html lang>`.
-- To add a UI string: extend `TRANSLATIONS.fr` and `TRANSLATIONS.en`, then use
-  `this._t('key')` in markup.
-- To fix a country name: edit `COUNTRY_NAMES.fr` / `COUNTRY_NAMES.en`.
-  Reference list: clubdeparis.org (FR and `/en/` mirror). `WebFetch` is
-  blocked (HTTP 403) so fetching the site programmatically from the sandbox
-  does not work — apply corrections manually from a pasted list.
+## 🗄️ Contexte Obsidian
 
-### Visual conventions (current)
-- Debtor color: `#f97316` (orange).
-- Creditor color: `#1e40af` (blue).
-- Default / no-data fill: `#e8c4b0`.
-- Stroke color for selected country: `#fbbf24`.
-- Mode "Tous" : dual-status countries (debtor AND creditor) render in the
-  debtor color (orange takes precedence).
-- Legend uses two fixed swatches, **no gradient scale**.
-- Creditor section title in the panel is dynamic:
-  `Pays créancier (permanent | ad hoc | prospectif)`, based on
-  `creditor.statut` (`null` → permanent, `'Ad hoc'`, `'Prospectif'`).
+- Fiche projet : `~/Documents/Obsidian/10-Projects/map-creances-apd.md`
+- ADR historiques : `~/Documents/Obsidian/30-Knowledge/ADR/` (filtrer par `project: map-creances-apd`)
+- Sessions précédentes : `~/Documents/Obsidian/20-Sessions/` (frontmatter `projects:` contient `map-creances-apd`)
 
-### Dev & build
-- `cd app && npm install --legacy-peer-deps` (react-simple-maps peer conflict).
-- `npm run dev` → http://localhost:5173/club-paris-map-v2.html
-- `npm run build` → copies `public/` to `dist/`. Dist is git-ignored.
-- `npm run lint` — 2 pre-existing errors in `app/src/App.tsx:45` and
-  `app/src/i18n/LangContext.tsx:54` unrelated to v2.html.
+## ✅ Règles Claude-specific
 
-### Git workflow
-- Current feature branch: `claude/fix-paris-club-map-FvT21`.
-- Commit message style: conventional (`fix:`, `feat:`) in French, no PR
-  unless explicitly asked.
+1. **Toujours lire le README et la fiche vault avant d'agir**. Ne pas supposer le pipeline.
+2. **Les données se modifient dans `sources/*.csv` uniquement**. `data.json` est un artefact — si tu dois le regénérer : `python3 processing/build_data.py`.
+3. **Toute feature visuelle / comportement** se touche dans `index.html` (unique fichier, Web Component interne). Pas de build, pas de bundler.
+4. **Décision structurante** → `/new-adr "<titre>"`.
+5. **Fin de session significative** → `/session-end`.
+6. **Pas de commit direct sur `main`**, pas de `git push --force`, pas de modification des `.env*`.
+7. **Pas d'install de dépendance nouvelle** sans m'en parler. Le build actuel est volontairement stdlib-only.
+8. Doc obsolète ou manquante sur un point → **le signaler** et proposer de la mettre à jour.
+
+## 📏 Règle d'or
+
+Ce fichier doit rester **sous 80 lignes**. Son unique rôle : pointer vers la vraie doc et rappeler les règles Claude.
