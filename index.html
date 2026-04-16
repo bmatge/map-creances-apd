@@ -99,9 +99,9 @@ const TRANSLATIONS = {
     'info.col_nb_accords': 'Accords signés',
     'info.col_statut': 'Statut',
     'info.col_premiere': 'Première participation',
-    'info.col_apd': 'APD (€)',
-    'info.col_napd': 'Non-APD (€)',
-    'info.col_total': 'Total (€)',
+    'info.col_apd': 'APD ($)',
+    'info.col_napd': 'Non-APD ($)',
+    'info.col_total': 'Total ($)',
     'info.col_link': 'Fiche pays',
     'info.link_open': 'Ouvrir',
   },
@@ -184,9 +184,9 @@ const TRANSLATIONS = {
     'info.col_nb_accords': 'Signed agreements',
     'info.col_statut': 'Status',
     'info.col_premiere': 'First participation',
-    'info.col_apd': 'ODA (€)',
-    'info.col_napd': 'Non-ODA (€)',
-    'info.col_total': 'Total (€)',
+    'info.col_apd': 'ODA ($)',
+    'info.col_napd': 'Non-ODA ($)',
+    'info.col_total': 'Total ($)',
     'info.col_link': 'Country profile',
     'info.link_open': 'Open',
   },
@@ -1210,17 +1210,17 @@ class ClubParisMap extends HTMLElement {
   }
 
   _fmt(val) {
-    if (val >= 1e9) return `${(val / 1e9).toFixed(2)} Md\u20AC`;
-    if (val >= 1e6) return `${(val / 1e6).toFixed(1)} M\u20AC`;
-    if (val === 0) return '0 \u20AC';
-    return val.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' \u20AC';
+    if (val >= 1e9) return `${(val / 1e9).toFixed(2)} Md\u0024`;
+    if (val >= 1e6) return `${(val / 1e6).toFixed(1)} M\u0024`;
+    if (val === 0) return '0 \u0024';
+    return val.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' \u0024';
   }
 
   _fmtPanel(val) {
-    if (val >= 1e9) return `${(val / 1e9).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} milliards \u20AC`;
-    if (val >= 1e6) return `${Math.round(val / 1e6).toLocaleString('fr-FR')} millions \u20AC`;
-    if (val === 0) return '0 \u20AC';
-    return val.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' \u20AC';
+    if (val >= 1e9) return `${(val / 1e9).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} milliards \u0024`;
+    if (val >= 1e6) return `${Math.round(val / 1e6).toLocaleString('fr-FR')} millions \u0024`;
+    if (val === 0) return '0 \u0024';
+    return val.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' \u0024';
   }
 
   _getStyles() {
