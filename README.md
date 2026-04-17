@@ -113,7 +113,7 @@ Pour le dataset complet 2010-2024, consulter directement `sources/debtors.csv` e
 
 ### Frontières — World Bank Official Boundaries
 
-La carte utilise les [frontières officielles de la Banque Mondiale](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries) (Admin 0, licence CC BY 4.0). Ce jeu de données est la référence utilisée par la Banque Mondiale et acceptée par les organisations internationales partenaires du Club de Paris.
+La carte utilise les [frontières officielles de la Banque Mondiale](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries).
 
 Le shapefile source (`WB_countries_Admin0_10m`) est converti en TopoJSON simplifié hébergé localement (`wb_countries.topojson`, ~274 Ko). La conversion est reproductible via `mapshaper` :
 
