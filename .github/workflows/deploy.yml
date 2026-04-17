@@ -40,7 +40,7 @@ jobs:
       - name: Stage site
         run: |
           mkdir -p dist/downloads
-          cp index.html data.json dist/
+          cp index.html data.json wb_countries.topojson dist/
           cp downloads/*.csv dist/downloads/
           touch dist/.nojekyll
 
