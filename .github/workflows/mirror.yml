@@ -1,0 +1,27 @@
+name: Mirror main → mef-snum-miweb
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+concurrency:
+  group: mirror-main
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push main to mef-snum-miweb/clubdeparis-website-map
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          git push --force \
+            "https://x-access-token:${MIRROR_TOKEN}@github.com/mef-snum-miweb/clubdeparis-website-map.git" \
+            main:main
