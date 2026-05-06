@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club de Paris — Carte interactive v2</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<style>
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f1f5f9; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 0.5rem; box-sizing: border-box; }
+  club-paris-map { width: 100%; max-width: 1100px; height: 90vh; max-height: 700px; min-height: 350px; }
+</style>
+</head>
+<body>
+
+<club-paris-map></club-paris-map>
+
+<script>
+// ---------------------------------------------------------------------------
+// SVG Icons
+// ---------------------------------------------------------------------------
+const ICON_TREND_UP = `<svg viewBox="0 0 24 24" fill="none" stroke="#e8864a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`;
+const ICON_TREND_DOWN = `<svg viewBox="0 0 24 24" fill="none" stroke="#e8864a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>`;
+const ICON_CALENDAR = `<svg viewBox="0 0 24 24" fill="none" stroke="#e8864a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
+const ICON_AGREEMENTS = `<svg viewBox="0 0 24 24" fill="none" stroke="#e8864a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`;
+
+// ---------------------------------------------------------------------------
+// Translations
+// ---------------------------------------------------------------------------
+const TRANSLATIONS = {
+  fr: {
+    'filter.all': 'Tous',
+    'filter.debtors': 'Débiteurs',
+    'filter.creditors': 'Créditeurs',
+    'filter.apd': 'APD',
+    'filter.napd': 'Hors APD',
+    'filter.bar_label': 'Filtres',
+    'filter.treatment_type': 'Type de traitement',
+    'filter.year': 'Année',
+    'filter.apply': 'Appliquer',
+    'map.legend_debtors': 'Débiteurs',
+    'map.legend_creditors': 'Créditeurs',
+    'loading': 'Chargement…',
+    'search.placeholder': 'Rechercher un pays…',
+    'search.no_result': 'Aucun résultat',
+    'map.no_data': 'Pas de données',
+    'map.debt': 'Dette',
+    'map.creditor_label': 'Créditeur',
+    'map.agreements': 'accords',
+    'panel.debtor_creditor': 'Débiteur et créditeur',
+    'panel.creditor': 'Pays créditeur',
+    'panel.debtor': 'Pays débiteur',
+    'panel.year': 'Année',
+    'panel.section_debtor': 'Créances (débiteur)',
+    'panel.apd_short': 'APD',
+    'panel.napd_short': 'Hors APD',
+    'panel.total': 'Total',
+    'panel.debtor_link': 'Fiche pays débiteur',
+    'panel.section_creditor': 'Membre créditeur',
+    'panel.agreements': 'Accords signés',
+    'panel.member_since': 'Membre depuis',
+    'panel.status': 'Statut',
+    'panel.creditor_link': 'Fiche pays créditeur',
+    'panel.view_profile': 'Voir la fiche pays',
+    'panel.claim_apd': 'Créance APD',
+    'panel.claim_napd': 'Créance non APD',
+    'panel.last_update': 'Last Update',
+  },
+  en: {
+    'filter.all': 'All',
+    'filter.debtors': 'Debtors',
+    'filter.creditors': 'Creditors',
+    'filter.apd': 'ODA',
+    'filter.napd': 'Non-ODA',
+    'filter.bar_label': 'Filters',
+    'filter.treatment_type': 'Treatment type',
+    'filter.year': 'Year',
+    'filter.apply': 'Apply',
+    'map.legend_debtors': 'Debtors',
+    'map.legend_creditors': 'Creditors',
+    'loading': 'Loading…',
+    'search.placeholder': 'Search for a country…',
+    'search.no_result': 'No results',
+    'map.no_data': 'No data',
+    'map.debt': 'Debt',
+    'map.creditor_label': 'Creditor',
+    'map.agreements': 'agreements',
+    'panel.debtor_creditor': 'Debtor and creditor',
+    'panel.creditor': 'Creditor country',
+    'panel.debtor': 'Debtor country',
+    'panel.year': 'Year',
+    'panel.section_debtor': 'Claims (debtor)',
+    'panel.apd_short': 'ODA',
+    'panel.napd_short': 'Non-ODA',
+    'panel.total': 'Total',
+    'panel.debtor_link': 'Debtor country profile',
+    'panel.section_creditor': 'Creditor Member',
+    'panel.agreements': 'Signed agreements',
+    'panel.member_since': 'Member since',
+    'panel.status': 'Status',
+    'panel.creditor_link': 'Creditor country profile',
+    'panel.view_profile': 'View country profile',
+    'panel.claim_apd': 'ODA Claims',
+    'panel.claim_napd': 'Non-ODA Claims',
+    'panel.last_update': 'Last Update',
+  },
+};
+
+const COUNTRY_NAMES = {
+  fr: {
+    'ZAF':'Afrique du Sud','ALB':'Albanie','DZA':'Algérie','AGO':'Angola',
+    'ATG':'Antigua-et-Barbuda','SAU':'Arabie Saoudite','ARG':'Argentine',
+    'AUS':'Australie','AUT':'Autriche','AZE':'Azerbaïdjan','BGD':'Bangladesh',
+    'BEL':'Belgique','BEN':'Bénin','BOL':'Bolivie','BIH':'Bosnie-Herzégovine',
+    'BRA':'Brésil','BFA':'Burkina Faso','BDI':'Burundi','KHM':'Cambodge',
+    'CMR':'Cameroun','CAN':'Canada','CPV':'Cap-Vert','CAF':'Centrafrique',
+    'TCD':'Tchad','CHL':'Chili','CHN':'Chine','COL':'Colombie','COM':'Comores',
+    'COG':'Congo','COD':'RD Congo','CRI':'Costa Rica','CIV':"Côte d'Ivoire",
+    'HRV':'Croatie','CUB':'Cuba','CZE':'Rép. Tchèque','DNK':'Danemark',
+    'DJI':'Djibouti','DMA':'Dominique','DOM':'Rép. Dominicaine','EGY':'Égypte',
+    'SLV':'El Salvador','ARE':'Émirats Arabes Unis','ECU':'Équateur',
+    'ERI':'Érythrée','ESP':'Espagne','ETH':'Éthiopie','FJI':'Fidji',
+    'FIN':'Finlande','FRA':'France','GAB':'Gabon','GMB':'Gambie','GEO':'Géorgie',
+    'DEU':'Allemagne','GHA':'Ghana','GRD':'Grenade','GTM':'Guatemala',
+    'GIN':'Guinée','GNB':'Guinée-Bissau','GNQ':'Guinée Équatoriale',
+    'GUY':'Guyana','HTI':'Haïti','HND':'Honduras','HUN':'Hongrie','IND':'Inde',
+    'IDN':'Indonésie','IRQ':'Irak','IRN':'Iran','IRL':'Irlande','ISR':'Israël',
+    'ITA':'Italie','JAM':'Jamaïque','JPN':'Japon','JOR':'Jordanie',
+    'KAZ':'Kazakhstan','KEN':'Kenya','KGZ':'Kirghizistan','KNA':'St-Christophe-et-Niévès',
+    'KOR':'Corée du Sud','KWT':'Koweït','LAO':'Laos','LBN':'Liban',
+    'LSO':'Lesotho','LBR':'Liberia','LBY':'Libye','MKD':'Macédoine du Nord',
+    'MDG':'Madagascar','MWI':'Malawi','MDV':'Maldives','MLI':'Mali','MAR':'Maroc',
+    'MRT':'Mauritanie','MUS':'Maurice','MEX':'Mexique','MDA':'Moldavie',
+    'MNG':'Mongolie','MNE':'Monténégro','MOZ':'Mozambique','MMR':'Myanmar',
+    'NAM':'Namibie','NPL':'Népal','NLD':'Pays-Bas','NZL':'Nouvelle-Zélande',
+    'NIC':'Nicaragua','NER':'Niger','NGA':'Nigeria','NOR':'Norvège',
+    'PAK':'Pakistan','PAN':'Panama','PNG':'Papouasie-N.-Guinée','PRY':'Paraguay',
+    'PER':'Pérou','PHL':'Philippines','POL':'Pologne','PRT':'Portugal',
+    'ROU':'Roumanie','RUS':'Russie','RWA':'Rwanda','LCA':'Sainte-Lucie',
+    'VCT':'St-Vincent-et-les-Grenadines','STP':'Sao Tomé-et-Principe',
+    'SEN':'Sénégal','SRB':'Serbie','SYC':'Seychelles','SLE':'Sierra Leone',
+    'SVN':'Slovénie','SOM':'Somalie','SDN':'Soudan','LKA':'Sri Lanka',
+    'SUR':'Suriname','SWE':'Suède','CHE':'Suisse','SYR':'Syrie',
+    'TJK':'Tadjikistan','TZA':'Tanzanie','TGO':'Togo','TTO':'Trinité-et-Tobago',
+    'TUN':'Tunisie','TUR':'Turquie','UKR':'Ukraine','GBR':'Royaume-Uni',
+    'USA':'États-Unis','URY':'Uruguay','VEN':'Venezuela','VNM':'Vietnam',
+    'WSM':'Samoa','YEM':'Yémen','ZMB':'Zambie','ZWE':'Zimbabwe','XKX':'Kosovo',
+  },
+  en: {
+    'ZAF':'South Africa','ALB':'Albania','DZA':'Algeria','AGO':'Angola',
+    'ATG':'Antigua and Barbuda','SAU':'Saudi Arabia','ARG':'Argentina',
+    'AUS':'Australia','AUT':'Austria','AZE':'Azerbaijan','BGD':'Bangladesh',
+    'BEL':'Belgium','BEN':'Benin','BOL':'Bolivia','BIH':'Bosnia and Herzegovina',
+    'BRA':'Brazil','BFA':'Burkina Faso','BDI':'Burundi','KHM':'Cambodia',
+    'CMR':'Cameroon','CAN':'Canada','CPV':'Cape Verde','CAF':'Central African Republic',
+    'TCD':'Chad','CHL':'Chile','CHN':'China','COL':'Colombia','COM':'Comoros',
+    'COG':'Congo','COD':'DR Congo','CRI':'Costa Rica','CIV':"Côte d'Ivoire",
+    'HRV':'Croatia','CUB':'Cuba','CZE':'Czech Republic','DNK':'Denmark',
+    'DJI':'Djibouti','DMA':'Dominica','DOM':'Dominican Republic','EGY':'Egypt',
+    'SLV':'El Salvador','ARE':'United Arab Emirates','ECU':'Ecuador',
+    'ERI':'Eritrea','ESP':'Spain','ETH':'Ethiopia','FJI':'Fiji',
+    'FIN':'Finland','FRA':'France','GAB':'Gabon','GMB':'Gambia','GEO':'Georgia',
+    'DEU':'Germany','GHA':'Ghana','GRD':'Grenada','GTM':'Guatemala',
+    'GIN':'Guinea','GNB':'Guinea-Bissau','GNQ':'Equatorial Guinea',
+    'GUY':'Guyana','HTI':'Haiti','HND':'Honduras','HUN':'Hungary','IND':'India',
+    'IDN':'Indonesia','IRQ':'Iraq','IRN':'Iran','IRL':'Ireland','ISR':'Israel',
+    'ITA':'Italy','JAM':'Jamaica','JPN':'Japan','JOR':'Jordan',
+    'KAZ':'Kazakhstan','KEN':'Kenya','KGZ':'Kyrgyzstan','KNA':'Saint Kitts and Nevis',
+    'KOR':'South Korea','KWT':'Kuwait','LAO':'Laos','LBN':'Lebanon',
+    'LSO':'Lesotho','LBR':'Liberia','LBY':'Libya','MKD':'North Macedonia',
+    'MDG':'Madagascar','MWI':'Malawi','MDV':'Maldives','MLI':'Mali','MAR':'Morocco',
+    'MRT':'Mauritania','MUS':'Mauritius','MEX':'Mexico','MDA':'Moldova',
+    'MNG':'Mongolia','MNE':'Montenegro','MOZ':'Mozambique','MMR':'Myanmar',
+    'NAM':'Namibia','NPL':'Nepal','NLD':'Netherlands','NZL':'New Zealand',
+    'NIC':'Nicaragua','NER':'Niger','NGA':'Nigeria','NOR':'Norway',
+    'PAK':'Pakistan','PAN':'Panama','PNG':'Papua New Guinea','PRY':'Paraguay',
+    'PER':'Peru','PHL':'Philippines','POL':'Poland','PRT':'Portugal',
+    'ROU':'Romania','RUS':'Russia','RWA':'Rwanda','LCA':'Saint Lucia',
+    'VCT':'Saint Vincent and the Grenadines','STP':'São Tomé and Príncipe',
+    'SEN':'Senegal','SRB':'Serbia','SYC':'Seychelles','SLE':'Sierra Leone',
+    'SVN':'Slovenia','SOM':'Somalia','SDN':'Sudan','LKA':'Sri Lanka',
+    'SUR':'Suriname','SWE':'Sweden','CHE':'Switzerland','SYR':'Syria',
+    'TJK':'Tajikistan','TZA':'Tanzania','TGO':'Togo','TTO':'Trinidad and Tobago',
+    'TUN':'Tunisia','TUR':'Turkey','UKR':'Ukraine','GBR':'United Kingdom',
+    'USA':'United States','URY':'Uruguay','VEN':'Venezuela','VNM':'Vietnam',
+    'WSM':'Samoa','YEM':'Yemen','ZMB':'Zambia','ZWE':'Zimbabwe','XKX':'Kosovo',
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Web Component
+// ---------------------------------------------------------------------------
+class ClubParisMap extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this._data = null;
+    this._selectedYear = 2024;
+    this._filterMode = 'all';
+    this._debtFilter = 'apd';
+    this._selectedIso = null;
+    this._geojson = null;
+    this._projection = null;
+    this._pathGen = null;
+    this._zoom = null;
+    this._lang = 'fr';
+  }
+
+  _detectLang() {
+    const attr = this.getAttribute('lang');
+    if (attr === 'en') return 'en';
+    if (attr === 'fr') return 'fr';
+    const params = new URLSearchParams(window.location.search);
+    const p = params.get('lang');
+    if (p === 'en') return 'en';
+    if (p === 'fr') return 'fr';
+    const html = document.documentElement.lang?.toLowerCase() ?? '';
+    if (html.startsWith('en')) return 'en';
+    return 'fr';
+  }
+
+  _t(key) {
+    return TRANSLATIONS[this._lang][key] ?? TRANSLATIONS.fr[key] ?? key;
+  }
+
+  _isoToName(iso) {
+    return COUNTRY_NAMES[this._lang][iso] || iso;
+  }
+
+  _isoToNameMap() {
+    return COUNTRY_NAMES[this._lang];
+  }
+
+  connectedCallback() {
+    this._lang = this._detectLang();
+    this.shadowRoot.innerHTML = `
+      <style>${this._getStyles()}</style>
+      <div class="wrapper">
+        <div class="map-area" id="map-area">
+          <div class="panel" id="panel">
+            <button class="panel-close" id="panel-close">&times;</button>
+            <div id="panel-content"></div>
+          </div>
+          <div class="tooltip" id="tooltip"></div>
+          <div class="loading-overlay" id="loading">
+            <div class="spinner"></div>
+            <span>${this._t('loading')}</span>
+          </div>
+        </div>
+        <div class="bottom-bar">
+          <span class="filter-label">${this._t('filter.bar_label')}</span>
+          <div class="filter-select-group">
+            <select class="filter-select" id="filter-type" title="${this._t('filter.treatment_type')}">
+              <option value="all">${this._t('filter.all')}</option>
+              <option value="débiteur">${this._t('filter.debtors')}</option>
+              <option value="créditeur">${this._t('filter.creditors')}</option>
+            </select>
+          </div>
+          <div class="filter-select-group" id="debt-sub-group" style="display:none">
+            <select class="filter-select" id="filter-debt-type">
+              <option value="apd">${this._t('filter.apd')}</option>
+              <option value="napd">${this._t('filter.napd')}</option>
+            </select>
+          </div>
+          <div class="filter-select-group">
+            <select class="filter-select" id="year-select" title="${this._t('filter.year')}"></select>
+          </div>
+          <button class="apply-btn" id="apply-btn">${this._t('filter.apply')}</button>
+          <div class="filter-spacer"></div>
+          <div class="search-container" id="search-container">
+            <input type="text" class="search-input" id="search-input" placeholder="${this._t('search.placeholder')}" autocomplete="off" />
+            <div class="search-dropdown" id="search-dropdown"></div>
+          </div>
+        </div>
+      </div>
+    `;
+    this._setup();
+  }
+
+  async _setup() {
+    this._buildYearSelect();
+    this._bindEvents();
+    await this._loadData();
+    this._initMap();
+    this.shadowRoot.getElementById('loading').style.display = 'none';
+  }
+
+  _buildYearSelect() {
+    const select = this.shadowRoot.getElementById('year-select');
+    for (let y = 2010; y <= 2024; y++) {
+      const opt = document.createElement('option');
+      opt.value = y;
+      opt.textContent = y;
+      if (y === 2024) opt.selected = true;
+      select.appendChild(opt);
+    }
+  }
+
+  _bindEvents() {
+    const sr = this.shadowRoot;
+
+    const filterType = sr.getElementById('filter-type');
+    filterType.addEventListener('change', () => {
+      const debtSubGroup = sr.getElementById('debt-sub-group');
+      debtSubGroup.style.display = filterType.value === 'débiteur' ? 'inline-flex' : 'none';
+    });
+
+    sr.getElementById('apply-btn').addEventListener('click', () => {
+      this._filterMode = sr.getElementById('filter-type').value;
+      this._debtFilter = sr.getElementById('filter-debt-type').value;
+      this._selectedYear = parseInt(sr.getElementById('year-select').value);
+      this._updateColors();
+      this._updatePanel();
+    });
+
+    sr.getElementById('panel-close').addEventListener('click', () => this._closePanel());
+
+    // Search autocomplete
+    const searchInput = sr.getElementById('search-input');
+    const searchDropdown = sr.getElementById('search-dropdown');
+    let activeIdx = -1;
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) { searchDropdown.classList.remove('open'); return; }
+      const results = this._searchCountries(query);
+      activeIdx = -1;
+      if (results.length === 0) {
+        searchDropdown.innerHTML = `<div class="search-no-result">${this._t('search.no_result')}</div>`;
+      } else {
+        searchDropdown.innerHTML = results.map((r, i) =>
+          `<div class="search-option" data-iso="${r.iso}" data-index="${i}">${r.highlighted}</div>`
+        ).join('');
+      }
+      searchDropdown.classList.add('open');
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      const options = searchDropdown.querySelectorAll('.search-option');
+      if (!options.length) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, options.length - 1);
+        options.forEach((o, i) => o.classList.toggle('active', i === activeIdx));
+        options[activeIdx]?.scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = Math.max(activeIdx - 1, 0);
+        options.forEach((o, i) => o.classList.toggle('active', i === activeIdx));
+        options[activeIdx]?.scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const sel = activeIdx >= 0 ? options[activeIdx] : options[0];
+        if (sel) {
+          this._selectCountry(sel.dataset.iso);
+          searchInput.value = this._isoToName(sel.dataset.iso);
+          searchDropdown.classList.remove('open');
+        }
+      } else if (e.key === 'Escape') {
+        searchDropdown.classList.remove('open');
+        searchInput.blur();
+      }
+    });
+
+    searchDropdown.addEventListener('click', (e) => {
+      const opt = e.target.closest('.search-option');
+      if (opt) {
+        this._selectCountry(opt.dataset.iso);
+        searchInput.value = this._isoToName(opt.dataset.iso);
+        searchDropdown.classList.remove('open');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!this.shadowRoot.getElementById('search-container').contains(e.composedPath()[0])) {
+        searchDropdown.classList.remove('open');
+      }
+    });
+  }
+
+  async _loadData() {
+    const base = new URL('.', location.href).href;
+    const [dataResp, topoResp] = await Promise.all([
+      fetch(base + 'data.json'),
+      fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    ]);
+    this._data = await dataResp.json();
+    const topo = await topoResp.json();
+    this._geojson = topojson.feature(topo, topo.objects.countries);
+  }
+
+  _initMap() {
+    const container = this.shadowRoot.getElementById('map-area');
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+
+    this._projection = d3.geoMercator()
+      .scale(w / 6.5)
+      .center([10, 25])
+      .translate([w / 2, h / 2]);
+
+    this._pathGen = d3.geoPath().projection(this._projection);
+
+    const svg = d3.select(container)
+      .insert('svg', ':first-child')
+      .attr('width', w)
+      .attr('height', h)
+      .style('display', 'block');
+
+    const g = svg.append('g');
+
+    this._zoom = d3.zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', (event) => g.attr('transform', event.transform));
+    svg.call(this._zoom);
+
+    const self = this;
+    g.selectAll('path')
+      .data(this._geojson.features)
+      .join('path')
+      .attr('d', this._pathGen)
+      .attr('class', 'country')
+      .attr('data-id', d => this._numToIso(String(d.id)) || '')
+      .attr('fill', d => {
+        const iso = this._numToIso(String(d.id));
+        return iso ? this._getColor(iso) : '#e5e7eb';
+      })
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 0.5)
+      .style('cursor', 'pointer')
+      .on('click', function(event, d) {
+        const iso = self._numToIso(String(d.id));
+        if (iso) self._selectCountry(iso);
+      })
+      .on('mouseenter', function(event, d) {
+        const iso = self._numToIso(String(d.id));
+        d3.select(this).attr('stroke', '#3b82f6').attr('stroke-width', 1.5);
+        self._showTooltip(event, iso, d);
+      })
+      .on('mousemove', function(event) {
+        self._moveTooltip(event);
+      })
+      .on('mouseleave', function() {
+        const iso = self._numToIso(String(d3.select(this).datum().id));
+        const isSel = iso === self._selectedIso;
+        d3.select(this)
+          .attr('stroke', isSel ? '#1e40af' : '#fff')
+          .attr('stroke-width', isSel ? 2 : 0.5);
+        self._hideTooltip();
+      });
+
+    this._svg = svg;
+    this._g = g;
+
+    this._resizeObserver = new ResizeObserver(() => this._onResize());
+    this._resizeObserver.observe(container);
+  }
+
+  _onResize() {
+    const container = this.shadowRoot.getElementById('map-area');
+    if (!container || !this._svg) return;
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    if (w < 1 || h < 1) return;
+
+    this._projection
+      .scale(w / 6.5)
+      .center([10, 25])
+      .translate([w / 2, h / 2]);
+    this._pathGen = d3.geoPath().projection(this._projection);
+
+    this._svg.attr('width', w).attr('height', h);
+    this._g.selectAll('path.country').attr('d', this._pathGen);
+
+    this._svg.call(this._zoom.transform, d3.zoomIdentity);
+  }
+
+  _updateColors() {
+    if (!this._g) return;
+    this._maxDebtor = null;
+    this._computeMaxValues();
+    const self = this;
+    this._g.selectAll('path.country')
+      .attr('fill', function() {
+        const iso = d3.select(this).attr('data-id');
+        return iso ? self._getColor(iso) : '#e5e7eb';
+      })
+      .attr('stroke', function() {
+        const iso = d3.select(this).attr('data-id');
+        return iso === self._selectedIso ? '#1e40af' : '#fff';
+      })
+      .attr('stroke-width', function() {
+        const iso = d3.select(this).attr('data-id');
+        return iso === self._selectedIso ? 2 : 0.5;
+      });
+  }
+
+  _showTooltip(event, iso, d) {
+    const tip = this.shadowRoot.getElementById('tooltip');
+    const yd = this._getYearData();
+    const c = yd?.countries[iso];
+    const name = this._isoToName(iso) || d.properties?.name || iso;
+    let text = name;
+    if (c) {
+      if (c.debtor && c.debtor.total > 0) text += ` — ${this._t('map.debt')}: ${this._fmt(c.debtor.total)}`;
+      if (c.creditor) text += ` — ${this._t('map.creditor_label')} (${c.creditor.nbAccords} ${this._t('map.agreements')})`;
+    }
+    tip.textContent = text;
+    tip.style.display = 'block';
+    this._moveTooltip(event);
+  }
+
+  _moveTooltip(event) {
+    const tip = this.shadowRoot.getElementById('tooltip');
+    const area = this.shadowRoot.getElementById('map-area');
+    const rect = area.getBoundingClientRect();
+    tip.style.left = (event.clientX - rect.left + 12) + 'px';
+    tip.style.top = (event.clientY - rect.top - 28) + 'px';
+  }
+
+  _hideTooltip() {
+    this.shadowRoot.getElementById('tooltip').style.display = 'none';
+  }
+
+  _selectCountry(iso) {
+    this._selectedIso = iso;
+    this._updateColors();
+    this._updatePanel();
+    this.shadowRoot.getElementById('panel').classList.add('open');
+  }
+
+  _closePanel() {
+    this.shadowRoot.getElementById('panel').classList.remove('open');
+    this._selectedIso = null;
+    this._updateColors();
+  }
+
+  _searchCountries(query) {
+    const yd = this._getYearData();
+    if (!yd) return [];
+    const names = this._isoToNameMap();
+    const results = [];
+    for (const [iso, name] of Object.entries(names)) {
+      const country = yd.countries[iso];
+      if (!country) continue;
+      if (this._filterMode === 'débiteur' && !(country.debtor && country.debtor.total > 0)) continue;
+      if (this._filterMode === 'créditeur' && !country.creditor) continue;
+      const lower = name.toLowerCase();
+      const idx = lower.indexOf(query);
+      if (idx === -1) continue;
+      const highlighted = name.substring(0, idx)
+        + '<span class="match">' + name.substring(idx, idx + query.length) + '</span>'
+        + name.substring(idx + query.length);
+      results.push({ iso, name, highlighted, startsWithMatch: idx === 0 });
+    }
+    results.sort((a, b) => {
+      if (a.startsWithMatch !== b.startsWithMatch) return a.startsWithMatch ? -1 : 1;
+      return a.name.localeCompare(b.name, this._lang);
+    });
+    return results.slice(0, 6);
+  }
+
+  // ---- Data helpers ----
+
+  _numToIso(numId) {
+    const map = {
+      '004':'AFG','008':'ALB','012':'DZA','024':'AGO','028':'ATG','032':'ARG',
+      '036':'AUS','040':'AUT','051':'ARM','031':'AZE','050':'BGD','052':'BRB',
+      '056':'BEL','084':'BLZ','204':'BEN','068':'BOL','070':'BIH','072':'BWA',
+      '076':'BRA','096':'BRN','100':'BGR','854':'BFA','108':'BDI','116':'KHM',
+      '120':'CMR','124':'CAN','132':'CPV','140':'CAF','148':'TCD','152':'CHL',
+      '156':'CHN','170':'COL','174':'COM','178':'COG','180':'COD','188':'CRI',
+      '384':'CIV','191':'HRV','192':'CUB','196':'CYP','203':'CZE','208':'DNK',
+      '262':'DJI','212':'DMA','214':'DOM','218':'ECU','818':'EGY','222':'SLV',
+      '226':'GNQ','232':'ERI','233':'EST','231':'ETH','242':'FJI','246':'FIN',
+      '250':'FRA','266':'GAB','270':'GMB','268':'GEO','276':'DEU','288':'GHA',
+      '300':'GRC','308':'GRD','320':'GTM','324':'GIN','624':'GNB','328':'GUY',
+      '332':'HTI','340':'HND','348':'HUN','352':'ISL','356':'IND','360':'IDN',
+      '364':'IRN','368':'IRQ','372':'IRL','376':'ISR','380':'ITA','388':'JAM',
+      '392':'JPN','400':'JOR','398':'KAZ','404':'KEN','408':'PRK','410':'KOR',
+      '414':'KWT','417':'KGZ','418':'LAO','428':'LVA','422':'LBN','426':'LSO',
+      '430':'LBR','434':'LBY','440':'LTU','442':'LUX','807':'MKD','450':'MDG',
+      '454':'MWI','458':'MYS','462':'MDV','466':'MLI','470':'MLT','478':'MRT',
+      '480':'MUS','484':'MEX','498':'MDA','496':'MNG','499':'MNE','504':'MAR',
+      '508':'MOZ','104':'MMR','516':'NAM','524':'NPL','528':'NLD','554':'NZL',
+      '558':'NIC','562':'NER','566':'NGA','578':'NOR','512':'OMN','586':'PAK',
+      '591':'PAN','598':'PNG','600':'PRY','604':'PER','608':'PHL','616':'POL',
+      '620':'PRT','634':'QAT','642':'ROU','643':'RUS','646':'RWA','882':'WSM',
+      '678':'STP','682':'SAU','686':'SEN','688':'SRB','690':'SYC','694':'SLE',
+      '702':'SGP','703':'SVK','705':'SVN','090':'SLB','706':'SOM','710':'ZAF',
+      '728':'SSD','724':'ESP','144':'LKA','662':'LCA','670':'VCT','729':'SDN',
+      '740':'SUR','748':'SWZ','752':'SWE','756':'CHE','760':'SYR','762':'TJK',
+      '834':'TZA','764':'THA','768':'TGO','780':'TTO','788':'TUN','792':'TUR',
+      '795':'TKM','800':'UGA','804':'UKR','784':'ARE','826':'GBR','840':'USA',
+      '858':'URY','860':'UZB','862':'VEN','704':'VNM','887':'YEM','894':'ZMB',
+      '716':'ZWE','-99':'XKX','659':'KNA'
+    };
+    return map[numId] || null;
+  }
+
+  _getYearData() {
+    return this._data ? this._data[String(this._selectedYear)] : null;
+  }
+
+  _getColor(iso) {
+    const yd = this._getYearData();
+    if (!yd) return '#e5e7eb';
+    const c = yd.countries[iso];
+    if (!c) return '#e5e7eb';
+    const isDebtor = c.debtor && c.debtor.total > 0;
+    const isCreditor = !!c.creditor;
+    if (!this._maxDebtor) this._computeMaxValues();
+
+    if (this._filterMode === 'créditeur') {
+      return isCreditor ? this._greenScale(c.creditor.nbAccords) : '#e5e7eb';
+    }
+    if (this._filterMode === 'débiteur') {
+      if (!isDebtor) return '#e5e7eb';
+      const val = this._debtFilter === 'apd' ? c.debtor.apd : c.debtor.napd;
+      return val > 0 ? this._orangeScale(val) : '#e5e7eb';
+    }
+    if (isCreditor && !isDebtor) return this._greenScale(c.creditor.nbAccords);
+    if (isDebtor) return this._orangeScale(c.debtor.apd);
+    if (isCreditor) return this._greenScale(c.creditor.nbAccords);
+    return '#e5e7eb';
+  }
+
+  _computeMaxValues() {
+    const yd = this._getYearData();
+    if (!yd) { this._maxDebtor = 1; this._maxCreditor = 1; return; }
+    let maxD = 1, maxC = 1;
+    for (const c of Object.values(yd.countries)) {
+      if (c.debtor) {
+        const v = this._debtFilter === 'apd' ? c.debtor.apd : c.debtor.napd;
+        if (v > maxD) maxD = v;
+      }
+      if (c.creditor && c.creditor.nbAccords > maxC) maxC = c.creditor.nbAccords;
+    }
+    this._maxDebtor = maxD;
+    this._maxCreditor = maxC;
+  }
+
+  _orangeScale(val) {
+    const t = Math.min(val / this._maxDebtor, 1);
+    return this._interpolateColors([[254,243,226],[253,186,116],[249,115,22],[194,65,12]], t);
+  }
+
+  _greenScale(val) {
+    const t = Math.min(val / this._maxCreditor, 1);
+    return this._interpolateColors([[236,253,245],[110,231,183],[16,185,129],[4,120,87]], t);
+  }
+
+  _interpolateColors(colors, t) {
+    const n = colors.length - 1;
+    const idx = Math.min(Math.floor(t * n), n - 1);
+    const local = (t * n) - idx;
+    const c1 = colors[idx], c2 = colors[idx + 1];
+    const r = Math.round(c1[0] + (c2[0] - c1[0]) * local);
+    const g = Math.round(c1[1] + (c2[1] - c1[1]) * local);
+    const b = Math.round(c1[2] + (c2[2] - c1[2]) * local);
+    return `rgb(${r},${g},${b})`;
+  }
+
+  _updatePanel() {
+    const el = this.shadowRoot.getElementById('panel-content');
+    if (!this._selectedIso) { el.innerHTML = ''; return; }
+    const yd = this._getYearData();
+    const c = yd?.countries[this._selectedIso];
+    if (!c) { el.innerHTML = `<p class="no-data">${this._t('map.no_data')}</p>`; return; }
+
+    const name = this._isoToName(this._selectedIso) || c.country;
+    const isDebtor = c.debtor && c.debtor.total > 0;
+    const isCreditor = !!c.creditor;
+
+    let html = `<h2 class="panel-country-name">${name}</h2>`;
+
+    if (isDebtor) {
+      html += `
+        <div class="info-row">
+          <span class="info-icon">${ICON_TREND_UP}</span>
+          <div class="info-text">
+            <span class="info-label">${this._t('panel.claim_apd')}</span>
+            <span class="info-value">${this._fmtMillions(c.debtor.apd)}</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-icon">${ICON_TREND_DOWN}</span>
+          <div class="info-text">
+            <span class="info-label">${this._t('panel.claim_napd')}</span>
+            <span class="info-value">${this._fmtMillions(c.debtor.napd)}</span>
+          </div>
+        </div>`;
+    }
+
+    if (isCreditor) {
+      html += `
+        <div class="info-row">
+          <span class="info-icon">${ICON_AGREEMENTS}</span>
+          <div class="info-text">
+            <span class="info-label">${this._t('panel.agreements')}</span>
+            <span class="info-value">${c.creditor.nbAccords}</span>
+          </div>
+        </div>`;
+      if (c.creditor.premiereParticipation) {
+        html += `
+        <div class="info-row">
+          <span class="info-icon">${ICON_CALENDAR}</span>
+          <div class="info-text">
+            <span class="info-label">${this._t('panel.member_since')}</span>
+            <span class="info-value">${c.creditor.premiereParticipation}</span>
+          </div>
+        </div>`;
+      }
+    }
+
+    html += `
+      <div class="info-row">
+        <span class="info-icon">${ICON_CALENDAR}</span>
+        <div class="info-text">
+          <span class="info-label">${this._t('panel.last_update')}</span>
+          <span class="info-value-bold">${this._selectedYear}</span>
+        </div>
+      </div>`;
+
+    const url = c.debtor?.url || c.creditor?.url;
+    if (url) {
+      html += `<a class="panel-cta" href="${url}" target="_blank" rel="noopener">${this._t('panel.view_profile')}</a>`;
+    }
+
+    html += `<div class="panel-logo-area">
+      <div class="panel-logo-badge">
+        <svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="18" fill="#1a1a2e"/><text x="20" y="24" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">CP</text></svg>
+        <span class="panel-logo-letter">A</span>
+      </div>
+    </div>`;
+
+    el.innerHTML = html;
+  }
+
+  _fmt(val) {
+    if (val >= 1e9) return `${(val / 1e9).toFixed(2)} Md$`;
+    if (val >= 1e6) return `${(val / 1e6).toFixed(1)} M$`;
+    if (val === 0) return '0 $';
+    return val.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' $';
+  }
+
+  _fmtMillions(val) {
+    if (val >= 1e9) return `${(val / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 0 })} millions $`;
+    if (val >= 1e6) return `${Math.round(val / 1e6).toLocaleString('fr-FR')} millions $`;
+    if (val === 0) return '0 $';
+    return val.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' $';
+  }
+
+  _getStyles() {
+    return `
+      :host { display: block; }
+      .wrapper {
+        width: 100%; height: 100%;
+        display: flex; flex-direction: column;
+        border-radius: 10px; overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,.12);
+        background: #fff;
+        position: relative;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: #1e293b;
+        container-name: wrapper;
+        container-type: inline-size;
+      }
+
+      /* ---- MAP AREA ---- */
+      .map-area {
+        flex: 1; position: relative; min-height: 0;
+        background: #e8ecf1;
+        overflow: hidden;
+      }
+      .map-area svg { display: block; }
+
+      /* ---- TOOLTIP ---- */
+      .tooltip {
+        position: absolute; display: none;
+        background: #1e293b; color: #fff;
+        padding: 0.4rem 0.65rem; border-radius: 5px;
+        font-size: 0.8rem; pointer-events: none;
+        white-space: nowrap; z-index: 500;
+        box-shadow: 0 2px 6px rgba(0,0,0,.2);
+      }
+
+      /* ---- PANEL (sidebar) ---- */
+      .panel {
+        position: absolute; top: 0; right: 0; bottom: 0;
+        width: 300px; max-width: 85%;
+        background: #fff5f0;
+        box-shadow: -4px 0 16px rgba(0,0,0,.1);
+        z-index: 800; padding: 1.5rem; padding-top: 2.5rem;
+        transform: translateX(100%); transition: transform .25s ease;
+        overflow-y: auto;
+        display: flex; flex-direction: column;
+      }
+      .panel.open { transform: translateX(0); }
+      .panel-close {
+        position: absolute; top: 0.75rem; right: 0.75rem;
+        background: rgba(0,0,0,.06); border: none;
+        width: 28px; height: 28px; border-radius: 50%;
+        font-size: 1.2rem; color: #64748b; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        line-height: 1; z-index: 10;
+        transition: background .15s;
+      }
+      .panel-close:hover { color: #1e293b; background: rgba(0,0,0,.1); }
+
+      .panel-country-name {
+        font-size: 1.4rem; font-weight: 800; margin: 0 0 1.25rem 0;
+        color: #1a1a2e; line-height: 1.2;
+      }
+      .no-data { color: #94a3b8; font-style: italic; }
+
+      /* Info rows */
+      .info-row {
+        display: flex; align-items: center; gap: 0.75rem;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid rgba(0,0,0,.06);
+      }
+      .info-row:last-of-type { border-bottom: none; }
+      .info-icon {
+        width: 36px; height: 36px; flex-shrink: 0;
+        background: #fef0e6; border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        padding: 6px;
+      }
+      .info-icon svg { width: 100%; height: 100%; }
+      .info-text { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; min-width: 0; }
+      .info-label { font-size: 0.75rem; color: #888; }
+      .info-value { font-size: 1rem; font-weight: 700; color: #1a1a2e; }
+      .info-value-bold { font-size: 1rem; font-weight: 800; color: #1a1a2e; }
+
+      /* CTA button */
+      .panel-cta {
+        display: block; text-align: center;
+        margin: 1.5rem 0; padding: 0.7rem 1.5rem;
+        border: 2px solid #1a1a2e; border-radius: 6px;
+        color: #1a1a2e; text-decoration: none;
+        font-size: 0.85rem; font-weight: 600;
+        transition: background .15s, color .15s;
+      }
+      .panel-cta:hover { background: #1a1a2e; color: #fff; }
+
+      /* Logo area */
+      .panel-logo-area {
+        margin-top: auto; display: flex; justify-content: flex-end;
+        padding-top: 1rem;
+      }
+      .panel-logo-badge {
+        display: flex; align-items: center; gap: 0.25rem;
+      }
+      .panel-logo-letter {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 22px; height: 22px; border-radius: 50%;
+        background: #9333ea; color: #fff; font-size: 0.7rem; font-weight: 700;
+      }
+
+      /* ---- BOTTOM BAR ---- */
+      .bottom-bar {
+        display: flex; align-items: center; gap: 0.75rem;
+        padding: 0.65rem 1rem;
+        background: #fff;
+        border-top: 1px solid #e2e8f0;
+        z-index: 10;
+        flex-wrap: wrap;
+      }
+      .filter-label {
+        font-size: 0.85rem; font-weight: 700; color: #1a1a2e;
+      }
+      .filter-spacer { flex: 1; }
+      .filter-select-group {
+        display: inline-flex; align-items: center;
+      }
+      .filter-select {
+        padding: 0.4rem 0.65rem; border: 1px solid #e2e8f0;
+        border-radius: 6px; font-size: 0.8rem; color: #1e293b;
+        background: #fff; font-family: inherit; cursor: pointer;
+        outline: none; transition: border-color .15s;
+      }
+      .filter-select:focus { border-color: #e8864a; }
+      .apply-btn {
+        padding: 0.4rem 1.2rem;
+        background: #fff; color: #1a1a2e; border: 1px solid #e2e8f0;
+        border-radius: 6px; font-size: 0.8rem; font-weight: 600;
+        cursor: pointer; transition: all .15s; font-family: inherit;
+      }
+      .apply-btn:hover { background: #1a1a2e; color: #fff; }
+
+      /* ---- SEARCH (in bottom bar) ---- */
+      .search-container { position: relative; }
+      .search-input {
+        padding: 0.4rem 0.65rem; border: 1px solid #e2e8f0; border-radius: 6px;
+        font-size: 0.8rem; color: #1e293b; background: #fff; outline: none;
+        width: 180px; transition: border-color .15s, box-shadow .15s;
+        font-family: inherit;
+      }
+      .search-input::placeholder { color: #94a3b8; }
+      .search-input:focus { border-color: #e8864a; box-shadow: 0 0 0 2px rgba(232,134,74,.15); }
+      .search-dropdown {
+        position: absolute; bottom: 100%; left: 0; right: 0;
+        background: #fff; border: 1px solid #e2e8f0; border-radius: 6px;
+        box-shadow: 0 -4px 12px rgba(0,0,0,.12);
+        margin-bottom: 4px; display: none; z-index: 900;
+        max-height: 220px; overflow-y: auto;
+      }
+      .search-dropdown.open { display: block; }
+      .search-option {
+        padding: 0.4rem 0.65rem; font-size: 0.8rem; cursor: pointer;
+        color: #1e293b; transition: background .1s;
+      }
+      .search-option:hover, .search-option.active { background: #fef0e6; color: #c2410c; }
+      .search-option .match { font-weight: 700; }
+      .search-no-result {
+        padding: 0.5rem 0.65rem; font-size: 0.75rem; color: #94a3b8;
+        font-style: italic;
+      }
+
+      /* ---- LOADING ---- */
+      .loading-overlay {
+        position: absolute; inset: 0; z-index: 700;
+        background: rgba(255,255,255,.9);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 0.75rem;
+        font-size: 0.85rem; color: #64748b;
+      }
+      .spinner {
+        width: 32px; height: 32px;
+        border: 3px solid #e2e8f0; border-top-color: #e8864a;
+        border-radius: 50%; animation: spin .8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      /* ---- RESPONSIVE ---- */
+
+      @container wrapper (max-width: 700px) {
+        .bottom-bar { gap: 0.5rem; padding: 0.5rem 0.5rem; }
+        .search-input { width: 130px; }
+        .panel { width: 280px; }
+        .panel-country-name { font-size: 1.15rem; }
+      }
+
+      @container wrapper (max-width: 480px) {
+        .bottom-bar { flex-direction: column; align-items: stretch; gap: 0.4rem; padding: 0.4rem 0.5rem; }
+        .filter-label { text-align: center; }
+        .filter-select-group { justify-content: center; }
+        .filter-select { width: 100%; box-sizing: border-box; }
+        .search-container { order: -1; }
+        .search-input { width: 100%; box-sizing: border-box; }
+        .apply-btn { width: 100%; }
+        .filter-spacer { display: none; }
+        .panel { width: 100%; max-width: 100%; }
+        .panel-country-name { font-size: 1.1rem; }
+        .info-value { font-size: 0.9rem; }
+      }
+
+      @media (max-width: 700px) {
+        .bottom-bar { gap: 0.5rem; padding: 0.5rem 0.5rem; }
+        .search-input { width: 130px; }
+        .panel { width: 280px; }
+        .panel-country-name { font-size: 1.15rem; }
+      }
+      @media (max-width: 480px) {
+        .bottom-bar { flex-direction: column; align-items: stretch; gap: 0.4rem; padding: 0.4rem 0.5rem; }
+        .filter-label { text-align: center; }
+        .filter-select-group { justify-content: center; }
+        .filter-select { width: 100%; box-sizing: border-box; }
+        .search-container { order: -1; }
+        .search-input { width: 100%; box-sizing: border-box; }
+        .apply-btn { width: 100%; }
+        .filter-spacer { display: none; }
+        .panel { width: 100%; max-width: 100%; }
+        .panel-country-name { font-size: 1.1rem; }
+        .info-value { font-size: 0.9rem; }
+      }
+    `;
+  }
+}
+
+customElements.define('club-paris-map', ClubParisMap);
+</script>
+</body>
+</html>
