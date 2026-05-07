@@ -192,106 +192,9 @@ const TRANSLATIONS = {
   },
 };
 
-const COUNTRY_NAMES = {
-  fr: {
-    'AFG':'Afghanistan','ZAF':'Afrique du Sud','ALB':'Albanie','DEU':'Allemagne',
-    'DZA':'Algérie','AGO':'Angola','ATG':'Antigua-et-Barbuda','SAU':'Arabie Saoudite',
-    'ARG':'Argentine','ARM':'Arménie','AUS':'Australie','AUT':'Autriche',
-    'AZE':'Azerbaïdjan','BGD':'Bangladesh','BRB':'Barbade','BEL':'Belgique',
-    'BLZ':'Belize','BEN':'Bénin','BOL':'Bolivie','BIH':'Bosnie-Herzégovine',
-    'BWA':'Botswana','BRA':'Brésil','BRN':'Brunei','BGR':'Bulgarie',
-    'BFA':'Burkina Faso','BDI':'Burundi','KHM':'Cambodge','CMR':'Cameroun',
-    'CAN':'Canada','CPV':'Cap-Vert','CAF':'Centrafrique','TCD':'Tchad',
-    'CHL':'Chili','CHN':'Chine','CYP':'Chypre','COL':'Colombie',
-    'COM':'Comores','COG':'Congo','COD':'République démocratique du Congo',
-    'PRK':'Corée du Nord','KOR':'République de Corée','CRI':'Costa Rica',
-    'CIV':"Côte d'Ivoire",'HRV':'Croatie','CUB':'Cuba','DNK':'Danemark',
-    'DJI':'Djibouti','DMA':'Dominique','EGY':'Égypte','SLV':'El Salvador',
-    'ARE':'Émirats Arabes Unis','ECU':'Équateur','ERI':'Érythrée','ESP':'Espagne',
-    'EST':'Estonie','SWZ':'Eswatini','ETH':'Éthiopie','FJI':'Fidji',
-    'FIN':'Finlande','FRA':'France','GAB':'Gabon','GMB':'Gambie',
-    'GEO':'Géorgie','GHA':'Ghana','GRC':'Grèce','GRD':'Grenade',
-    'GTM':'Guatemala','GIN':'Guinée','GNB':'Guinée-Bissau','GNQ':'Guinée Équatoriale',
-    'GUY':'Guyana','HTI':'Haïti','HND':'Honduras','HUN':'Hongrie',
-    'SLB':'Îles Salomon','IND':'Inde','IDN':'Indonésie','IRQ':'Irak',
-    'IRN':'Iran','IRL':'Irlande','ISL':'Islande','ISR':'Israël',
-    'ITA':'Italie','JAM':'Jamaïque','JPN':'Japon','JOR':'Jordanie',
-    'KAZ':'Kazakhstan','KEN':'Kenya','KGZ':'Kirghizistan','KWT':'Koweït',
-    'LAO':'Laos','LSO':'Lesotho','LVA':'Lettonie','LBN':'Liban',
-    'LBR':'Liberia','LBY':'Libye','LTU':'Lituanie','LUX':'Luxembourg',
-    'MKD':'Macédoine du Nord','MDG':'Madagascar','MYS':'Malaisie','MWI':'Malawi',
-    'MDV':'Maldives','MLI':'Mali','MLT':'Malte','MAR':'Maroc',
-    'MRT':'Mauritanie','MUS':'Maurice','MEX':'Mexique','MDA':'Moldavie',
-    'MNG':'Mongolie','MNE':'Monténégro','MOZ':'Mozambique','MMR':'Myanmar',
-    'NAM':'Namibie','NPL':'Népal','NIC':'Nicaragua','NER':'Niger',
-    'NGA':'Nigeria','NOR':'Norvège','NZL':'Nouvelle-Zélande','OMN':'Oman',
-    'UGA':'Ouganda','UZB':'Ouzbékistan','PAK':'Pakistan','PAN':'Panama',
-    'PNG':'Papouasie-N.-Guinée','PRY':'Paraguay','NLD':'Pays-Bas','PER':'Pérou',
-    'PHL':'Philippines','POL':'Pologne','PRT':'Portugal','QAT':'Qatar',
-    'ROU':'Roumanie','GBR':'Royaume-Uni','RUS':'Fédération de Russie','RWA':'Rwanda',
-    'KNA':'St-Christophe-et-Niévès','LCA':'Sainte-Lucie','VCT':'St-Vincent-et-les-Grenadines',
-    'WSM':'Samoa','STP':'Sao Tomé-et-Principe','SEN':'Sénégal','SRB':'Serbie',
-    'SYC':'Seychelles','SLE':'Sierra Leone','SGP':'Singapour','SVK':'Slovaquie',
-    'SVN':'Slovénie','SOM':'Somalie','SDN':'Soudan','SSD':'Soudan du Sud',
-    'LKA':'Sri Lanka','SUR':'Suriname','SWE':'Suède','CHE':'Suisse',
-    'SYR':'Syrie','TJK':'Tadjikistan','TZA':'Tanzanie','THA':'Thaïlande',
-    'TGO':'Togo','TTO':'Trinité-et-Tobago','TUN':'Tunisie','TKM':'Turkménistan',
-    'TUR':'Turquie','UKR':'Ukraine','USA':"États-Unis d'Amérique",'URY':'Uruguay',
-    'VEN':'Venezuela','VNM':'Vietnam','YEM':'Yémen','ZMB':'Zambie',
-    'ZWE':'Zimbabwe','XKX':'Kosovo',
-    'BHR':'Bahreïn','BLR':'Biélorussie','CZE':'Rép. tchèque',
-    'DOM':'Rép. dominicaine','PLW':'Palaos','TLS':'Timor-Leste','VUT':'Vanuatu',
-  },
-  en: {
-    'AFG':'Afghanistan','ALB':'Albania','DZA':'Algeria','AGO':'Angola',
-    'ATG':'Antigua and Barbuda','ARG':'Argentina','ARM':'Armenia','AUS':'Australia',
-    'AUT':'Austria','AZE':'Azerbaijan','BGD':'Bangladesh','BRB':'Barbados',
-    'BEL':'Belgium','BLZ':'Belize','BEN':'Benin','BOL':'Bolivia',
-    'BIH':'Bosnia and Herzegovina','BWA':'Botswana','BRA':'Brazil','BRN':'Brunei Darussalam',
-    'BGR':'Bulgaria','BFA':'Burkina Faso','BDI':'Burundi','KHM':'Cambodia',
-    'CMR':'Cameroon','CAN':'Canada','CPV':'Cape Verde','CAF':'Central African Republic',
-    'TCD':'Chad','CHL':'Chile','CHN':'China','COL':'Colombia',
-    'COM':'Comoros','COG':'Congo','COD':'Democratic Republic of the Congo',
-    'CRI':'Costa Rica','CIV':"Côte d'Ivoire",'HRV':'Croatia','CUB':'Cuba',
-    'CYP':'Cyprus','CZE':'Czech Republic','PRK':"Democratic People's Republic of Korea",
-    'DNK':'Denmark','DJI':'Djibouti','DMA':'Dominica','DOM':'Dominican Republic',
-    'ECU':'Ecuador','EGY':'Egypt','SLV':'El Salvador','GNQ':'Equatorial Guinea',
-    'ERI':'Eritrea','EST':'Estonia','SWZ':'Eswatini','ETH':'Ethiopia',
-    'FJI':'Fiji','FIN':'Finland','FRA':'France','GAB':'Gabon',
-    'GMB':'Gambia','GEO':'Georgia','DEU':'Germany','GHA':'Ghana',
-    'GRC':'Greece','GRD':'Grenada','GTM':'Guatemala','GIN':'Guinea',
-    'GNB':'Guinea-Bissau','GUY':'Guyana','HTI':'Haiti','HND':'Honduras',
-    'HUN':'Hungary','ISL':'Iceland','IND':'India','IDN':'Indonesia',
-    'IRN':'Iran','IRQ':'Iraq','IRL':'Ireland','ISR':'Israel',
-    'ITA':'Italy','JAM':'Jamaica','JPN':'Japan','JOR':'Jordan',
-    'KAZ':'Kazakhstan','KEN':'Kenya','KGZ':'Kyrgyzstan','KWT':'Kuwait',
-    'LAO':'Laos','LVA':'Latvia','LBN':'Lebanon','LSO':'Lesotho',
-    'LBR':'Liberia','LBY':'Libya','LTU':'Lithuania','LUX':'Luxembourg',
-    'MDG':'Madagascar','MYS':'Malaysia','MWI':'Malawi','MDV':'Maldives',
-    'MLI':'Mali','MLT':'Malta','MRT':'Mauritania','MUS':'Mauritius',
-    'MEX':'Mexico','MDA':'Moldova','MNG':'Mongolia','MNE':'Montenegro',
-    'MAR':'Morocco','MOZ':'Mozambique','MMR':'Myanmar','NAM':'Namibia',
-    'NPL':'Nepal','NLD':'Netherlands','NZL':'New Zealand','NIC':'Nicaragua',
-    'NER':'Niger','NGA':'Nigeria','MKD':'North Macedonia','NOR':'Norway',
-    'OMN':'Oman','PAK':'Pakistan','PAN':'Panama','PNG':'Papua New Guinea',
-    'PRY':'Paraguay','PER':'Peru','PHL':'Philippines','POL':'Poland',
-    'PRT':'Portugal','QAT':'Qatar','KOR':'Republic of Korea','ROU':'Romania',
-    'RUS':'Russian Federation','RWA':'Rwanda','KNA':'Saint Kitts and Nevis',
-    'LCA':'Saint Lucia','VCT':'Saint Vincent and the Grenadines','WSM':'Samoa',
-    'STP':'São Tomé and Príncipe','SAU':'Saudi Arabia','SEN':'Senegal',
-    'SRB':'Serbia','SYC':'Seychelles','SLE':'Sierra Leone','SGP':'Singapore',
-    'SVK':'Slovakia','SVN':'Slovenia','SLB':'Solomon Islands','SOM':'Somalia',
-    'ZAF':'South Africa','SSD':'South Sudan','ESP':'Spain','LKA':'Sri Lanka',
-    'SDN':'Sudan','SUR':'Suriname','SWE':'Sweden','CHE':'Switzerland',
-    'SYR':'Syria','TJK':'Tajikistan','TZA':'Tanzania','THA':'Thailand',
-    'TGO':'Togo','TTO':'Trinidad and Tobago','TUN':'Tunisia','TUR':'Turkey',
-    'TKM':'Turkmenistan','UGA':'Uganda','UKR':'Ukraine','ARE':'United Arab Emirates',
-    'GBR':'United Kingdom','USA':'United States of America','URY':'Uruguay',
-    'UZB':'Uzbekistan','VEN':'Venezuela','VNM':'Vietnam','YEM':'Yemen',
-    'ZMB':'Zambia','ZWE':'Zimbabwe','XKX':'Kosovo',
-    'BHR':'Bahrain','BLR':'Belarus','PLW':'Palau','TLS':'Timor-Leste','VUT':'Vanuatu',
-  },
-};
+// Country names: EN comes from the WB topojson NAM_0 field (built into
+// `_wbNames` at load time); FR comes from data.json (`country`, populated
+// from `sources/countries.csv`).
 
 // ---------------------------------------------------------------------------
 // Web Component
@@ -336,11 +239,27 @@ class ClubParisMap extends HTMLElement {
   }
 
   _isoToName(iso) {
-    return COUNTRY_NAMES[this._lang][iso] || iso;
+    if (this._lang === 'fr') {
+      const yd = this._getYearData();
+      const fr = yd?.countries?.[iso]?.country;
+      if (fr) return fr;
+    }
+    return this._wbNames?.[iso] || iso;
   }
 
   _isoToNameMap() {
-    return COUNTRY_NAMES[this._lang];
+    const out = {};
+    const yd = this._getYearData();
+    const fr = this._lang === 'fr';
+    for (const iso of Object.keys(this._wbNames || {})) {
+      out[iso] = (fr && yd?.countries?.[iso]?.country) || this._wbNames[iso];
+    }
+    if (fr && yd) {
+      for (const [iso, c] of Object.entries(yd.countries || {})) {
+        if (!out[iso] && c?.country) out[iso] = c.country;
+      }
+    }
+    return out;
   }
 
   connectedCallback() {
@@ -646,6 +565,11 @@ class ClubParisMap extends HTMLElement {
     this._data = await dataResp.json();
     const topo = await topoResp.json();
     this._geojson = topojson.feature(topo, topo.objects.countries);
+    this._wbNames = {};
+    for (const f of this._geojson.features) {
+      const p = f.properties || {};
+      if (p.ISO_A3 && p.NAM_0) this._wbNames[p.ISO_A3] = p.NAM_0;
+    }
   }
 
   _initMap() {
@@ -730,7 +654,7 @@ class ClubParisMap extends HTMLElement {
       .on('mouseenter', function(event, d) {
         const iso = d.properties.ISO_A3;
         d3.select(this).attr('stroke', '#fff').attr('stroke-width', 1.5);
-        self._showTooltip(event, iso, d);
+        self._showTooltip(event, iso);
       })
       .on('mousemove', function(event) {
         self._moveTooltip(event);
@@ -742,7 +666,7 @@ class ClubParisMap extends HTMLElement {
       .on('keydown', function(event) { self._onCountryKeydown(event); })
       .on('focus', function(event, d) {
         const iso = d.properties.ISO_A3;
-        self._showTooltipAtElement(this, iso, d);
+        self._showTooltipAtElement(this, iso);
       })
       .on('blur', function() { self._hideTooltip(); });
 
@@ -806,11 +730,10 @@ class ClubParisMap extends HTMLElement {
     }
   }
 
-  _tooltipText(iso, d) {
+  _tooltipText(iso) {
     const yd = this._getYearData();
     const c = yd?.countries[iso];
-    const name = this._isoToName(iso) || d?.properties?.name || iso;
-    let text = name;
+    let text = this._isoToName(iso);
     if (c) {
       if (c.debtor && c.debtor.total > 0) text += ` — ${this._t('map.debt')}: ${this._fmt(c.debtor.total)}`;
       if (c.creditor) text += ` — ${this._t('map.creditor_label')} (${c.creditor.nbAccords} ${this._t('map.agreements')})`;
@@ -818,18 +741,18 @@ class ClubParisMap extends HTMLElement {
     return text;
   }
 
-  _showTooltip(event, iso, d) {
+  _showTooltip(event, iso) {
     const tip = this.shadowRoot.getElementById('tooltip');
-    tip.textContent = this._tooltipText(iso, d);
+    tip.textContent = this._tooltipText(iso);
     tip.style.display = 'block';
     this._moveTooltip(event);
   }
 
-  _showTooltipAtElement(pathEl, iso, d) {
+  _showTooltipAtElement(pathEl, iso) {
     const tip = this.shadowRoot.getElementById('tooltip');
     const area = this.shadowRoot.getElementById('map-area');
     if (!tip || !area || !pathEl) return;
-    tip.textContent = this._tooltipText(iso, d);
+    tip.textContent = this._tooltipText(iso);
     tip.style.display = 'block';
     const areaRect = area.getBoundingClientRect();
     const pathRect = pathEl.getBoundingClientRect();
@@ -856,8 +779,7 @@ class ClubParisMap extends HTMLElement {
     const panel = this.shadowRoot.getElementById('panel');
     panel.classList.add('open');
     panel.removeAttribute('inert');
-    const name = this._isoToName(iso) || iso;
-    this._announce(this._t('a11y.country_selected').replace('{0}', name));
+    this._announce(this._t('a11y.country_selected').replace('{0}', this._isoToName(iso)));
   }
 
   _closePanel() {
@@ -883,12 +805,12 @@ class ClubParisMap extends HTMLElement {
 
     const creditors = entries
       .filter(([, c]) => c.creditor)
-      .map(([iso, c]) => ({ iso, name: names[iso] || c.country || iso, c }))
+      .map(([iso, c]) => ({ iso, name: names[iso] || iso, c }))
       .sort((a, b) => collator.compare(a.name, b.name));
 
     const debtors = entries
       .filter(([, c]) => c.debtor && c.debtor.total > 0)
-      .map(([iso, c]) => ({ iso, name: names[iso] || c.country || iso, c }))
+      .map(([iso, c]) => ({ iso, name: names[iso] || iso, c }))
       .sort((a, b) => collator.compare(a.name, b.name));
 
     const statusMap = {
@@ -1138,7 +1060,7 @@ class ClubParisMap extends HTMLElement {
     const c = yd?.countries[this._selectedIso];
     if (!c) { el.innerHTML = `<p class="no-data">${this._t('map.no_data')}</p>`; return; }
 
-    const name = this._isoToName(this._selectedIso) || c.country;
+    const name = this._isoToName(this._selectedIso);
     const isDebtor = c.debtor && c.debtor.total > 0;
     const isCreditor = !!c.creditor;
 

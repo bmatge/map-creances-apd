@@ -31,3 +31,8 @@ npm-debug.log*
 # Source data files (keep JSON for the app)
 *.xlsx
 *.xls
+
+# Build cache for processing/build_topojson.py (raw + encoding-fixed
+# WB GeoJSONs, ~170 MB each, regeneratable from upstream URL)
+downloads/wb_admin0.geojson
+downloads/wb_admin0_fixed.geojson

@@ -115,18 +115,36 @@ Pour le dataset complet 2010-2024, consulter directement `sources/debtors.csv` e
 
 La carte utilise les [frontières officielles de la Banque Mondiale](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries).
 
-Le shapefile source (`WB_countries_Admin0_10m`) est converti en TopoJSON simplifié hébergé localement (`wb_countries.topojson`, ~274 Ko). La conversion est reproductible via `mapshaper` :
+Source utilisée : la version GeoJSON du dataset *Admin 0* (mise à jour septembre 2025). Le fichier brut (~172 Mo) est converti en TopoJSON simplifié hébergé localement (`wb_countries.topojson`, ~460 Ko) via `processing/build_topojson.py` :
 
 ```bash
-mapshaper WB_countries_Admin0_10m.shp \
-  -filter-fields WB_A3,ISO_A3,NAME_EN,NAME_FR,TYPE \
-  -each 'MATCH_ID = WB_A3' \
-  -dissolve2 MATCH_ID copy-fields=WB_A3,ISO_A3,NAME_EN,NAME_FR,TYPE \
-  -each 'if (ISO_A3 === "-99" || ISO_A3 === "") ISO_A3 = WB_A3' \
-  -simplify 5% keep-shapes \
+npm install -g mapshaper          # dépendance externe (CLI)
+python3 processing/build_topojson.py
+```
+
+Le script :
+1. télécharge `World Bank Official Boundaries - Admin 0.geojson` dans `downloads/wb_admin0.geojson` (cache local) ;
+2. corrige le double-encodage UTF-8 que la World Bank a laissé sur ~7 noms (ex. *"TÃ¼rkiye"* → *"Türkiye"*, *"CÃ´te d'Ivoire"* → *"Côte d'Ivoire"*) et écrit `downloads/wb_admin0_fixed.geojson` ;
+3. lance mapshaper pour ne garder que les colonnes utiles, fusionner les fragments d'un même ISO_A3 (ESP avait Ceuta + Melilla + Spain comme features distinctes) et simplifier les frontières à 1 % :
+
+```bash
+mapshaper downloads/wb_admin0_fixed.geojson \
+  -filter-fields ISO_A3,WB_A3,NAM_0,WB_STATUS,SOVEREIGN \
+  -sort 'WB_STATUS === "Member State" ? 0 : 1' \
+  -dissolve2 ISO_A3 copy-fields=ISO_A3,WB_A3,NAM_0,WB_STATUS,SOVEREIGN \
+  -simplify 1% keep-shapes \
   -rename-layers countries \
   -o format=topojson wb_countries.topojson
 ```
+
+Le `-sort` priorise les features `Member State` avant les `Territory` partageant le même `ISO_A3`, sinon `dissolve2` aurait copié les attributs d'une enclave (Ceuta, Bonaire, Clipperton…) sur le polygone fusionné.
+
+Colonnes conservées :
+- `NAM_0` : nom du pays/territoire en anglais. Pour les territoires/dépendances, le libellé inclut déjà la métropole entre parenthèses (*"Greenland (Den.)"*, *"Puerto Rico (U.S.)"*).
+- `ISO_A3` / `WB_A3` : codes pays (Kosovo arrive directement avec `XKX`, plus besoin de remap).
+- `WB_STATUS` (`Member State` / `Territory`) et `SOVEREIGN` : conservés pour usages futurs (filtrage, regroupement par métropole).
+
+> Le GeoJSON ne contient pas de noms FR. La traduction française vient de `sources/countries.csv` (champs `name_fr` / `name_en`), maintenue manuellement et exposée par `data.json`.
 
 ### Liste des pays
 
