@@ -81,7 +81,6 @@ GGY,Guernsey (U.K.),Territory,Guernesey (R.-U.),True
 GHA,Ghana,Member State,Ghana,True
 GIB,Gibraltar (U.K.),Territory,Gibraltar (R.-U.),True
 GIN,Guinea,Member State,Guinée,True
-GLP,France,Member State,France,True
 GMB,The Gambia,Member State,Gambie,True
 GNB,Guinea-Bissau,Member State,Guinée-Bissau,True
 GNQ,Equatorial Guinea,Member State,Guinée équatoriale,True
@@ -89,7 +88,6 @@ GRC,Greece,Member State,Grèce,True
 GRD,Grenada,Member State,Grenade,True
 GRL,Greenland (Den.),Territory,Groenland (Dan.),True
 GTM,Guatemala,Member State,Guatemala,True
-GUF,France,Member State,France,True
 GUM,Guam (U.S.),Territory,Guam (É.-U.),True
 GUY,Guyana,Member State,Guyana,True
 HKG,"Hong Kong SAR, China",Special Administrative Region,"Hong Kong (RAS, Chine)",True
@@ -117,7 +115,7 @@ KGZ,Kyrgyz Republic,Member State,République kirghize,True
 KHM,Cambodia,Member State,Cambodge,True
 KIR,Kiribati,Member State,Kiribati,True
 KNA,Saint Kitts and Nevis,Member State,Saint-Christophe-et-Niévès,True
-KOR,Republic of Korea,Member State,Corée du Sud,True
+KOR,Republic of Korea,Member State,République de Corée,True
 KWT,Kuwait,Member State,Koweït,True
 LAO,Lao People's Democratic Republic,Member State,République démocratique populaire lao,True
 LBN,Lebanon,Member State,Liban,True
@@ -149,11 +147,9 @@ MNP,Northern Mariana Islands (U.S.),Territory,Îles Mariannes du Nord (É.-U.),T
 MOZ,Mozambique,Member State,Mozambique,True
 MRT,Mauritania,Member State,Mauritanie,True
 MSR,Montserrat (U.K.),Territory,Montserrat (R.-U.),True
-MTQ,France,Member State,France,True
 MUS,Mauritius,Member State,Maurice,True
 MWI,Malawi,Member State,Malawi,True
 MYS,Malaysia,Member State,Malaisie,True
-MYT,France,Member State,France,True
 NAM,Namibia,Member State,Namibie,True
 NCL,New Caledonia (Fr.),Territory,Nouvelle-Calédonie (Fr.),True
 NER,Niger,Member State,Niger,True
@@ -182,9 +178,8 @@ PRY,Paraguay,Member State,Paraguay,True
 PSE,West Bank and Gaza,Territory,Cisjordanie et Gaza,True
 PYF,French Polynesia (Fr.),Territory,Polynésie française (Fr.),True
 QAT,Qatar,Member State,Qatar,True
-REU,France,Member State,France,True
 ROU,Romania,Member State,Roumanie,True
-RUS,Russian Federation,Member State,Russie,True
+RUS,Russian Federation,Member State,Fédération de Russie,True
 RWA,Rwanda,Member State,Rwanda,True
 SAU,Saudi Arabia,Member State,Arabie saoudite,True
 SDN,Sudan,Member State,Soudan,True

@@ -82,21 +82,34 @@ def _fix_double_utf8(s):
         return s
 
 
+# DOM-TOM français : leurs polygones ont des ISO_A3 distincts (MTQ, GLP, GUF,
+# REU, MYT) mais la World Bank leur a explicitement donné NAM_0 = "France".
+# Sans remap, ils restent 5 polygones séparés alors que metier les considère
+# comme partie de la France : clic sur Guyane n'allume pas l'Hexagone, et
+# Guyane est classée "no-data" car FRA seul porte les données créditeur.
+# Le remap les pousse vers FRA avant dissolve → un seul MultiPolygon "France".
+DOM_TOM_FR_REMAP = {'MTQ', 'GLP', 'GUF', 'REU', 'MYT'}
+
+
 def prepare_geojson():
     print(f'Loading {RAW_GEOJSON.relative_to(ROOT)} (this takes a few seconds)...')
     with RAW_GEOJSON.open(encoding='utf-8') as f:
         data = json.load(f)
     fixed = 0
+    remapped = 0
     for feat in data.get('features', []):
         props = feat.get('properties') or {}
         original = props.get('NAM_0')
-        if not original:
-            continue
-        new = _fix_double_utf8(original)
-        if new != original:
-            props['NAM_0'] = new
-            fixed += 1
+        if original:
+            new = _fix_double_utf8(original)
+            if new != original:
+                props['NAM_0'] = new
+                fixed += 1
+        if props.get('ISO_A3') in DOM_TOM_FR_REMAP:
+            props['ISO_A3'] = 'FRA'
+            remapped += 1
     print(f'  patched {fixed} NAM_0 values')
+    print(f'  remapped {remapped} DOM-TOM français à ISO_A3=FRA')
     with FIXED_GEOJSON.open('w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False)
     print(f'  wrote {FIXED_GEOJSON.relative_to(ROOT)} ({FIXED_GEOJSON.stat().st_size:,} bytes)')

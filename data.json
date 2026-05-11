@@ -1762,14 +1762,8 @@
       "GIB": {
         "country": "Gibraltar (R.-U.)"
       },
-      "GLP": {
-        "country": "France"
-      },
       "GRL": {
         "country": "Groenland (Dan.)"
-      },
-      "GUF": {
-        "country": "France"
       },
       "GUM": {
         "country": "Guam (É.-U.)"
@@ -1828,12 +1822,6 @@
       "MSR": {
         "country": "Montserrat (R.-U.)"
       },
-      "MTQ": {
-        "country": "France"
-      },
-      "MYT": {
-        "country": "France"
-      },
       "NCL": {
         "country": "Nouvelle-Calédonie (Fr.)"
       },
@@ -1860,9 +1848,6 @@
       },
       "QAT": {
         "country": "Qatar"
-      },
-      "REU": {
-        "country": "France"
       },
       "SGP": {
         "country": "Singapour"
