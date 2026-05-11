@@ -34,6 +34,7 @@ const TRANSLATIONS = {
     'filter.clear': 'Effacer les filtres',
     'map.legend_creditor_permanent': 'Membre permanent',
     'map.legend_creditor_adhoc': 'Membre ad hoc',
+    'map.legend_creditor_prospective': 'Membre prospectif',
     'map.legend_debtor_accord': 'Débiteur traité',
     'map.legend_debtor_encours': 'Débiteur (encours)',
     'loading': 'Chargement…',
@@ -78,9 +79,6 @@ const TRANSLATIONS = {
     'info.dl_debt_en': 'Pays débiteurs (anglais)',
     'info.dl_cred_fr': 'Pays créanciers (français)',
     'info.dl_cred_en': 'Pays créanciers (anglais)',
-    'render.label': 'Légende',
-    'render.colors': 'Couleurs',
-    'render.patterns': 'Motifs',
     'header.title': 'Accords signés avec le Club de Paris',
     'header.source': 'Source :',
     'header.source_name': 'clubdeparis.org',
@@ -119,6 +117,7 @@ const TRANSLATIONS = {
     'filter.clear': 'Clear filters',
     'map.legend_creditor_permanent': 'Permanent member',
     'map.legend_creditor_adhoc': 'Ad hoc member',
+    'map.legend_creditor_prospective': 'Prospective member',
     'map.legend_debtor_accord': 'Treated debtor',
     'map.legend_debtor_encours': 'Debtor (outstanding)',
     'loading': 'Loading…',
@@ -163,9 +162,6 @@ const TRANSLATIONS = {
     'info.dl_debt_en': 'Debtor countries (English names)',
     'info.dl_cred_fr': 'Creditor countries (French names)',
     'info.dl_cred_en': 'Creditor countries (English names)',
-    'render.label': 'Legend',
-    'render.colors': 'Colors',
-    'render.patterns': 'Patterns',
     'header.title': 'Agreements concluded with the Paris Club',
     'header.source': 'Source:',
     'header.source_name': 'clubdeparis.org',
@@ -200,11 +196,15 @@ const TRANSLATIONS = {
 // Web Component
 // ---------------------------------------------------------------------------
 class ClubParisMap extends HTMLElement {
-  static CREDITOR_PERMANENT_COLOR = '#1e40af';
-  static CREDITOR_ADHOC_COLOR = '#93c5fd';
-  static DEBTOR_ACCORD_COLOR = '#f97316';
-  static DEBTOR_ENCOURS_COLOR = '#fdba74';
-  static DEFAULT_COLOR = '#e8c4b0';
+  // Charte "Carte interactive Club de Paris" — couleurs hybrides (chaque
+  // catégorie = couleur de fond + motif spécifique défini dans les <pattern>).
+  static CREDITOR_PERMANENT_COLOR = '#4d84bc';   // membre permanent (hachures fines \)
+  static CREDITOR_ADHOC_COLOR = '#4d84bc';       // membre ad hoc     (hachures medium \)
+  static CREDITOR_PROSPECTIVE_COLOR = '#7fa9d1'; // membre prospectif (hachures épaisses \)
+  static DEBTOR_ACCORD_COLOR = '#fee090';        // débiteur traité   (hachures fines espacées /)
+  static DEBTOR_ENCOURS_COLOR = '#fee090';       // débiteur encours  (hachures épaisses espacées /)
+  static DEFAULT_COLOR = '#e8c4b0';              // pays non traité   (hachures fines #4d84bc \)
+  static SEA_COLOR = '#E0F3F8';                  // mer / océan (fond de carte)
 
   constructor() {
     super();
@@ -212,7 +212,6 @@ class ClubParisMap extends HTMLElement {
     this._data = null;
     this._selectedYear = 2024;
     this._filterMode = 'all';
-    this._renderMode = 'colors';
     this._selectedIso = null;
     this._geojson = null;
     this._projection = null;
@@ -266,7 +265,7 @@ class ClubParisMap extends HTMLElement {
     this._lang = this._detectLang();
     this.shadowRoot.innerHTML = `
       <style>${this._getStyles()}</style>
-      <div class="wrapper" data-render="colors">
+      <div class="wrapper">
         <a href="#info-row" class="skip-link" id="skip-link">${this._t('a11y.skip')}</a>
         <header class="map-header">
           <h1 class="map-title" id="map-title"></h1>
@@ -303,11 +302,6 @@ class ClubParisMap extends HTMLElement {
               <button class="filter-btn filter-debtor" data-filter="débiteur">${this._t('filter.debtors')}</button>
             </div>
             <div class="filter-spacer"></div>
-            <span class="filter-label legend-label">${this._t('render.label')}</span>
-            <div class="render-toggle" role="radiogroup" aria-label="${this._t('render.label')}">
-              <button type="button" role="radio" aria-checked="true" class="render-btn active" data-render="colors">${this._t('render.colors')}</button>
-              <button type="button" role="radio" aria-checked="false" class="render-btn" data-render="patterns">${this._t('render.patterns')}</button>
-            </div>
             <div class="legend-bar">
               <div class="legend-item">
                 <div class="legend-swatch legend-swatch-creditor-permanent"></div>
@@ -316,6 +310,10 @@ class ClubParisMap extends HTMLElement {
               <div class="legend-item">
                 <div class="legend-swatch legend-swatch-creditor-adhoc"></div>
                 <span class="legend-text">${this._t('map.legend_creditor_adhoc')}</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-swatch legend-swatch-creditor-prospective"></div>
+                <span class="legend-text">${this._t('map.legend_creditor_prospective')}</span>
               </div>
               <div class="legend-item">
                 <div class="legend-swatch legend-swatch-debtor-accord"></div>
@@ -431,19 +429,6 @@ class ClubParisMap extends HTMLElement {
         this._filterMode = btn.dataset.filter;
         this._updateColors();
         this._updateTabindex();
-      });
-    });
-    const wrapper = sr.querySelector('.wrapper');
-    sr.querySelectorAll('.render-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        this._renderMode = btn.dataset.render;
-        sr.querySelectorAll('.render-btn').forEach(b => {
-          const on = b === btn;
-          b.classList.toggle('active', on);
-          b.setAttribute('aria-checked', on ? 'true' : 'false');
-        });
-        wrapper.dataset.render = this._renderMode;
-        this._updateColors();
       });
     });
     /* SLIDER TEMPORAIREMENT DÉSACTIVÉ
@@ -593,35 +578,36 @@ class ClubParisMap extends HTMLElement {
       .attr('aria-describedby', 'map-instructions')
       .style('display', 'block');
 
-    // --- SVG pattern definitions ---
-    // 4 category patterns (renderMode === 'patterns') + 1 selection overlay
+    // --- SVG pattern definitions (charte "Carte interactive Club de Paris") ---
+    // Chaque catégorie = couleur de fond + bandes blanches (créditeurs) ou
+    // bandes blanches espacées (débiteurs). Le sens des hachures distingue
+    // créditeurs (\, diagonale droite) et débiteurs (/, diagonale gauche).
     const defs = svg.append('defs');
 
-    // Debtor with agreement: diagonal stripes \ (dense, dark orange)
-    const pDA = defs.append('pattern').attr('id','pattern-debtor-accord')
-      .attr('patternUnits','userSpaceOnUse').attr('width',8).attr('height',8)
-      .attr('patternTransform','rotate(45)');
-    pDA.append('rect').attr('width',8).attr('height',8).attr('fill','#fde8d9');
-    pDA.append('rect').attr('width',1.8).attr('height',8).attr('fill','#f97316');
+    const C = ClubParisMap;
+    const mkStripes = (id, bg, stripeColor, stripeWidth, period, angle) => {
+      const p = defs.append('pattern').attr('id', id)
+        .attr('patternUnits', 'userSpaceOnUse')
+        .attr('width', period).attr('height', period)
+        .attr('patternTransform', `rotate(${angle})`);
+      p.append('rect').attr('width', period).attr('height', period).attr('fill', bg);
+      p.append('rect').attr('width', stripeWidth).attr('height', period).attr('fill', stripeColor);
+      return p;
+    };
 
-    // Debtor without agreement: diagonal stripes / (sparse, light orange)
-    const pDE = defs.append('pattern').attr('id','pattern-debtor-encours')
-      .attr('patternUnits','userSpaceOnUse').attr('width',10).attr('height',10)
-      .attr('patternTransform','rotate(-45)');
-    pDE.append('rect').attr('width',10).attr('height',10).attr('fill','#fff7ed');
-    pDE.append('rect').attr('width',1.4).attr('height',10).attr('fill','#fdba74');
+    // Creditors — diagonale \ (angle 45°), bandes blanches sur fond bleu.
+    // Permanent : hachures fines. Ad hoc : hachures medium. Prospectif : hachures épaisses.
+    mkStripes('pattern-creditor-permanent',   C.CREDITOR_PERMANENT_COLOR,   '#ffffff', 1.5, 8, 45);
+    mkStripes('pattern-creditor-adhoc',       C.CREDITOR_ADHOC_COLOR,       '#ffffff', 3.0, 8, 45);
+    mkStripes('pattern-creditor-prospective', C.CREDITOR_PROSPECTIVE_COLOR, '#ffffff', 5.0, 10, 45);
 
-    // Permanent creditor: large dots (dark blue)
-    const pCP = defs.append('pattern').attr('id','pattern-creditor-permanent')
-      .attr('patternUnits','userSpaceOnUse').attr('width',8).attr('height',8);
-    pCP.append('rect').attr('width',8).attr('height',8).attr('fill','#eff6ff');
-    pCP.append('circle').attr('cx',4).attr('cy',4).attr('r',1.4).attr('fill','#1e40af');
+    // Debtors — diagonale / (angle -45°), bandes blanches ESPACÉES sur fond jaune.
+    // Traité : hachures fines espacées. Encours : hachures épaisses espacées.
+    mkStripes('pattern-debtor-accord',  C.DEBTOR_ACCORD_COLOR,  '#ffffff', 1.5, 12, -45);
+    mkStripes('pattern-debtor-encours', C.DEBTOR_ENCOURS_COLOR, '#ffffff', 3.0, 12, -45);
 
-    // Ad hoc creditor: small dots (light blue)
-    const pCA = defs.append('pattern').attr('id','pattern-creditor-adhoc')
-      .attr('patternUnits','userSpaceOnUse').attr('width',10).attr('height',10);
-    pCA.append('rect').attr('width',10).attr('height',10).attr('fill','#f0f9ff');
-    pCA.append('circle').attr('cx',5).attr('cy',5).attr('r',1.0).attr('fill','#3b82f6');
+    // No-data — fond saumon (couche `land` underneath), hachures fines #4d84bc \.
+    mkStripes('pattern-no-data', C.DEFAULT_COLOR, C.CREDITOR_PERMANENT_COLOR, 1.0, 10, 45);
 
     // Selection overlay: semi-transparent cross-hatching
     const pSel = defs.append('pattern').attr('id','pattern-selection')
@@ -657,7 +643,7 @@ class ClubParisMap extends HTMLElement {
       .attr('data-id', d => d.properties.ISO_A3 || '')
       .attr('fill', d => {
         const iso = d.properties.ISO_A3;
-        return iso ? this._getFill(iso) : '#e8c4b0';
+        return iso ? this._getFill(iso) : 'url(#pattern-no-data)';
       })
       .attr('stroke', '#90a4ae')
       .attr('stroke-width', 0.5)
@@ -715,7 +701,7 @@ class ClubParisMap extends HTMLElement {
     this._g.selectAll('path.country')
       .attr('fill', function() {
         const iso = d3.select(this).attr('data-id');
-        return iso ? self._getFill(iso) : '#e8c4b0';
+        return iso ? self._getFill(iso) : 'url(#pattern-no-data)';
       })
       .attr('stroke', '#90a4ae')
       .attr('stroke-width', 0.5);
@@ -728,22 +714,13 @@ class ClubParisMap extends HTMLElement {
     const sel = this._g.select(`path.country[data-id="${this._selectedIso}"]`);
     if (sel.empty()) return;
     const pathD = sel.attr('d');
-    const cat = this._getCategory(this._selectedIso);
-    if (this._renderMode === 'patterns') {
-      // Pattern mode → solid color fill on selected country
-      this._g.append('path').attr('class', 'selection-overlay')
-        .attr('d', pathD)
-        .attr('fill', this._categorySolidColor(cat))
-        .attr('stroke', '#1e293b').attr('stroke-width', 1.5)
-        .attr('pointer-events', 'none');
-    } else {
-      // Color mode → cross-hatching overlay on selected country
-      this._g.append('path').attr('class', 'selection-overlay')
-        .attr('d', pathD)
-        .attr('fill', 'url(#pattern-selection)')
-        .attr('stroke', '#1e293b').attr('stroke-width', 1.5)
-        .attr('pointer-events', 'none');
-    }
+    // Highlight selected country with a cross-hatching overlay on top
+    // of its category pattern, plus a stronger stroke.
+    this._g.append('path').attr('class', 'selection-overlay')
+      .attr('d', pathD)
+      .attr('fill', 'url(#pattern-selection)')
+      .attr('stroke', '#1e293b').attr('stroke-width', 1.5)
+      .attr('pointer-events', 'none');
   }
 
   _tooltipText(iso) {
@@ -1025,7 +1002,10 @@ class ClubParisMap extends HTMLElement {
     const isDebtor = !!(c.debtor && c.debtor.total > 0);
     // Creditor takes precedence (dual-status countries show as creditors)
     if (isCreditor) {
-      return c.creditor.statut ? 'creditor-adhoc' : 'creditor-permanent';
+      const s = c.creditor.statut;
+      if (s === 'Prospectif') return 'creditor-prospective';
+      if (s === 'Ad hoc')     return 'creditor-adhoc';
+      return 'creditor-permanent';
     }
     if (isDebtor) {
       return c.debtor.type === 'accord' ? 'debtor-accord' : 'debtor-encours';
@@ -1034,27 +1014,18 @@ class ClubParisMap extends HTMLElement {
   }
 
   _categoryFill(cat) {
-    const C = ClubParisMap;
-    if (this._renderMode === 'patterns') {
-      return cat ? `url(#pattern-${cat})` : C.DEFAULT_COLOR;
-    }
-    switch (cat) {
-      case 'creditor-permanent': return C.CREDITOR_PERMANENT_COLOR;
-      case 'creditor-adhoc':     return C.CREDITOR_ADHOC_COLOR;
-      case 'debtor-accord':      return C.DEBTOR_ACCORD_COLOR;
-      case 'debtor-encours':     return C.DEBTOR_ENCOURS_COLOR;
-      default:                   return C.DEFAULT_COLOR;
-    }
+    return `url(#pattern-${cat || 'no-data'})`;
   }
 
   _categorySolidColor(cat) {
     const C = ClubParisMap;
     switch (cat) {
-      case 'creditor-permanent': return C.CREDITOR_PERMANENT_COLOR;
-      case 'creditor-adhoc':     return C.CREDITOR_ADHOC_COLOR;
-      case 'debtor-accord':      return C.DEBTOR_ACCORD_COLOR;
-      case 'debtor-encours':     return C.DEBTOR_ENCOURS_COLOR;
-      default:                   return C.DEFAULT_COLOR;
+      case 'creditor-permanent':   return C.CREDITOR_PERMANENT_COLOR;
+      case 'creditor-adhoc':       return C.CREDITOR_ADHOC_COLOR;
+      case 'creditor-prospective': return C.CREDITOR_PROSPECTIVE_COLOR;
+      case 'debtor-accord':        return C.DEBTOR_ACCORD_COLOR;
+      case 'debtor-encours':       return C.DEBTOR_ENCOURS_COLOR;
+      default:                     return C.DEFAULT_COLOR;
     }
   }
 
@@ -1192,7 +1163,7 @@ class ClubParisMap extends HTMLElement {
       /* ---- MAP AREA ---- */
       .map-area {
         flex: 1; position: relative; min-height: 0;
-        background: #d4eaf7;
+        background: #E0F3F8; /* mer/océan (charte) */
         overflow: hidden;
       }
       .map-area svg { display: block; }
@@ -1457,60 +1428,26 @@ class ClubParisMap extends HTMLElement {
       }
 
       /* Render mode toggle — compact segmented control next to the legend */
-      .render-toggle {
-        display: inline-flex;
-        border: 1px solid #6b7280;
-        border-radius: 6px;
-        overflow: hidden;
-        background: #fff;
-      }
-      .render-btn {
-        appearance: none;
-        border: 0;
-        background: transparent;
-        color: #475569;
-        padding: 0.3rem 0.65rem;
-        font-size: 0.75rem;
-        font-family: inherit;
-        cursor: pointer;
-        transition: all .15s;
-      }
-      .render-btn + .render-btn { border-left: 1px solid #6b7280; }
-      .render-btn:hover { background: #f9fafb; color: #1e293b; }
-      .render-btn.active {
-        background: #1e293b;
-        color: #fff;
-      }
-      .render-btn:focus-visible {
-        outline: 2px solid #ea580c;
-        outline-offset: 2px;
-        z-index: 1;
-      }
-
-      /* Legend — 4 categories */
+      /* Legend — charte hybride (couleur de fond + hachures) en miroir des
+         SVG <pattern> rendus sur la carte. Les valeurs numériques (width,
+         stripe, gap, angle) doivent rester synchrones avec mkStripes(). */
       .legend-bar { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
       .legend-item { display: flex; align-items: center; gap: 0.3rem; }
-      .legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid transparent; }
-      .legend-swatch-creditor-permanent { background: #1e40af; border-color: #1e40af; }
-      .legend-swatch-creditor-adhoc { background: #93c5fd; border-color: #3b82f6; }
-      .legend-swatch-debtor-accord { background: #f97316; border-color: #c2410c; }
-      .legend-swatch-debtor-encours { background: #fdba74; border-color: #f97316; }
-      /* Pattern mode swatches */
-      .wrapper[data-render="patterns"] .legend-swatch-creditor-permanent {
-        background: radial-gradient(#1e40af 1.2px, transparent 1.5px) 0 0 / 8px 8px, #eff6ff;
-        border-color: #1e40af;
+      .legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(15,23,42,0.25); }
+      .legend-swatch-creditor-permanent {
+        background: repeating-linear-gradient(45deg, #ffffff 0 1.5px, #4d84bc 1.5px 8px);
       }
-      .wrapper[data-render="patterns"] .legend-swatch-creditor-adhoc {
-        background: radial-gradient(#3b82f6 0.8px, transparent 1.1px) 0 0 / 10px 10px, #f0f9ff;
-        border-color: #3b82f6;
+      .legend-swatch-creditor-adhoc {
+        background: repeating-linear-gradient(45deg, #ffffff 0 3px, #4d84bc 3px 8px);
       }
-      .wrapper[data-render="patterns"] .legend-swatch-debtor-accord {
-        background: repeating-linear-gradient(45deg, #f97316 0 1.5px, #fde8d9 1.5px 8px);
-        border-color: #c2410c;
+      .legend-swatch-creditor-prospective {
+        background: repeating-linear-gradient(45deg, #ffffff 0 5px, #7fa9d1 5px 10px);
       }
-      .wrapper[data-render="patterns"] .legend-swatch-debtor-encours {
-        background: repeating-linear-gradient(-45deg, #fdba74 0 1.2px, #fff7ed 1.2px 10px);
-        border-color: #f97316;
+      .legend-swatch-debtor-accord {
+        background: repeating-linear-gradient(-45deg, #ffffff 0 1.5px, #fee090 1.5px 12px);
+      }
+      .legend-swatch-debtor-encours {
+        background: repeating-linear-gradient(-45deg, #ffffff 0 3px, #fee090 3px 12px);
       }
       .legend-text { font-size: 0.68rem; color: #475569; }
 
@@ -1745,7 +1682,6 @@ class ClubParisMap extends HTMLElement {
         .filter-row { gap: 0.35rem; row-gap: 0.4rem; }
         .filter-label { font-size: 0.78rem; }
         .filter-btn { padding: 0.25rem 0.55rem; font-size: 0.75rem; }
-        .render-btn { padding: 0.25rem 0.5rem; font-size: 0.72rem; }
         .search-input { width: 140px; }
         .search-input:focus { width: 180px; }
         .panel { width: 100%; max-width: 100%; }
@@ -1765,7 +1701,6 @@ class ClubParisMap extends HTMLElement {
         .filter-row { gap: 0.35rem; row-gap: 0.4rem; }
         .filter-label { font-size: 0.78rem; }
         .filter-btn { padding: 0.25rem 0.55rem; font-size: 0.75rem; }
-        .render-btn { padding: 0.25rem 0.5rem; font-size: 0.72rem; }
         .search-input { width: 140px; }
         .panel { width: 100%; max-width: 100%; }
         .panel-title { font-size: 1.2rem; }

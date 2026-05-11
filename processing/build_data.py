@@ -43,7 +43,7 @@ def load_countries():
             en[iso] = p['NAM_0']
     return {
         iso: {'name_fr': fr.get(iso, en.get(iso, iso)), 'name_en': en.get(iso, iso)}
-        for iso in set(fr) | set(en)
+        for iso in sorted(set(fr) | set(en))
     }
 
 
@@ -200,13 +200,13 @@ def render_downloads():
         iso = r['iso']
         total = round(r['apd'] + r['napd'], 2)
         rows.append([
-            iso, name(iso, 'fr'), name(iso, 'en'),
+            iso, name(iso, 'fr'),
             f'{r["apd"]:.2f}', f'{r["napd"]:.2f}', f'{total:.2f}',
             r['type'],
             url(iso, 'debtor', 'fr'),
         ])
     out['club_de_paris_pays_debiteurs.csv'] = _render_csv(
-        ['iso', 'pays_fr', 'pays_en',
+        ['iso', 'pays',
          'apd_usd', 'non_apd_usd', 'total_usd', 'type', 'fiche_pays'],
         rows,
     )
@@ -217,13 +217,13 @@ def render_downloads():
         iso = r['iso']
         total = round(r['apd'] + r['napd'], 2)
         rows.append([
-            iso, name(iso, 'en'), name(iso, 'fr'),
+            iso, name(iso, 'en'),
             f'{r["apd"]:.2f}', f'{r["napd"]:.2f}', f'{total:.2f}',
             r['type'],
             url(iso, 'debtor', 'en'),
         ])
     out['club_de_paris_debtor_countries.csv'] = _render_csv(
-        ['iso', 'country_en', 'country_fr',
+        ['iso', 'country',
          'oda_usd', 'non_oda_usd', 'total_usd', 'type', 'country_profile'],
         rows,
     )
@@ -233,14 +233,14 @@ def render_downloads():
     for r in creditors:
         iso = r['iso']
         rows.append([
-            iso, name(iso, 'fr'), name(iso, 'en'),
+            iso, name(iso, 'fr'),
             r['nb_accords'],
             STATUS_FR.get(r['statut'], r['statut'] or ''),
             r['premiere'] if r['premiere'] is not None else '',
             url(iso, 'creditor', 'fr'),
         ])
     out['club_de_paris_pays_crediteurs.csv'] = _render_csv(
-        ['iso', 'pays_fr', 'pays_en',
+        ['iso', 'pays',
          'nb_accords', 'statut', 'premiere_participation', 'fiche_pays'],
         rows,
     )
@@ -250,14 +250,14 @@ def render_downloads():
     for r in creditors:
         iso = r['iso']
         rows.append([
-            iso, name(iso, 'en'), name(iso, 'fr'),
+            iso, name(iso, 'en'),
             r['nb_accords'],
             STATUS_EN.get(r['statut'], r['statut'] or ''),
             r['premiere'] if r['premiere'] is not None else '',
             url(iso, 'creditor', 'en'),
         ])
     out['club_de_paris_creditor_countries.csv'] = _render_csv(
-        ['iso', 'country_en', 'country_fr',
+        ['iso', 'country',
          'nb_agreements', 'status', 'first_participation', 'country_profile'],
         rows,
     )

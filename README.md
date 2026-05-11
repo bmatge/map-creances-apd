@@ -98,7 +98,7 @@ URLs des fiches pays sur `clubdeparis.org`, FR et EN. Un pays peut apparaître d
 
 Générés par `build_data.py`, commités dans le repo, exposés sur le site à l'URL `/downloads/*.csv` et depuis l'accordéon d'accessibilité de la carte.
 
-Ce sont des **snapshots de l'année la plus récente** du dataset (une ligne par pays), pensés pour une réutilisation rapide par des non-dev. Chaque fichier porte à la fois le nom FR et le nom EN de chaque pays, et pointe vers la fiche pays `clubdeparis.org` dans la langue adéquate.
+Ce sont des **snapshots de l'année la plus récente** du dataset (une ligne par pays), pensés pour une réutilisation rapide par des non-dev. Chaque fichier porte le nom du pays dans **la langue du fichier uniquement** (FR ou EN), et pointe vers la fiche pays `clubdeparis.org` dans la langue adéquate.
 
 | Fichier | Langue | Contenu |
 |---|---|---|
@@ -106,6 +106,12 @@ Ce sont des **snapshots de l'année la plus récente** du dataset (une ligne par
 | `club_de_paris_debtor_countries.csv` | EN | Débiteurs, headers EN, URLs `clubdeparis.org/en/` |
 | `club_de_paris_pays_crediteurs.csv` | FR | Créditeurs, headers FR, URLs `clubdeparis.org/` |
 | `club_de_paris_creditor_countries.csv` | EN | Créditeurs, headers EN, URLs `clubdeparis.org/en/` |
+
+Colonnes :
+- Débiteurs FR : `iso, pays, apd_usd, non_apd_usd, total_usd, type, fiche_pays`
+- Débiteurs EN : `iso, country, oda_usd, non_oda_usd, total_usd, type, country_profile`
+- Créditeurs FR : `iso, pays, nb_accords, statut, premiere_participation, fiche_pays`
+- Créditeurs EN : `iso, country, nb_agreements, status, first_participation, country_profile`
 
 Pour le dataset complet 2010-2024, consulter directement `sources/debtors.csv` et `sources/creditors.csv` (long format).
 
