@@ -124,7 +124,7 @@ python3 processing/build_topojson.py
 
 Le script :
 1. télécharge `World Bank Official Boundaries - Admin 0.geojson` dans `downloads/wb_admin0.geojson` (cache local) ;
-2. télécharge Natural Earth 110m comme source de complément pour les 4 ISO que la World Bank omet pour raisons diplomatiques : `ATA` (Antarctique), `ESH` (Sahara occidental), `FLK` (îles Malouines), `TWN` (Taïwan) ;
+2. télécharge Natural Earth 10m (même résolution 1:10 millions que le shapefile WB Admin0_10m source — indispensable pour que les frontières des polygones greffés s'alignent avec celles du WB après simplification) comme source de complément pour les 4 ISO que la World Bank omet pour raisons diplomatiques : `ATA` (Antarctique), `ESH` (Sahara occidental), `FLK` (îles Malouines), `TWN` (Taïwan) ;
 3. corrige le double-encodage UTF-8 que la World Bank a laissé sur ~7 noms (ex. *"TÃ¼rkiye"* → *"Türkiye"*, *"CÃ´te d'Ivoire"* → *"Côte d'Ivoire"*), greffe les polygones de complément, et écrit `downloads/wb_admin0_fixed.geojson` ;
 4. lance mapshaper pour ne garder que les colonnes utiles, fusionner les fragments d'un même ISO_A3 (ESP avait Ceuta + Melilla + Spain comme features distinctes) et simplifier les frontières à 1 % :
 

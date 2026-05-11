@@ -83,7 +83,7 @@ python3 processing/build_data.py         # régénère data.json
 
 ## Compléments Natural Earth (WB-omissions politiques)
 
-La World Bank omet délibérément 4 ISO pour raisons diplomatiques. On les greffe depuis Natural Earth 110m via `processing/build_topojson.py` (cf. constante `SUPPLEMENT_ISOS`) :
+La World Bank omet délibérément 4 ISO pour raisons diplomatiques. On les greffe depuis Natural Earth 10m (résolution 1:10 millions, même précision que le shapefile WB Admin0_10m source — une résolution inférieure produirait un décalage visible des frontières) via `processing/build_topojson.py` (cf. constante `SUPPLEMENT_ISOS`) :
 
 | ISO | Nom | Pourquoi WB l'omet |
 |---|---|---|

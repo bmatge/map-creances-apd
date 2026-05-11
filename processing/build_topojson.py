@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DOWNLOADS = ROOT / 'downloads'
 RAW_GEOJSON = DOWNLOADS / 'wb_admin0.geojson'
-NE_GEOJSON = DOWNLOADS / 'ne_admin0_110m.geojson'
+NE_GEOJSON = DOWNLOADS / 'ne_admin0_10m.geojson'
 FIXED_GEOJSON = DOWNLOADS / 'wb_admin0_fixed.geojson'
 OUT_TOPOJSON = ROOT / 'wb_countries.topojson'
 
@@ -36,9 +36,12 @@ GEOJSON_URL = (
     'World%20Bank%20Official%20Boundaries%20(GeoJSON)/'
     'World%20Bank%20Official%20Boundaries%20-%20Admin%200.geojson'
 )
+# Natural Earth 10m has the same resolution as the World Bank Admin0_10m
+# source (both 1:10,000,000). Picking a coarser NE tier (50m, 110m) makes
+# the supplement polygons visibly misaligned with neighbouring WB borders.
 NE_URL = (
     'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/'
-    'geojson/ne_110m_admin_0_countries.geojson'
+    'geojson/ne_10m_admin_0_countries.geojson'
 )
 
 # ISO codes World Bank omits for political reasons but ISO 3166 / Natural
@@ -64,7 +67,7 @@ def _download(url, target, force, label, size_hint):
 
 def download_geojson(force=False):
     _download(GEOJSON_URL, RAW_GEOJSON, force, 'World Bank Admin 0 GeoJSON', '~172 MB')
-    _download(NE_URL, NE_GEOJSON, force, 'Natural Earth 110m countries', '~800 KB')
+    _download(NE_URL, NE_GEOJSON, force, 'Natural Earth 10m countries', '~13 MB')
 
 
 def _collect_supplement_features():
