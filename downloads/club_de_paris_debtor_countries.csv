@@ -22,7 +22,7 @@ CHL,Chile,Chili,34639869.00,9438029.46,44077898.46,accord,https://clubdeparis.or
 CHN,China,Chine,7471000000.00,494000000.00,7965000000.00,encours,
 CIV,Côte d'Ivoire,Côte d'Ivoire,1643767172.78,744528403.52,2388295576.30,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/cote-d-ivoire.html
 CMR,Cameroon,Cameroun,1286724645.32,105072843.93,1391797489.25,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/cameroun.html
-COD,Democratic Republic of the Congo,RD Congo,57324432.02,0.00,57324432.02,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/rd-congo.html
+COD,Democratic Republic of Congo,RD Congo,57324432.02,0.00,57324432.02,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/rd-congo.html
 COG,Congo,Congo,222768402.27,278956498.34,501724900.61,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/congo.html
 COL,Colombia,Colombie,4307000000.00,85000000.00,4392000000.00,encours,
 COM,Comoros,Comores,0.00,2070337.42,2070337.42,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/comores.html
@@ -35,7 +35,7 @@ DMA,Dominica,Dominique,8749825.82,1010000.00,9759825.82,accord,https://clubdepar
 DOM,Dominican Republic,Rép. Dominicaine,1647642173.33,121586691.90,1769228865.23,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/republique-dominicaine.html
 DZA,Algeria,Algérie,64756417.68,1580355.18,66336772.86,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/algerie.html
 ECU,Ecuador,Équateur,1505709678.60,211516674.98,1717226353.58,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/equateur.html
-EGY,Egypt,Égypte,6892930436.72,4984791985.92,11877722422.64,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/egypte.html
+EGY,Arab Republic of Egypt,Égypte,6892930436.72,4984791985.92,11877722422.64,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/egypte.html
 ERI,Eritrea,Érythrée,86000000.00,0.00,86000000.00,encours,
 ETH,Ethiopia,Éthiopie,1007644571.01,738476563.45,1746121134.46,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/ethiopie.html
 FJI,Fiji,Fidji,159835748.48,36740000.00,196575748.48,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/fidji.html
@@ -43,7 +43,7 @@ GAB,Gabon,Gabon,457106429.71,214224265.92,671330695.63,accord,https://clubdepari
 GEO,Georgia,Géorgie,1373435673.04,89709202.95,1463144875.99,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/georgie.html
 GHA,Ghana,Ghana,1078650753.50,2377445172.50,3456095926.00,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/ghana.html
 GIN,Guinea,Guinée,205316902.88,199566202.98,404883105.86,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/guinee.html
-GMB,Gambia,Gambie,410523.50,0.00,410523.50,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/gambie.html
+GMB,The Gambia,Gambie,410523.50,0.00,410523.50,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/gambie.html
 GNB,Guinea-Bissau,Guinée-Bissau,0.00,26169090.00,26169090.00,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/guinee-bissau.html
 GNQ,Equatorial Guinea,Guinée Équatoriale,0.00,51190453.27,51190453.27,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/guinee-equatoriale.html
 GRC,Greece,Grèce,0.00,31883000000.00,31883000000.00,encours,
@@ -55,16 +55,16 @@ HRV,Croatia,Croatie,4680959.79,0.00,4680959.79,accord,https://clubdeparis.org/en
 HUN,Hungary,Hongrie,0.00,254000000.00,254000000.00,encours,
 IDN,Indonesia,Indonésie,13732992180.80,1352387262.57,15085379443.37,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/indonesie.html
 IND,India,Inde,28271000000.00,6179000000.00,34450000000.00,encours,
-IRN,Iran,Iran,3000000.00,48000000.00,51000000.00,encours,
+IRN,Islamic Republic of Iran,Iran,3000000.00,48000000.00,51000000.00,encours,
 IRQ,Iraq,Irak,5906932515.01,2439161150.70,8346093665.71,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/irak.html
 JAM,Jamaica,Jamaïque,9847184.91,2562978.43,12410163.34,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/jamaique.html
 JOR,Jordan,Jordanie,3512651933.14,36434938.27,3549086871.41,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/jordanie.html
 KAZ,Kazakhstan,Kazakhstan,163000000.00,0.00,163000000.00,encours,
 KEN,Kenya,Kenya,2532087545.15,260771578.89,2792859124.04,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/kenya.html
-KGZ,Kyrgyzstan,Kirghizistan,216979480.64,21091087.85,238070568.49,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/kirghizie.html
+KGZ,Kyrgyz Republic,Kirghizistan,216979480.64,21091087.85,238070568.49,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/kirghizie.html
 KHM,Cambodia,Cambodge,2913917822.30,1416759448.20,4330677270.50,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/cambodge.html
 KNA,Saint Kitts and Nevis,Saint-Christophe-et-Niévès,1400000.00,0.00,1400000.00,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/saint-christophe-et-nieves.html
-LAO,Laos,Laos,455000000.00,203000000.00,658000000.00,encours,
+LAO,Lao People's Democratic Republic,Laos,455000000.00,203000000.00,658000000.00,encours,
 LBN,Lebanon,Liban,150000000.00,0.00,150000000.00,encours,
 LBR,Liberia,Liberia,0.00,1762838.62,1762838.62,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/liberia.html
 LBY,Libya,Libye,0.00,4778000000.00,4778000000.00,encours,
@@ -99,7 +99,7 @@ PHL,Philippines,Philippines,9543418793.60,0.00,9543418793.60,accord,https://club
 PLW,Palau,Palau,0.00,6000000.00,6000000.00,encours,
 PNG,Papua New Guinea,Papouasie-N.-Guinée,462239882.76,1859600175.11,2321840057.87,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/papouasie-nouvelle-guinee.html
 POL,Poland,Pologne,0.00,3648861319.80,3648861319.80,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/pologne.html
-PRK,Democratic People's Republic of Korea,Corée du Nord,53000000.00,1887000000.00,1940000000.00,encours,
+PRK,D. P. R. of Korea,Corée du Nord,53000000.00,1887000000.00,1940000000.00,encours,
 PRY,Paraguay,Paraguay,260000000.00,26000000.00,286000000.00,encours,
 ROU,Romania,Roumanie,248958899.37,0.00,248958899.37,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/roumanie.html
 RWA,Rwanda,Rwanda,468000000.00,13000000.00,481000000.00,encours,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/rwanda.html
@@ -112,10 +112,10 @@ SOM,Somalia,Somalie,452108590.95,463570516.81,915679107.76,accord,https://clubde
 SRB,Serbia,Serbie,691990761.43,878110030.13,1570100791.56,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/serbie.html
 STP,São Tomé and Príncipe,Sao Tomé-et-Principe,960313.20,16360771.00,17321084.20,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/sao-tome-et-principe.html
 SUR,Suriname,Suriname,26802702.60,45226529.68,72029232.28,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/suriname.html
-SVK,Slovakia,Slovaquie,1000000.00,0.00,1000000.00,encours,
+SVK,Slovak Republic,Slovaquie,1000000.00,0.00,1000000.00,encours,
 SWZ,Eswatini,Eswatini,20000000.00,1000000.00,21000000.00,encours,
 SYC,Seychelles,Seychelles,22529616.97,10407881.22,32937498.19,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/seychelles.html
-SYR,Syria,Syrie,861000000.00,248000000.00,1109000000.00,encours,
+SYR,Syrian Arab Republic,Syrie,861000000.00,248000000.00,1109000000.00,encours,
 TCD,Chad,Tchad,98806566.73,15679987.11,114486553.84,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/tchad.html
 TGO,Togo,Togo,78440297.07,128332180.83,206772477.90,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/togo.html
 THA,Thailand,Thaïlande,1796000000.00,111000000.00,1907000000.00,encours,
@@ -131,12 +131,12 @@ UKR,Ukraine,Ukraine,4750029245.90,4480813249.02,9230842494.92,accord,https://clu
 URY,Uruguay,Uruguay,26000000.00,0.00,26000000.00,encours,
 UZB,Uzbekistan,Ouzbékistan,3631000000.00,1315000000.00,4946000000.00,encours,
 VCT,Saint Vincent and the Grenadines,Saint-Vincent-et-les-Grenadines,510000.00,2020000.00,2530000.00,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/st-vincent.html
-VEN,Venezuela,Venezuela,70000000.00,8621000000.00,8691000000.00,encours,
+VEN,Republica Bolivariana de Venezuela,Venezuela,70000000.00,8621000000.00,8691000000.00,encours,
 VNM,Viet Nam,Vietnam,12593029864.31,864581967.62,13457611831.93,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/vietnam.html
 VUT,Vanuatu,Vanuatu,39000000.00,0.00,39000000.00,encours,
 WSM,Samoa,Samoa,17000000.00,0.00,17000000.00,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/samoa.html
 XKX,Kosovo,Kosovo,12000000.00,0.00,12000000.00,encours,
-YEM,Yemen,Yémen,417080486.26,1232898678.02,1649979164.28,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/yemen.html
+YEM,Republic of Yemen,Yémen,417080486.26,1232898678.02,1649979164.28,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/yemen.html
 ZAF,South Africa,Afrique du Sud,2190000000.00,141000000.00,2331000000.00,encours,
 ZMB,Zambia,Zambie,180305088.84,1507742187.02,1688047275.86,accord,https://clubdeparis.org/en/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par%20pays-debiteurs/zambie.html
 ZWE,Zimbabwe,Zimbabwe,1007000000.00,772000000.00,1779000000.00,encours,

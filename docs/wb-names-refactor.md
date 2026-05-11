@@ -47,18 +47,21 @@ En investiguant, deux problèmes côté pipeline mapshaper original :
    - Fix d'un bug de double-encodage UTF-8 du fichier source (~7 noms : TUR, CIV, STP, BLM, CUW, ESP×2) ;
    - mapshaper en sous-processus avec `-sort` priorisant les `Member State` avant les `Territory` partageant le même `ISO_A3` (sinon Ceuta/Bonaire/Clipperton remplacent Spain/Netherlands/France comme attributs principaux).
 
-3. **Responsabilités côté frontend** :
-   - **EN** : `NAM_0` du topojson — autoritaire, à jour, avec parenthétiques pour territoires.
-   - **FR** : champ `country` de `data.json` (peuplé depuis `countries.csv`) — saisie manuelle assumée. Pour les ~63 territoires hors APD non présents dans `countries.csv`, fallback sur `NAM_0` (anglais), acceptable car ces polygones ne sont pas survolés en pratique.
-   - Suppression du dict JS `COUNTRY_NAMES` (100 lignes) et de tous les fallbacks morts (`d?.properties?.name`, `|| c.country`).
+3. **Responsabilités unifiées** :
+   - **EN partout (frontend + CSV téléchargeables)** : `NAM_0` du topojson. Source unique de vérité pour l'anglais. `build_data.py` lit le topojson au moment de générer `data.json` et les CSV `downloads/`. Conséquence : libellés affichés = noms officiels WB longs (*"Islamic Republic of Iran"*, *"Lao People's Democratic Republic"*, *"Republic of Yemen"*) plutôt que les noms courts antérieurs.
+   - **FR** : `name_fr` de `sources/countries.csv` (saisie manuelle, 181 pays APD). La colonne `name_en` du CSV a été supprimée (devenue redondante).
+   - **Fallback FR pour territoires hors APD** : `NAM_0` (anglais), acceptable car ces polygones (~63) ne sont jamais survolés.
+   - Suppression du dict JS `COUNTRY_NAMES` côté `index.html` (100 lignes) et de tous les fallbacks morts (`d?.properties?.name`, `|| c.country`).
 
 ## Fichiers modifiés
 
 | Fichier | Action |
 |---|---|
 | `processing/build_topojson.py` | **Nouveau** (~80 lignes) — DL + fix encoding + mapshaper |
-| `processing/export_wb_names.py` | **Nouveau** — script d'audit cross-source |
-| `sources/wb_country_names_audit.csv` | **Nouveau** — sortie de l'audit (244 ISO, colonnes `nam_0_wb` / CSV / dict / `is_match_en`) |
+| `processing/build_data.py` | `load_countries()` lit `NAM_0` du topojson pour les noms EN (fini la dépendance à `name_en` du CSV) |
+| `processing/export_wb_names.py` | **Nouveau** — audit `NAM_0` (topojson) vs `name_fr` (CSV) |
+| `sources/countries.csv` | Colonne `name_en` supprimée (devenue redondante) ; CSV passe à 2 colonnes `iso,name_fr` |
+| `sources/wb_country_names_audit.csv` | **Nouveau** — sortie de l'audit (244 ISO, colonnes `iso,name_en_wb,wb_status,name_fr_csv,in_apd_dataset`) |
 | `wb_countries.topojson` | Régénéré depuis le nouveau GeoJSON, 456 KB (vs 295 KB avant, simplification 1 % au lieu de 5 %) |
 | `index.html` | -90 lignes : suppression `COUNTRY_NAMES`, ajout `_wbNames` lu au load, `_isoToName` lit data.json en FR + topojson en EN |
 | `README.md` | Section "Frontières" récrite (passage shapefile → GeoJSON, doc du nouveau script Python) |

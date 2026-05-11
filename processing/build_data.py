@@ -15,17 +15,36 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / 'sources'
 OUT_JSON = ROOT / 'data.json'
 DOWNLOADS = ROOT / 'downloads'
+TOPOJSON = ROOT / 'wb_countries.topojson'
 
 STATUS_FR = {None: 'Permanent', 'Ad hoc': 'Ad hoc', 'Prospectif': 'Prospectif'}
 STATUS_EN = {None: 'Permanent', 'Ad hoc': 'Ad hoc', 'Prospectif': 'Prospective'}
 
 
 def load_countries():
-    rows = {}
+    """Load FR/EN names per ISO.
+
+    `name_fr` is hand-curated in `sources/countries.csv` (181 APD countries).
+    `name_en` is canonical from the World Bank topojson (`NAM_0`), so we read
+    that file once. Any ISO present in countries.csv must also be present in
+    the topojson — `build()` enforces it.
+    """
+    fr = {}
     with (SRC / 'countries.csv').open(encoding='utf-8') as f:
         for r in csv.DictReader(f):
-            rows[r['iso']] = {'name_fr': r['name_fr'], 'name_en': r['name_en']}
-    return rows
+            fr[r['iso']] = r['name_fr']
+    en = {}
+    with TOPOJSON.open(encoding='utf-8') as f:
+        topo = json.load(f)
+    for g in topo['objects']['countries']['geometries']:
+        p = g.get('properties') or {}
+        iso = p.get('ISO_A3')
+        if iso and p.get('NAM_0'):
+            en[iso] = p['NAM_0']
+    return {
+        iso: {'name_fr': fr.get(iso, en.get(iso, iso)), 'name_en': en.get(iso, iso)}
+        for iso in set(fr) | set(en)
+    }
 
 
 def load_urls():
