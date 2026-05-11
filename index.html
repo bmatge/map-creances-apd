@@ -37,6 +37,7 @@ const TRANSLATIONS = {
     'map.legend_creditor_prospective': 'Membre prospectif',
     'map.legend_debtor_accord': 'Débiteur traité',
     'map.legend_debtor_encours': 'Débiteur (encours)',
+    'map.legend_no_data': 'Pays non traité par le Club',
     'loading': 'Chargement…',
     'search.placeholder': 'Rechercher un pays…',
     'search.no_result': 'Aucun résultat',
@@ -120,6 +121,7 @@ const TRANSLATIONS = {
     'map.legend_creditor_prospective': 'Prospective member',
     'map.legend_debtor_accord': 'Treated debtor',
     'map.legend_debtor_encours': 'Debtor (outstanding)',
+    'map.legend_no_data': 'Country not treated by the Club',
     'loading': 'Loading…',
     'search.placeholder': 'Search for a country…',
     'search.no_result': 'No results',
@@ -322,6 +324,10 @@ class ClubParisMap extends HTMLElement {
               <div class="legend-item">
                 <div class="legend-swatch legend-swatch-debtor-encours"></div>
                 <span class="legend-text">${this._t('map.legend_debtor_encours')}</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-swatch legend-swatch-no-data"></div>
+                <span class="legend-text">${this._t('map.legend_no_data')}</span>
               </div>
             </div>
           </div>
@@ -1490,6 +1496,13 @@ class ClubParisMap extends HTMLElement {
       .legend-swatch-debtor-encours {
         background-color: #fee090;
         background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><g transform='rotate(-45 5 5)'><rect x='1.5' y='1' width='2.8' height='4' fill='%23ffffff'/><rect x='6.5' y='5.5' width='2.8' height='4' fill='%23ffffff'/></g></svg>");
+        background-size: 10px 10px;
+      }
+      /* No-data — fond blanc + tirets bleus courts \ (rotate 45°), même
+         pattern que la couche land et les pays sans données APD. */
+      .legend-swatch-no-data {
+        background-color: #ffffff;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><g transform='rotate(45 5 5)'><rect x='1.5' y='1' width='1' height='3.5' fill='%234d84bc'/><rect x='6.5' y='5.5' width='1' height='3.5' fill='%234d84bc'/></g></svg>");
         background-size: 10px 10px;
       }
       .legend-text { font-size: 0.72rem; color: #475569; }
