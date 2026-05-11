@@ -1082,6 +1082,12 @@ class ClubParisMap extends HTMLElement {
 
     let html = `<h2 class="panel-title">${name}</h2>`;
 
+    if (!isDebtor && !isCreditor) {
+      html += `<p class="no-data">${this._t('map.no_data')}</p>`;
+      el.innerHTML = html;
+      return;
+    }
+
     html += `
       <div class="info-card">
         <div class="info-icon info-icon-blue">

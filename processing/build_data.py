@@ -108,6 +108,13 @@ def build():
             'country': countries[iso]['name_fr'],
         })
 
+    # Pré-remplir chaque année avec TOUS les ISO de countries.csv. Sans cela,
+    # le frontend en mode FR retombe en fallback sur NAM_0 (anglais) pour les
+    # territoires hors dataset APD (Greenland, Nouvelle-Calédonie, etc.).
+    for year in years:
+        for iso, info in countries.items():
+            years[year].setdefault(iso, {'country': info['name_fr']})
+
     for r in debtors:
         entry = years[r['year']][r['iso']]
         url = urls.get((r['iso'], 'debtor'), {}).get('url_fr')

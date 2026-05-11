@@ -1683,6 +1683,240 @@
           "premiereParticipation": 1964,
           "url": "https://clubdeparis.org/sites/clubdeparis/accueil/accords-signes-avec-le-club-de-p/par-pays-crediteurs/etats-unis-d-amerique.html"
         }
+      },
+      "NRU": {
+        "country": "Nauru"
+      },
+      "PYF": {
+        "country": "Polynésie française (Fr.)"
+      },
+      "VIR": {
+        "country": "Îles Vierges des États-Unis (É.-U.)"
+      },
+      "LTU": {
+        "country": "Lituanie"
+      },
+      "TUV": {
+        "country": "Tuvalu"
+      },
+      "BLZ": {
+        "country": "Belize"
+      },
+      "GUF": {
+        "country": "France"
+      },
+      "LUX": {
+        "country": "Luxembourg"
+      },
+      "MLT": {
+        "country": "Malte"
+      },
+      "NFK": {
+        "country": "Île Norfolk (Aus.)"
+      },
+      "GGY": {
+        "country": "Guernesey (R.-U.)"
+      },
+      "SGP": {
+        "country": "Singapour"
+      },
+      "AND": {
+        "country": "Andorre"
+      },
+      "BMU": {
+        "country": "Bermudes (R.-U.)"
+      },
+      "MYT": {
+        "country": "France"
+      },
+      "MSR": {
+        "country": "Montserrat (R.-U.)"
+      },
+      "ISL": {
+        "country": "Islande"
+      },
+      "GUM": {
+        "country": "Guam (É.-U.)"
+      },
+      "LIE": {
+        "country": "Liechtenstein"
+      },
+      "SVN": {
+        "country": "Slovénie"
+      },
+      "IMN": {
+        "country": "Île de Man (R.-U.)"
+      },
+      "PRI": {
+        "country": "Porto Rico (É.-U.)"
+      },
+      "VGB": {
+        "country": "Îles Vierges britanniques (R.-U.)"
+      },
+      "CCK": {
+        "country": "Îles Cocos (Aus.)"
+      },
+      "GIB": {
+        "country": "Gibraltar (R.-U.)"
+      },
+      "BLM": {
+        "country": "Saint-Barthélemy (Fr.)"
+      },
+      "BRN": {
+        "country": "Brunei"
+      },
+      "REU": {
+        "country": "France"
+      },
+      "SSD": {
+        "country": "Soudan du Sud"
+      },
+      "BTN": {
+        "country": "Bhoutan"
+      },
+      "UMI": {
+        "country": "Îles mineures éloignées des États-Unis (É.-U.)"
+      },
+      "BDI": {
+        "country": "Burundi"
+      },
+      "CYP": {
+        "country": "Chypre"
+      },
+      "SJM": {
+        "country": "Svalbard et Jan Mayen (Nor.)"
+      },
+      "BES": {
+        "country": "Bonaire, Saint-Eustache et Saba (P.-B.)"
+      },
+      "EST": {
+        "country": "Estonie"
+      },
+      "JEY": {
+        "country": "Jersey (R.-U.)"
+      },
+      "BVT": {
+        "country": "Île Bouvet (Nor.)"
+      },
+      "QAT": {
+        "country": "Qatar"
+      },
+      "ALA": {
+        "country": "Åland (Fin.)"
+      },
+      "MHL": {
+        "country": "Îles Marshall"
+      },
+      "CYM": {
+        "country": "Îles Caïmans (R.-U.)"
+      },
+      "TCA": {
+        "country": "Îles Turques-et-Caïques (R.-U.)"
+      },
+      "KIR": {
+        "country": "Kiribati"
+      },
+      "NIU": {
+        "country": "Niue (N.-Z.)"
+      },
+      "SMR": {
+        "country": "Saint-Marin"
+      },
+      "AIA": {
+        "country": "Anguilla (R.-U.)"
+      },
+      "MCO": {
+        "country": "Monaco"
+      },
+      "VAT": {
+        "country": "Cité du Vatican"
+      },
+      "ATF": {
+        "country": "Terres australes et antarctiques françaises (Fr.)"
+      },
+      "ASM": {
+        "country": "Samoa américaines (É.-U.)"
+      },
+      "SXM": {
+        "country": "Saint-Martin (P.-B.)"
+      },
+      "PCN": {
+        "country": "Îles Pitcairn (R.-U.)"
+      },
+      "WLF": {
+        "country": "Wallis-et-Futuna (Fr.)"
+      },
+      "LVA": {
+        "country": "Lettonie"
+      },
+      "HMD": {
+        "country": "Îles Heard-et-MacDonald (Aus.)"
+      },
+      "MAF": {
+        "country": "Saint-Martin (Fr.)"
+      },
+      "SPM": {
+        "country": "Saint-Pierre-et-Miquelon (Fr.)"
+      },
+      "PSE": {
+        "country": "Cisjordanie et Gaza"
+      },
+      "SLB": {
+        "country": "Îles Salomon"
+      },
+      "ABW": {
+        "country": "Aruba (P.-B.)"
+      },
+      "CUW": {
+        "country": "Curaçao (P.-B.)"
+      },
+      "HKG": {
+        "country": "Hong Kong (RAS, Chine)"
+      },
+      "BHS": {
+        "country": "Bahamas"
+      },
+      "COK": {
+        "country": "Îles Cook (N.-Z.)"
+      },
+      "MAC": {
+        "country": "Macao (RAS, Chine)"
+      },
+      "MTQ": {
+        "country": "France"
+      },
+      "NCL": {
+        "country": "Nouvelle-Calédonie (Fr.)"
+      },
+      "HTI": {
+        "country": "Haïti"
+      },
+      "SHN": {
+        "country": "Sainte-Hélène, Ascension et Tristan da Cunha (R.-U.)"
+      },
+      "FSM": {
+        "country": "États fédérés de Micronésie"
+      },
+      "MNP": {
+        "country": "Îles Mariannes du Nord (É.-U.)"
+      },
+      "GRL": {
+        "country": "Groenland (Dan.)"
+      },
+      "FRO": {
+        "country": "Îles Féroé (Dan.)"
+      },
+      "TKL": {
+        "country": "Tokelau (N.-Z.)"
+      },
+      "CXR": {
+        "country": "Île Christmas (Aus.)"
+      },
+      "GLP": {
+        "country": "France"
+      },
+      "TON": {
+        "country": "Tonga"
       }
     },
     "totals": {
