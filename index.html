@@ -586,26 +586,24 @@ class ClubParisMap extends HTMLElement {
 
     const C = ClubParisMap;
 
-    // Continuous diagonal stripes (used for creditors — bandes blanches
-    // entières sur fond bleu, distinguées par la largeur des bandes).
-    const mkStripes = (id, bg, stripeColor, stripeWidth, period, angle) => {
+    // Continuous diagonal stripes (creditors — bande blanche unique par
+    // cellule, distinction par largeur de la bande).
+    const mkStripes = (id, bg, stripeColor, stripeWidth, period, angle, offset) => {
       const p = defs.append('pattern').attr('id', id)
         .attr('patternUnits', 'userSpaceOnUse')
         .attr('width', period).attr('height', period)
-        .attr('patternTransform', `rotate(${angle})`);
+        .attr('patternTransform', `rotate(${angle}) translate(${offset || 0}, 0)`);
       p.append('rect').attr('width', period).attr('height', period).attr('fill', bg);
       p.append('rect').attr('width', stripeWidth).attr('height', period).attr('fill', stripeColor);
       return p;
     };
 
-    // Dashed pattern (used for debtors and no-data — petits tirets dispersés,
-    // pas des lignes continues). Deux tirets en quinconce par cellule pour un
-    // rendu plus dense visuellement.
-    const mkDashes = (id, bg, dashColor, dashWidth, dashHeight, period, angle) => {
+    // Dashed pattern (debtors + no-data — deux tirets par cellule en quinconce).
+    const mkDashes = (id, bg, dashColor, dashWidth, dashHeight, period, angle, offset) => {
       const p = defs.append('pattern').attr('id', id)
         .attr('patternUnits', 'userSpaceOnUse')
         .attr('width', period).attr('height', period)
-        .attr('patternTransform', `rotate(${angle})`);
+        .attr('patternTransform', `rotate(${angle}) translate(${offset || 0}, 0)`);
       p.append('rect').attr('width', period).attr('height', period).attr('fill', bg);
       p.append('rect').attr('x', period * 0.15).attr('y', period * 0.10)
         .attr('width', dashWidth).attr('height', dashHeight).attr('fill', dashColor);
@@ -614,20 +612,36 @@ class ClubParisMap extends HTMLElement {
       return p;
     };
 
-    // Creditors — fond bleu uni + bandes blanches continues \ (rotate 45°).
-    // Distinction : largeur des bandes blanches (fin / medium / épais).
-    mkStripes('pattern-creditor-permanent',   C.CREDITOR_PERMANENT_COLOR,   '#ffffff', 2,  12, 45);
-    mkStripes('pattern-creditor-adhoc',       C.CREDITOR_ADHOC_COLOR,       '#ffffff', 4,  12, 45);
-    mkStripes('pattern-creditor-prospective', C.CREDITOR_PROSPECTIVE_COLOR, '#ffffff', 6,  14, 45);
-
-    // Debtors — fond jaune + petits tirets blancs pointillés / (rotate -45°).
-    // Distinction : épaisseur des tirets (fin / épais).
-    mkDashes('pattern-debtor-accord',  C.DEBTOR_ACCORD_COLOR,  '#ffffff', 1.4, 4, 10, -45);
-    mkDashes('pattern-debtor-encours', C.DEBTOR_ENCOURS_COLOR, '#ffffff', 2.8, 4, 10, -45);
-
-    // Pays non traité par le Club — fond blanc + petits tirets bleus \.
-    // S'applique aussi à la couche `land` (territoires hors WB / disputés).
-    mkDashes('pattern-no-data', '#ffffff', C.CREDITOR_PERMANENT_COLOR, 1.0, 3.5, 10, 45);
+    // 4 variantes d'offset par catégorie : `_getFill` choisit la variante via
+    // un hash de l'ISO du pays. Conséquence : deux pays voisins tombent dans
+    // ~75 % des cas sur des variantes différentes → cassure visible aux
+    // frontières (les bandes/tirets ne sont plus alignés à travers la frontière).
+    const VARIANTS = 4;
+    const STRIPE_CATS = [
+      // [cat, fond, stripeWidth, period]
+      ['creditor-permanent',   C.CREDITOR_PERMANENT_COLOR,   1, 12], // hachures très fines
+      ['creditor-adhoc',       C.CREDITOR_ADHOC_COLOR,       4, 12], // hachures medium (×4 vs permanent)
+      ['creditor-prospective', C.CREDITOR_PROSPECTIVE_COLOR, 6, 14], // hachures épaisses sur fond clair
+    ];
+    for (const [cat, bg, sw, pd] of STRIPE_CATS) {
+      for (let v = 0; v < VARIANTS; v++) {
+        mkStripes(`pattern-${cat}-${v}`, bg, '#ffffff', sw, pd, 45, (v * pd) / VARIANTS);
+      }
+    }
+    const DASH_CATS = [
+      // [cat, fond, dashColor, dashWidth, dashHeight, period, angle]
+      // debtor-accord (traité) : tirets fins ET denses (période 5 → ~2× plus de
+      // tirets que debtor-encours pour bien distinguer les deux).
+      ['debtor-accord',  C.DEBTOR_ACCORD_COLOR,  '#ffffff', 1.0, 2.5, 5, -45],
+      ['debtor-encours', C.DEBTOR_ENCOURS_COLOR, '#ffffff', 2.8, 4.0, 10, -45],
+      // Pays non traité (fond blanc + tirets bleus, partagé avec couche land).
+      ['no-data',        '#ffffff', C.CREDITOR_PERMANENT_COLOR, 1.0, 3.5, 10, 45],
+    ];
+    for (const [cat, bg, color, dw, dh, pd, ang] of DASH_CATS) {
+      for (let v = 0; v < VARIANTS; v++) {
+        mkDashes(`pattern-${cat}-${v}`, bg, color, dw, dh, pd, ang, (v * pd) / VARIANTS);
+      }
+    }
 
     // Selection overlay: semi-transparent cross-hatching
     const pSel = defs.append('pattern').attr('id','pattern-selection')
@@ -651,7 +665,7 @@ class ClubParisMap extends HTMLElement {
         .join('path')
         .attr('class', 'land')
         .attr('d', this._pathGen)
-        .attr('fill', 'url(#pattern-no-data)')
+        .attr('fill', 'url(#pattern-no-data-0)')
         .attr('stroke', 'none')
         .attr('pointer-events', 'none');
     }
@@ -663,7 +677,7 @@ class ClubParisMap extends HTMLElement {
       .attr('data-id', d => d.properties.ISO_A3 || '')
       .attr('fill', d => {
         const iso = d.properties.ISO_A3;
-        return iso ? this._getFill(iso) : 'url(#pattern-no-data)';
+        return iso ? this._getFill(iso) : 'url(#pattern-no-data-0)';
       })
       .attr('stroke', '#90a4ae')
       .attr('stroke-width', 0.5)
@@ -721,7 +735,7 @@ class ClubParisMap extends HTMLElement {
     this._g.selectAll('path.country')
       .attr('fill', function() {
         const iso = d3.select(this).attr('data-id');
-        return iso ? self._getFill(iso) : 'url(#pattern-no-data)';
+        return iso ? self._getFill(iso) : 'url(#pattern-no-data-0)';
       })
       .attr('stroke', '#90a4ae')
       .attr('stroke-width', 0.5);
@@ -1033,31 +1047,26 @@ class ClubParisMap extends HTMLElement {
     return null;
   }
 
-  _categoryFill(cat) {
-    return `url(#pattern-${cat || 'no-data'})`;
-  }
-
-  _categorySolidColor(cat) {
-    const C = ClubParisMap;
-    switch (cat) {
-      case 'creditor-permanent':   return C.CREDITOR_PERMANENT_COLOR;
-      case 'creditor-adhoc':       return C.CREDITOR_ADHOC_COLOR;
-      case 'creditor-prospective': return C.CREDITOR_PROSPECTIVE_COLOR;
-      case 'debtor-accord':        return C.DEBTOR_ACCORD_COLOR;
-      case 'debtor-encours':       return C.DEBTOR_ENCOURS_COLOR;
-      default:                     return C.DEFAULT_COLOR;
-    }
+  // Stable hash ISO → variante d'offset [0..3]. Pays voisins tombent
+  // sur des variantes différentes dans ~75 % des cas, créant une cassure
+  // visible des hachures au franchissement de chaque frontière.
+  _isoVariant(iso) {
+    if (!iso) return 0;
+    let h = 0;
+    for (let i = 0; i < iso.length; i++) h = (h * 31 + iso.charCodeAt(i)) | 0;
+    return Math.abs(h) % 4;
   }
 
   _getFill(iso) {
+    const v = this._isoVariant(iso);
     const cat = this._getCategory(iso);
-    if (this._filterMode === 'créditeur') {
-      return cat?.startsWith('creditor') ? this._categoryFill(cat) : ClubParisMap.DEFAULT_COLOR;
+    if (this._filterMode === 'créditeur' && !cat?.startsWith('creditor')) {
+      return `url(#pattern-no-data-${v})`;
     }
-    if (this._filterMode === 'débiteur') {
-      return cat?.startsWith('debtor') ? this._categoryFill(cat) : ClubParisMap.DEFAULT_COLOR;
+    if (this._filterMode === 'débiteur' && !cat?.startsWith('debtor')) {
+      return `url(#pattern-no-data-${v})`;
     }
-    return this._categoryFill(cat);
+    return `url(#pattern-${cat || 'no-data'}-${v})`;
   }
 
   _updatePanel() {
@@ -1451,12 +1460,17 @@ class ClubParisMap extends HTMLElement {
       /* Legend — charte hybride (couleur de fond + hachures/pointillés) en
          miroir des SVG <pattern> rendus sur la carte. Les valeurs ci-dessous
          doivent rester synchrones avec les appels mkStripes / mkDashes côté JS. */
-      .legend-bar { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
-      .legend-item { display: flex; align-items: center; gap: 0.3rem; }
-      .legend-swatch { width: 18px; height: 18px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(15,23,42,0.25); background-repeat: repeat; background-size: 12px 12px; background-position: 0 0; }
-      /* Creditors — bandes blanches continues diagonal \ sur fond bleu. */
+      .legend-bar { display: flex; gap: 0.7rem; align-items: center; flex-wrap: wrap; }
+      .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+      /* Swatches élargies à 30×30 pour permettre de distinguer fin / medium /
+         épais sur les bandes et les tirets — sous 22px les périodes 12-14 du
+         pattern SVG ne tiennent qu'une fois dans le swatch et tous les rendus
+         se ressemblent. */
+      .legend-swatch { width: 30px; height: 30px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(15,23,42,0.25); background-repeat: repeat; }
+      /* Creditors — bandes blanches continues \ sur fond bleu.
+         Period 12px, bande blanche = 1 / 4 / 6 px (sync. avec mkStripes). */
       .legend-swatch-creditor-permanent {
-        background: repeating-linear-gradient(45deg, #4d84bc 0 10px, #ffffff 10px 12px);
+        background: repeating-linear-gradient(45deg, #4d84bc 0 11px, #ffffff 11px 12px);
       }
       .legend-swatch-creditor-adhoc {
         background: repeating-linear-gradient(45deg, #4d84bc 0 8px, #ffffff 8px 12px);
@@ -1464,16 +1478,21 @@ class ClubParisMap extends HTMLElement {
       .legend-swatch-creditor-prospective {
         background: repeating-linear-gradient(45deg, #7fa9d1 0 8px, #ffffff 8px 14px);
       }
-      /* Debtors — petits tirets blancs (segments courts) diagonal / sur fond jaune. */
+      /* Debtors — petits tirets blancs courts en quinconce / sur fond jaune.
+         SVG inline pour gérer la rotation + les segments courts (que
+         repeating-linear-gradient ne sait pas reproduire proprement).
+         Sync. avec mkDashes : accord period 5 (×2 plus dense), encours period 10. */
       .legend-swatch-debtor-accord {
         background-color: #fee090;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><g transform='rotate(-45 5 5)'><rect x='1.5' y='1' width='1.4' height='4' fill='%23ffffff'/><rect x='6.5' y='5.5' width='1.4' height='4' fill='%23ffffff'/></g></svg>");
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><g transform='rotate(-45 5 5)'><rect x='0.75' y='0.5' width='1' height='2.5' fill='%23ffffff'/><rect x='3.25' y='3' width='1' height='2.5' fill='%23ffffff'/><rect x='5.75' y='0.5' width='1' height='2.5' fill='%23ffffff'/><rect x='8.25' y='3' width='1' height='2.5' fill='%23ffffff'/><rect x='0.75' y='5.5' width='1' height='2.5' fill='%23ffffff'/><rect x='3.25' y='8' width='1' height='2.5' fill='%23ffffff'/><rect x='5.75' y='5.5' width='1' height='2.5' fill='%23ffffff'/><rect x='8.25' y='8' width='1' height='2.5' fill='%23ffffff'/></g></svg>");
+        background-size: 10px 10px;
       }
       .legend-swatch-debtor-encours {
         background-color: #fee090;
         background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><g transform='rotate(-45 5 5)'><rect x='1.5' y='1' width='2.8' height='4' fill='%23ffffff'/><rect x='6.5' y='5.5' width='2.8' height='4' fill='%23ffffff'/></g></svg>");
+        background-size: 10px 10px;
       }
-      .legend-text { font-size: 0.68rem; color: #475569; }
+      .legend-text { font-size: 0.72rem; color: #475569; }
 
       /* SLIDER TEMPORAIREMENT DÉSACTIVÉ
       .year-row {
