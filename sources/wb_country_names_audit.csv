@@ -1,16 +1,17 @@
 iso,name_en_wb,wb_status,name_fr_csv,in_apd_dataset
-ABW,Aruba (Neth.),Territory,,False
+ABW,Aruba (Neth.),Territory,Aruba (P.-B.),True
 AFG,Afghanistan,Member State,Afghanistan,True
 AGO,Angola,Member State,Angola,True
-AIA,Anguilla (U.K.),Territory,,False
-ALA,Aaland (Fin.),Territory,,False
+AIA,Anguilla (U.K.),Territory,Anguilla (R.-U.),True
+ALA,Aaland (Fin.),Territory,Åland (Fin.),True
 ALB,Albania,Member State,Albanie,True
-AND,Andorra,Member State,,False
-ARE,United Arab Emirates,Member State,Émirats Arabes Unis,True
+AND,Andorra,Member State,Andorre,True
+ARE,United Arab Emirates,Member State,Émirats arabes unis,True
 ARG,Argentina,Member State,Argentine,True
 ARM,Armenia,Member State,Arménie,True
-ASM,American Samoa (U.S.),Territory,,False
-ATF,French Southern and Antarctic Lands (Fr.),Territory,,False
+ASM,American Samoa (U.S.),Territory,Samoa américaines (É.-U.),True
+ATA,Antarctica,Supplemented,Antarctique,True
+ATF,French Southern and Antarctic Lands (Fr.),Territory,Terres australes et antarctiques françaises (Fr.),True
 ATG,Antigua and Barbuda,Member State,Antigua-et-Barbuda,True
 AUS,Australia,Member State,Australie,True
 AUT,Austria,Member State,Autriche,True
@@ -18,228 +19,231 @@ AZE,Azerbaijan,Member State,Azerbaïdjan,True
 BDI,Burundi,Member State,Burundi,True
 BEL,Belgium,Member State,Belgique,True
 BEN,Benin,Member State,Bénin,True
-BES,"Bonaire, Sint Eustatius and Saba (Neth.)",Territory,,False
+BES,"Bonaire, Sint Eustatius and Saba (Neth.)",Territory,"Bonaire, Saint-Eustache et Saba (P.-B.)",True
 BFA,Burkina Faso,Member State,Burkina Faso,True
 BGD,Bangladesh,Member State,Bangladesh,True
 BGR,Bulgaria,Member State,Bulgarie,True
 BHR,Bahrain,Member State,Bahreïn,True
-BHS,The Bahamas,Member State,,False
+BHS,The Bahamas,Member State,Bahamas,True
 BIH,Bosnia and Herzegovina,Member State,Bosnie-Herzégovine,True
-BLM,Saint-Barthélemy (Fr.),Territory,,False
+BLM,Saint-Barthélemy (Fr.),Territory,Saint-Barthélemy (Fr.),True
 BLR,Belarus,Member State,Biélorussie,True
 BLZ,Belize,Member State,Belize,True
-BMU,Bermuda (U.K.),Territory,,False
+BMU,Bermuda (U.K.),Territory,Bermudes (R.-U.),True
 BOL,Bolivia,Member State,Bolivie,True
 BRA,Brazil,Member State,Brésil,True
 BRB,Barbados,Member State,Barbade,True
 BRN,Brunei Darussalam,Member State,Brunei,True
-BTN,Bhutan,Member State,,False
-BVT,Bouvet Island (Nor.),Territory,,False
+BTN,Bhutan,Member State,Bhoutan,True
+BVT,Bouvet Island (Nor.),Territory,Île Bouvet (Nor.),True
 BWA,Botswana,Member State,Botswana,True
-CAF,Central African Republic,Member State,Centrafrique,True
+CAF,Central African Republic,Member State,République centrafricaine,True
 CAN,Canada,Member State,Canada,True
-CCK,Cocos (Keeling) Islands (Aus.),Territory,,False
+CCK,Cocos (Keeling) Islands (Aus.),Territory,Îles Cocos (Aus.),True
 CHE,Switzerland,Member State,Suisse,True
 CHL,Chile,Member State,Chili,True
-CHN,China,Member State,Chine,True
+CHN,China,Member State,République populaire de Chine,True
 CIV,Côte d'Ivoire,Member State,Côte d'Ivoire,True
 CMR,Cameroon,Member State,Cameroun,True
-COD,Democratic Republic of Congo,Member State,RD Congo,True
-COG,Congo,Member State,Congo,True
-COK,Cook Islands (N.Z.),Territory,,False
+COD,Democratic Republic of Congo,Member State,République démocratique du Congo,True
+COG,Congo,Member State,République du Congo,True
+COK,Cook Islands (N.Z.),Territory,Îles Cook (N.-Z.),True
 COL,Colombia,Member State,Colombie,True
 COM,Comoros,Member State,Comores,True
-CPV,Cabo Verde,Member State,Cap-Vert,True
+CPV,Cabo Verde,Member State,Cabo Verde,True
 CRI,Costa Rica,Member State,Costa Rica,True
 CUB,Cuba,Non Member State,Cuba,True
-CUW,Curaçao (Neth.),Territory,,False
-CXR,Christmas Island (Aus.),Territory,,False
-CYM,Cayman Islands (U.K.),Territory,,False
+CUW,Curaçao (Neth.),Territory,Curaçao (P.-B.),True
+CXR,Christmas Island (Aus.),Territory,Île Christmas (Aus.),True
+CYM,Cayman Islands (U.K.),Territory,Îles Caïmans (R.-U.),True
 CYP,Cyprus,Member State,Chypre,True
-CZE,Czech Republic,Member State,Rép. Tchèque,True
+CZE,Czech Republic,Member State,République tchèque,True
 DEU,Germany,Member State,Allemagne,True
 DJI,Djibouti,Member State,Djibouti,True
 DMA,Dominica,Member State,Dominique,True
 DNK,Denmark,Member State,Danemark,True
-DOM,Dominican Republic,Member State,Rép. Dominicaine,True
+DOM,Dominican Republic,Member State,République dominicaine,True
 DZA,Algeria,Member State,Algérie,True
 ECU,Ecuador,Member State,Équateur,True
-EGY,Arab Republic of Egypt,Member State,Égypte,True
+EGY,Arab Republic of Egypt,Member State,République arabe d'Égypte,True
 ERI,Eritrea,Member State,Érythrée,True
+ESH,Western Sahara,Supplemented,Sahara occidental,True
 ESP,Spain,Member State,Espagne,True
 EST,Estonia,Member State,Estonie,True
 ETH,Ethiopia,Member State,Éthiopie,True
 FIN,Finland,Member State,Finlande,True
 FJI,Fiji,Member State,Fidji,True
+FLK,Falkland Islands,Supplemented,Îles Malouines,True
 FRA,France,Member State,France,True
-FRO,Faroe Islands (Den.),Territory,,False
-FSM,Federated States of Micronesia,Member State,,False
+FRO,Faroe Islands (Den.),Territory,Îles Féroé (Dan.),True
+FSM,Federated States of Micronesia,Member State,États fédérés de Micronésie,True
 GAB,Gabon,Member State,Gabon,True
 GBR,United Kingdom,Member State,Royaume-Uni,True
 GEO,Georgia,Member State,Géorgie,True
-GGY,Guernsey (U.K.),Territory,,False
+GGY,Guernsey (U.K.),Territory,Guernesey (R.-U.),True
 GHA,Ghana,Member State,Ghana,True
-GIB,Gibraltar (U.K.),Territory,,False
+GIB,Gibraltar (U.K.),Territory,Gibraltar (R.-U.),True
 GIN,Guinea,Member State,Guinée,True
-GLP,France,Member State,,False
+GLP,France,Member State,France,True
 GMB,The Gambia,Member State,Gambie,True
 GNB,Guinea-Bissau,Member State,Guinée-Bissau,True
-GNQ,Equatorial Guinea,Member State,Guinée Équatoriale,True
+GNQ,Equatorial Guinea,Member State,Guinée équatoriale,True
 GRC,Greece,Member State,Grèce,True
 GRD,Grenada,Member State,Grenade,True
-GRL,Greenland (Den.),Territory,,False
+GRL,Greenland (Den.),Territory,Groenland (Dan.),True
 GTM,Guatemala,Member State,Guatemala,True
-GUF,France,Member State,,False
-GUM,Guam (U.S.),Territory,,False
+GUF,France,Member State,France,True
+GUM,Guam (U.S.),Territory,Guam (É.-U.),True
 GUY,Guyana,Member State,Guyana,True
-HKG,"Hong Kong SAR, China",Special Administrative Region,,False
-HMD,Heard Island and McDonald Islands (Aus.),Territory,,False
+HKG,"Hong Kong SAR, China",Special Administrative Region,"Hong Kong (RAS, Chine)",True
+HMD,Heard Island and McDonald Islands (Aus.),Territory,Îles Heard-et-MacDonald (Aus.),True
 HND,Honduras,Member State,Honduras,True
 HRV,Croatia,Member State,Croatie,True
 HTI,Haiti,Member State,Haïti,True
 HUN,Hungary,Member State,Hongrie,True
 IDN,Indonesia,Member State,Indonésie,True
-IMN,Isle of Man (U.K.),Territory,,False
+IMN,Isle of Man (U.K.),Territory,Île de Man (R.-U.),True
 IND,India,Member State,Inde,True
 IRL,Ireland,Member State,Irlande,True
-IRN,Islamic Republic of Iran,Member State,Iran,True
-IRQ,Iraq,Member State,Irak,True
+IRN,Islamic Republic of Iran,Member State,République islamique d'Iran,True
+IRQ,Iraq,Member State,Iraq,True
 ISL,Iceland,Member State,Islande,True
 ISR,Israel,Member State,Israël,True
 ITA,Italy,Member State,Italie,True
 JAM,Jamaica,Member State,Jamaïque,True
-JEY,Jersey (U.K.),Territory,,False
+JEY,Jersey (U.K.),Territory,Jersey (R.-U.),True
 JOR,Jordan,Member State,Jordanie,True
 JPN,Japan,Member State,Japon,True
 KAZ,Kazakhstan,Member State,Kazakhstan,True
 KEN,Kenya,Member State,Kenya,True
-KGZ,Kyrgyz Republic,Member State,Kirghizistan,True
+KGZ,Kyrgyz Republic,Member State,République kirghize,True
 KHM,Cambodia,Member State,Cambodge,True
-KIR,Kiribati,Member State,,False
+KIR,Kiribati,Member State,Kiribati,True
 KNA,Saint Kitts and Nevis,Member State,Saint-Christophe-et-Niévès,True
 KOR,Republic of Korea,Member State,Corée du Sud,True
 KWT,Kuwait,Member State,Koweït,True
-LAO,Lao People's Democratic Republic,Member State,Laos,True
+LAO,Lao People's Democratic Republic,Member State,République démocratique populaire lao,True
 LBN,Lebanon,Member State,Liban,True
 LBR,Liberia,Member State,Liberia,True
 LBY,Libya,Member State,Libye,True
 LCA,Saint Lucia,Member State,Sainte-Lucie,True
-LIE,Liechtenstein,Non Member State,,False
+LIE,Liechtenstein,Non Member State,Liechtenstein,True
 LKA,Sri Lanka,Member State,Sri Lanka,True
 LSO,Lesotho,Member State,Lesotho,True
 LTU,Lithuania,Member State,Lituanie,True
 LUX,Luxembourg,Member State,Luxembourg,True
 LVA,Latvia,Member State,Lettonie,True
-MAC,"Macau SAR, China",Special Administrative Region,,False
-MAF,Saint-Martin (Fr.),Territory,,False
+MAC,"Macau SAR, China",Special Administrative Region,"Macao (RAS, Chine)",True
+MAF,Saint-Martin (Fr.),Territory,Saint-Martin (Fr.),True
 MAR,Morocco,Member State,Maroc,True
-MCO,Monaco,Non Member State,,False
+MCO,Monaco,Non Member State,Monaco,True
 MDA,Moldova,Member State,Moldavie,True
 MDG,Madagascar,Member State,Madagascar,True
 MDV,Maldives,Member State,Maldives,True
 MEX,Mexico,Member State,Mexique,True
-MHL,Marshall Islands,Member State,,False
+MHL,Marshall Islands,Member State,Îles Marshall,True
 MKD,North Macedonia,Member State,Macédoine du Nord,True
 MLI,Mali,Member State,Mali,True
 MLT,Malta,Member State,Malte,True
 MMR,Myanmar,Member State,Myanmar,True
 MNE,Montenegro,Member State,Monténégro,True
 MNG,Mongolia,Member State,Mongolie,True
-MNP,Northern Mariana Islands (U.S.),Territory,,False
+MNP,Northern Mariana Islands (U.S.),Territory,Îles Mariannes du Nord (É.-U.),True
 MOZ,Mozambique,Member State,Mozambique,True
 MRT,Mauritania,Member State,Mauritanie,True
-MSR,Montserrat (U.K.),Territory,,False
-MTQ,France,Member State,,False
+MSR,Montserrat (U.K.),Territory,Montserrat (R.-U.),True
+MTQ,France,Member State,France,True
 MUS,Mauritius,Member State,Maurice,True
 MWI,Malawi,Member State,Malawi,True
 MYS,Malaysia,Member State,Malaisie,True
-MYT,France,Member State,,False
+MYT,France,Member State,France,True
 NAM,Namibia,Member State,Namibie,True
-NCL,New Caledonia (Fr.),Territory,,False
+NCL,New Caledonia (Fr.),Territory,Nouvelle-Calédonie (Fr.),True
 NER,Niger,Member State,Niger,True
-NFK,Norfolk Island (Aus.),Territory,,False
+NFK,Norfolk Island (Aus.),Territory,Île Norfolk (Aus.),True
 NGA,Nigeria,Member State,Nigeria,True
 NIC,Nicaragua,Member State,Nicaragua,True
-NIU,Niue (N.Z.),Territory,,False
+NIU,Niue (N.Z.),Territory,Niue (N.-Z.),True
 NLD,Netherlands,Member State,Pays-Bas,True
 NOR,Norway,Member State,Norvège,True
 NPL,Nepal,Member State,Népal,True
-NRU,Nauru,Member State,,False
+NRU,Nauru,Member State,Nauru,True
 NZL,New Zealand,Member State,Nouvelle-Zélande,True
 OMN,Oman,Member State,Oman,True
 PAK,Pakistan,Member State,Pakistan,True
 PAN,Panama,Member State,Panama,True
-PCN,Pitcairn Islands (U.K.),Territory,,False
+PCN,Pitcairn Islands (U.K.),Territory,Îles Pitcairn (R.-U.),True
 PER,Peru,Member State,Pérou,True
 PHL,Philippines,Member State,Philippines,True
-PLW,Palau,Member State,Palau,True
-PNG,Papua New Guinea,Member State,Papouasie-N.-Guinée,True
+PLW,Palau,Member State,Palaos,True
+PNG,Papua New Guinea,Member State,Papouasie-Nouvelle-Guinée,True
 POL,Poland,Member State,Pologne,True
-PRI,Puerto Rico (U.S.),Territory,,False
-PRK,D. P. R. of Korea,Non Member State,Corée du Nord,True
+PRI,Puerto Rico (U.S.),Territory,Porto Rico (É.-U.),True
+PRK,D. P. R. of Korea,Non Member State,République populaire démocratique de Corée,True
 PRT,Portugal,Member State,Portugal,True
 PRY,Paraguay,Member State,Paraguay,True
-PSE,West Bank and Gaza,Territory,,False
-PYF,French Polynesia (Fr.),Territory,,False
+PSE,West Bank and Gaza,Territory,Cisjordanie et Gaza,True
+PYF,French Polynesia (Fr.),Territory,Polynésie française (Fr.),True
 QAT,Qatar,Member State,Qatar,True
-REU,France,Member State,,False
+REU,France,Member State,France,True
 ROU,Romania,Member State,Roumanie,True
 RUS,Russian Federation,Member State,Russie,True
 RWA,Rwanda,Member State,Rwanda,True
-SAU,Saudi Arabia,Member State,Arabie Saoudite,True
+SAU,Saudi Arabia,Member State,Arabie saoudite,True
 SDN,Sudan,Member State,Soudan,True
 SEN,Senegal,Member State,Sénégal,True
 SGP,Singapore,Member State,Singapour,True
-SHN,"Saint Helena, Ascension and Tristan da Cunha (U.K.)",Territory,,False
-SJM,Svalbard and Jan Mayen (Nor.),Territory,,False
+SHN,"Saint Helena, Ascension and Tristan da Cunha (U.K.)",Territory,"Sainte-Hélène, Ascension et Tristan da Cunha (R.-U.)",True
+SJM,Svalbard and Jan Mayen (Nor.),Territory,Svalbard et Jan Mayen (Nor.),True
 SLB,Solomon Islands,Member State,Îles Salomon,True
 SLE,Sierra Leone,Member State,Sierra Leone,True
-SLV,El Salvador,Member State,El Salvador,True
-SMR,San Marino,Member State,,False
+SLV,El Salvador,Member State,Salvador,True
+SMR,San Marino,Member State,Saint-Marin,True
 SOM,Somalia,Member State,Somalie,True
-SPM,Saint-Pierre-et-Miquelon (Fr.),Territory,,False
+SPM,Saint-Pierre-et-Miquelon (Fr.),Territory,Saint-Pierre-et-Miquelon (Fr.),True
 SRB,Serbia,Member State,Serbie,True
 SSD,South Sudan,Member State,Soudan du Sud,True
 STP,São Tomé and Príncipe,Member State,Sao Tomé-et-Principe,True
 SUR,Suriname,Member State,Suriname,True
-SVK,Slovak Republic,Member State,Slovaquie,True
-SVN,Slovenia,Member State,,False
+SVK,Slovak Republic,Member State,République slovaque,True
+SVN,Slovenia,Member State,Slovénie,True
 SWE,Sweden,Member State,Suède,True
 SWZ,Eswatini,Member State,Eswatini,True
-SXM,Sint Maarten (Neth.),Territory,,False
+SXM,Sint Maarten (Neth.),Territory,Saint-Martin (P.-B.),True
 SYC,Seychelles,Member State,Seychelles,True
-SYR,Syrian Arab Republic,Member State,Syrie,True
-TCA,Turks and Caicos Islands (U.K.),Territory,,False
+SYR,Syrian Arab Republic,Member State,République arabe syrienne,True
+TCA,Turks and Caicos Islands (U.K.),Territory,Îles Turques-et-Caïques (R.-U.),True
 TCD,Chad,Member State,Tchad,True
 TGO,Togo,Member State,Togo,True
 THA,Thailand,Member State,Thaïlande,True
 TJK,Tajikistan,Member State,Tadjikistan,True
-TKL,Tokelau (N.Z.),Territory,,False
+TKL,Tokelau (N.Z.),Territory,Tokelau (N.-Z.),True
 TKM,Turkmenistan,Member State,Turkménistan,True
 TLS,Timor-Leste,Member State,Timor-Leste,True
-TON,Tonga,Member State,,False
+TON,Tonga,Member State,Tonga,True
 TTO,Trinidad and Tobago,Member State,Trinité-et-Tobago,True
 TUN,Tunisia,Member State,Tunisie,True
-TUR,Türkiye,Member State,Turquie,True
-TUV,Tuvalu,Member State,,False
+TUR,Türkiye,Member State,Türkiye,True
+TUV,Tuvalu,Member State,Tuvalu,True
+TWN,Taiwan,Supplemented,Taïwan,True
 TZA,Tanzania,Member State,Tanzanie,True
 UGA,Uganda,Member State,Ouganda,True
 UKR,Ukraine,Member State,Ukraine,True
-UMI,U.S. Minor Outlying Islands (U.S.),Territory,,False
+UMI,U.S. Minor Outlying Islands (U.S.),Territory,Îles mineures éloignées des États-Unis (É.-U.),True
 URY,Uruguay,Member State,Uruguay,True
-USA,United States of America,Member State,États-Unis,True
+USA,United States of America,Member State,États-Unis d'Amérique,True
 UZB,Uzbekistan,Member State,Ouzbékistan,True
-VAT,Vatican City,Non Member State,,False
+VAT,Vatican City,Non Member State,Cité du Vatican,True
 VCT,Saint Vincent and the Grenadines,Member State,Saint-Vincent-et-les-Grenadines,True
-VEN,Republica Bolivariana de Venezuela,Member State,Venezuela,True
-VGB,British Virgin Islands (U.K.),Territory,,False
-VIR,United States Virgin Islands (U.S.),Territory,,False
-VNM,Viet Nam,Member State,Vietnam,True
+VEN,Republica Bolivariana de Venezuela,Member State,République bolivarienne du Venezuela,True
+VGB,British Virgin Islands (U.K.),Territory,Îles Vierges britanniques (R.-U.),True
+VIR,United States Virgin Islands (U.S.),Territory,Îles Vierges des États-Unis (É.-U.),True
+VNM,Viet Nam,Member State,Viêt Nam,True
 VUT,Vanuatu,Member State,Vanuatu,True
-WLF,Wallis and Futuna (Fr.),Territory,,False
+WLF,Wallis and Futuna (Fr.),Territory,Wallis-et-Futuna (Fr.),True
 WSM,Samoa,Member State,Samoa,True
 XKX,Kosovo,Member State,Kosovo,True
-YEM,Republic of Yemen,Member State,Yémen,True
+YEM,Republic of Yemen,Member State,République du Yémen,True
 ZAF,South Africa,Member State,Afrique du Sud,True
 ZMB,Zambia,Member State,Zambie,True
 ZWE,Zimbabwe,Member State,Zimbabwe,True

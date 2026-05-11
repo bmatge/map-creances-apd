@@ -32,7 +32,7 @@
         }
       },
       "ARE": {
-        "country": "Émirats Arabes Unis",
+        "country": "Émirats arabes unis",
         "debtor": {
           "apd": 0,
           "napd": 1987000000,
@@ -188,7 +188,7 @@
         }
       },
       "CAF": {
-        "country": "Centrafrique",
+        "country": "République centrafricaine",
         "debtor": {
           "apd": 0,
           "napd": 1018273.13,
@@ -208,7 +208,7 @@
         }
       },
       "CHN": {
-        "country": "Chine",
+        "country": "République populaire de Chine",
         "debtor": {
           "apd": 7471000000,
           "napd": 494000000,
@@ -244,7 +244,7 @@
         }
       },
       "COD": {
-        "country": "RD Congo",
+        "country": "République démocratique du Congo",
         "debtor": {
           "apd": 57324432.02,
           "napd": 0,
@@ -254,7 +254,7 @@
         }
       },
       "COG": {
-        "country": "Congo",
+        "country": "République du Congo",
         "debtor": {
           "apd": 222768402.27,
           "napd": 278956498.34,
@@ -284,7 +284,7 @@
         }
       },
       "CPV": {
-        "country": "Cap-Vert",
+        "country": "Cabo Verde",
         "debtor": {
           "apd": 121036804.56,
           "napd": 49675364.87,
@@ -314,7 +314,7 @@
         }
       },
       "CZE": {
-        "country": "Rép. Tchèque",
+        "country": "République tchèque",
         "debtor": {
           "apd": 0,
           "napd": 17000000,
@@ -350,7 +350,7 @@
         }
       },
       "DOM": {
-        "country": "Rép. Dominicaine",
+        "country": "République dominicaine",
         "debtor": {
           "apd": 1647642173.33,
           "napd": 121586691.9,
@@ -380,7 +380,7 @@
         }
       },
       "EGY": {
-        "country": "Égypte",
+        "country": "République arabe d'Égypte",
         "debtor": {
           "apd": 6892930436.72,
           "napd": 4984791985.92,
@@ -480,7 +480,7 @@
         }
       },
       "GNQ": {
-        "country": "Guinée Équatoriale",
+        "country": "Guinée équatoriale",
         "debtor": {
           "apd": 0,
           "napd": 51190453.27,
@@ -592,7 +592,7 @@
         }
       },
       "IRN": {
-        "country": "Iran",
+        "country": "République islamique d'Iran",
         "debtor": {
           "apd": 3000000,
           "napd": 48000000,
@@ -602,7 +602,7 @@
         }
       },
       "IRQ": {
-        "country": "Irak",
+        "country": "Iraq",
         "debtor": {
           "apd": 5906932515.01,
           "napd": 2439161150.7,
@@ -652,7 +652,7 @@
         }
       },
       "KGZ": {
-        "country": "Kirghizistan",
+        "country": "République kirghize",
         "debtor": {
           "apd": 216979480.64,
           "napd": 21091087.85,
@@ -682,7 +682,7 @@
         }
       },
       "LAO": {
-        "country": "Laos",
+        "country": "République démocratique populaire lao",
         "debtor": {
           "apd": 455000000,
           "napd": 203000000,
@@ -1002,7 +1002,7 @@
         }
       },
       "PLW": {
-        "country": "Palau",
+        "country": "Palaos",
         "debtor": {
           "apd": 0,
           "napd": 6000000,
@@ -1012,7 +1012,7 @@
         }
       },
       "PNG": {
-        "country": "Papouasie-N.-Guinée",
+        "country": "Papouasie-Nouvelle-Guinée",
         "debtor": {
           "apd": 462239882.76,
           "napd": 1859600175.11,
@@ -1032,7 +1032,7 @@
         }
       },
       "PRK": {
-        "country": "Corée du Nord",
+        "country": "République populaire démocratique de Corée",
         "debtor": {
           "apd": 53000000,
           "napd": 1887000000,
@@ -1072,7 +1072,7 @@
         }
       },
       "SAU": {
-        "country": "Arabie Saoudite",
+        "country": "Arabie saoudite",
         "debtor": {
           "apd": 0,
           "napd": 517000000,
@@ -1118,7 +1118,7 @@
         }
       },
       "SLV": {
-        "country": "El Salvador",
+        "country": "Salvador",
         "debtor": {
           "apd": 421964520.88,
           "napd": 1510000,
@@ -1168,7 +1168,7 @@
         }
       },
       "SVK": {
-        "country": "Slovaquie",
+        "country": "République slovaque",
         "debtor": {
           "apd": 1000000,
           "napd": 0,
@@ -1198,7 +1198,7 @@
         }
       },
       "SYR": {
-        "country": "Syrie",
+        "country": "République arabe syrienne",
         "debtor": {
           "apd": 861000000,
           "napd": 248000000,
@@ -1294,7 +1294,7 @@
         }
       },
       "TUR": {
-        "country": "Turquie",
+        "country": "Türkiye",
         "debtor": {
           "apd": 3603853710.85,
           "napd": 686697202.36,
@@ -1364,7 +1364,7 @@
         }
       },
       "VEN": {
-        "country": "Venezuela",
+        "country": "République bolivarienne du Venezuela",
         "debtor": {
           "apd": 70000000,
           "napd": 8621000000,
@@ -1374,7 +1374,7 @@
         }
       },
       "VNM": {
-        "country": "Vietnam",
+        "country": "Viêt Nam",
         "debtor": {
           "apd": 12593029864.31,
           "napd": 864581967.62,
@@ -1414,7 +1414,7 @@
         }
       },
       "YEM": {
-        "country": "Yémen",
+        "country": "République du Yémen",
         "debtor": {
           "apd": 417080486.26,
           "napd": 1232898678.02,
@@ -1676,7 +1676,7 @@
         }
       },
       "USA": {
-        "country": "États-Unis",
+        "country": "États-Unis d'Amérique",
         "creditor": {
           "nbAccords": 364,
           "statut": null,

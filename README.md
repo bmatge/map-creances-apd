@@ -124,8 +124,9 @@ python3 processing/build_topojson.py
 
 Le script :
 1. télécharge `World Bank Official Boundaries - Admin 0.geojson` dans `downloads/wb_admin0.geojson` (cache local) ;
-2. corrige le double-encodage UTF-8 que la World Bank a laissé sur ~7 noms (ex. *"TÃ¼rkiye"* → *"Türkiye"*, *"CÃ´te d'Ivoire"* → *"Côte d'Ivoire"*) et écrit `downloads/wb_admin0_fixed.geojson` ;
-3. lance mapshaper pour ne garder que les colonnes utiles, fusionner les fragments d'un même ISO_A3 (ESP avait Ceuta + Melilla + Spain comme features distinctes) et simplifier les frontières à 1 % :
+2. télécharge Natural Earth 110m comme source de complément pour les 4 ISO que la World Bank omet pour raisons diplomatiques : `ATA` (Antarctique), `ESH` (Sahara occidental), `FLK` (îles Malouines), `TWN` (Taïwan) ;
+3. corrige le double-encodage UTF-8 que la World Bank a laissé sur ~7 noms (ex. *"TÃ¼rkiye"* → *"Türkiye"*, *"CÃ´te d'Ivoire"* → *"Côte d'Ivoire"*), greffe les polygones de complément, et écrit `downloads/wb_admin0_fixed.geojson` ;
+4. lance mapshaper pour ne garder que les colonnes utiles, fusionner les fragments d'un même ISO_A3 (ESP avait Ceuta + Melilla + Spain comme features distinctes) et simplifier les frontières à 1 % :
 
 ```bash
 mapshaper downloads/wb_admin0_fixed.geojson \
@@ -142,13 +143,13 @@ Le `-sort` priorise les features `Member State` avant les `Territory` partageant
 Colonnes conservées :
 - `NAM_0` : nom du pays/territoire en anglais. Pour les territoires/dépendances, le libellé inclut déjà la métropole entre parenthèses (*"Greenland (Den.)"*, *"Puerto Rico (U.S.)"*).
 - `ISO_A3` / `WB_A3` : codes pays (Kosovo arrive directement avec `XKX`, plus besoin de remap).
-- `WB_STATUS` (`Member State` / `Territory`) et `SOVEREIGN` : conservés pour usages futurs (filtrage, regroupement par métropole).
+- `WB_STATUS` (`Member State` / `Territory` / `Supplemented` pour les 4 ISO injectés depuis Natural Earth) et `SOVEREIGN` : conservés pour usages futurs (filtrage, regroupement par métropole).
 
-> Le GeoJSON ne contient pas de noms FR. La traduction française vient de `sources/countries.csv` (champs `name_fr` / `name_en`), maintenue manuellement et exposée par `data.json`.
+> Le GeoJSON ne contient pas de noms FR. La traduction française vient de `sources/countries.csv` (champ `name_fr`), maintenue manuellement et couvrant les 248 ISO du topojson. Les libellés FR suivent la convention WB (forme longue + suffixe parenthétique traduit : "(Dan.)", "(R.-U.)", "(É.-U.)", "(P.-B.)", "(N.-Z.)", "(Aus.)", "(Fr.)", "(Nor.)", "(Fin.)", "(Esp.)").
 
 ### Liste des pays
 
-Les pays présents dans `sources/countries.csv` sont un sous-ensemble des pays membres du FMI : ce sont ceux ayant eu au moins une ligne créditeur ou débiteur au Club de Paris entre 2010 et 2024. La couverture a été vérifiée : tous les pays du dataset ont un polygone correspondant dans le fond cartographique Banque Mondiale.
+`sources/countries.csv` couvre les 248 ISO du fond cartographique (un nom FR par polygone affiché). Parmi eux, ~181 ont au moins une ligne dans `creditors.csv` ou `debtors.csv` (pays APD) ; les autres sont des territoires/dépendances visuels uniquement.
 
 **Sources** :
 - [Banque Mondiale — Official Boundaries (Data Catalog)](https://datacatalog.worldbank.org/search/dataset/0038272/World-Bank-Official-Boundaries)

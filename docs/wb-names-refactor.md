@@ -78,9 +78,30 @@ python3 processing/build_data.py         # régénère data.json
 
 ## Points de friction connus
 
-- **Affichage hybride pour territoires non-APD** en mode FR : on voit "Greenland (Den.)" au lieu de "Groenland (Dan.)". Acceptable parce que ces territoires (~63) n'ont pas de données APD donc leur nom n'apparaît jamais ni en tooltip ni en panneau. Si on veut corriger un jour : enrichir `countries.csv` ou ajouter une table de suffixes territoriaux côté JS.
-- **Noms WB officiels longs** en EN qui pourraient déranger : "Lao People's Democratic Republic" au lieu de "Laos", "Republic of Yemen" au lieu de "Yemen", "Islamic Republic of Iran" au lieu de "Iran". 14 cas dans l'audit. Si gênant : créer un dict d'overrides côté frontend (~10 entrées) plutôt que d'éditer le pipeline mapshaper.
 - **Bug encoding source WB** : la World Bank publie le GeoJSON avec un double-encodage UTF-8 sur les caractères accentués. Le script Python le corrige ; à surveiller à chaque mise à jour amont.
+- **DOM-TOM français** (`MTQ`, `GLP`, `GUF`, `REU`, `MYT`) : dans le GeoJSON WB chacun a un ISO_A3 distinct mais leur `NAM_0` vaut tous "France" — la WB les a fusionnés sémantiquement avec la métropole. Cosmétique uniquement (ces ISO n'ont pas de données APD distinctes).
+
+## Compléments Natural Earth (WB-omissions politiques)
+
+La World Bank omet délibérément 4 ISO pour raisons diplomatiques. On les greffe depuis Natural Earth 110m via `processing/build_topojson.py` (cf. constante `SUPPLEMENT_ISOS`) :
+
+| ISO | Nom | Pourquoi WB l'omet |
+|---|---|---|
+| `ATA` | Antarctica / Antarctique | Pas un pays |
+| `ESH` | Western Sahara / Sahara occidental | Disputé (Maroc / Polisario) |
+| `FLK` | Falkland Islands / Îles Malouines | Disputé (UK / Argentine) |
+| `TWN` | Taiwan / Taïwan | Disputé (Chine) |
+
+Ces 4 features portent `WB_STATUS = "Supplemented"` dans le topojson pour les distinguer des features WB natives.
+
+**Méthode pour détecter de nouveaux trous lors d'un futur refresh WB** :
+```python
+# Diff ISO_A3 entre Natural Earth 110m et le topojson généré
+import json
+wb = {g['properties']['ISO_A3'] for g in json.load(open('wb_countries.topojson'))['objects']['countries']['geometries']}
+ne = {f['properties'].get('ISO_A3') for f in json.load(open('downloads/ne_admin0_110m.geojson'))['features']}
+print('Dans NE absents du topojson:', sorted(ne - wb - {'-99', None}))
+```
 
 ## Suites possibles
 
