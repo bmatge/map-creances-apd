@@ -60,7 +60,7 @@ En investiguant, deux problèmes côté pipeline mapshaper original :
 | `processing/build_topojson.py` | **Nouveau** (~80 lignes) — DL + fix encoding + mapshaper |
 | `processing/build_data.py` | `load_countries()` lit `NAM_0` du topojson pour les noms EN (fini la dépendance à `name_en` du CSV) |
 | `processing/export_wb_names.py` | **Nouveau** — audit `NAM_0` (topojson) vs `name_fr` (CSV) |
-| `sources/countries.csv` | Colonne `name_en` supprimée (devenue redondante) ; CSV passe à 2 colonnes `iso,name_fr` |
+| `sources/countries.csv` | Colonne `name_en` supprimée (devenue redondante) ; CSV passe à 2 colonnes `iso,name_fr` couvrant les 244 ISO du layer `countries` |
 | `sources/wb_country_names_audit.csv` | **Nouveau** — sortie de l'audit (244 ISO, colonnes `iso,name_en_wb,wb_status,name_fr_csv,in_apd_dataset`) |
 | `wb_countries.topojson` | Régénéré depuis le nouveau GeoJSON, 456 KB (vs 295 KB avant, simplification 1 % au lieu de 5 %) |
 | `index.html` | -90 lignes : suppression `COUNTRY_NAMES`, ajout `_wbNames` lu au load, `_isoToName` lit data.json en FR + topojson en EN |
@@ -81,29 +81,16 @@ python3 processing/build_data.py         # régénère data.json
 - **Bug encoding source WB** : la World Bank publie le GeoJSON avec un double-encodage UTF-8 sur les caractères accentués. Le script Python le corrige ; à surveiller à chaque mise à jour amont.
 - **DOM-TOM français** (`MTQ`, `GLP`, `GUF`, `REU`, `MYT`) : dans le GeoJSON WB chacun a un ISO_A3 distinct mais leur `NAM_0` vaut tous "France" — la WB les a fusionnés sémantiquement avec la métropole. Cosmétique uniquement (ces ISO n'ont pas de données APD distinctes).
 
-## Compléments Natural Earth (WB-omissions politiques)
+## Couche `land` en arrière-plan (Natural Earth)
 
-La World Bank omet délibérément 4 ISO pour raisons diplomatiques. On les greffe depuis Natural Earth 10m (résolution 1:10 millions, même précision que le shapefile WB Admin0_10m source — une résolution inférieure produirait un décalage visible des frontières) via `processing/build_topojson.py` (cf. constante `SUPPLEMENT_ISOS`) :
+La World Bank omet délibérément certains territoires (ATA Antarctique, ESH Sahara occidental, FLK îles Malouines, TWN Taïwan) pour raisons diplomatiques, et certaines zones administrativement floues (Abyei Soudan/Sud-Soudan, eaux territoriales, micro-bandes entre polygones WB qui ne se tilent pas parfaitement) restent en couleur "mer" si on rend uniquement le layer WB.
 
-| ISO | Nom | Pourquoi WB l'omet |
-|---|---|---|
-| `ATA` | Antarctica / Antarctique | Pas un pays |
-| `ESH` | Western Sahara / Sahara occidental | Disputé (Maroc / Polisario) |
-| `FLK` | Falkland Islands / Îles Malouines | Disputé (UK / Argentine) |
-| `TWN` | Taiwan / Taïwan | Disputé (Chine) |
+Plutôt que de greffer des polygones politiques contestables (essai antérieur via NE countries 10m : alignement imparfait et redondance avec la position éditoriale WB), on ajoute une **couche `land` neutre** depuis Natural Earth 10m (11 multipolygones du contour terrestre, sans aucun attribut politique, ~10 Mo source → ~33 Ko dans le topojson final).
 
-Ces 4 features portent `WB_STATUS = "Supplemented"` dans le topojson pour les distinguer des features WB natives.
-
-**Couche `land` en arrière-plan** : le topojson expose aussi un second layer `objects.land` (11 multipolygones du contour terrestre Natural Earth 10m, ~10 Mo source → ~33 Ko dans le topojson final). Le frontend le dessine en premier en couleur `DEFAULT_COLOR` (#e8c4b0) avant les polygones politiques. Effet : les zones administrativement floues (frontière Abyei Soudan/Sud-Soudan, micro-bandes entre polygones WB qui ne se tilent pas parfaitement, eaux territoriales contestées) reçoivent une couleur terre neutre au lieu d'apparaître en couleur mer.
-
-**Méthode pour détecter de nouveaux trous lors d'un futur refresh WB** :
-```python
-# Diff ISO_A3 entre Natural Earth 110m et le topojson généré
-import json
-wb = {g['properties']['ISO_A3'] for g in json.load(open('wb_countries.topojson'))['objects']['countries']['geometries']}
-ne = {f['properties'].get('ISO_A3') for f in json.load(open('downloads/ne_admin0_110m.geojson'))['features']}
-print('Dans NE absents du topojson:', sorted(ne - wb - {'-99', None}))
-```
+Le frontend la dessine en premier en couleur `DEFAULT_COLOR` (#e8c4b0) avant les polygones politiques WB, sans `pointer-events`. Conséquences :
+- Les zones omises par WB reçoivent la couleur "terre" (pas de tooltip, pas de clic) → carte visuellement complète.
+- Pas de prise de position politique : on dessine "il y a de la terre ici", pas "voici la frontière X".
+- Les micro-trous entre polygones WB sont comblés automatiquement.
 
 ## Suites possibles
 

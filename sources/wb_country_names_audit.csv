@@ -10,7 +10,6 @@ ARE,United Arab Emirates,Member State,Émirats arabes unis,True
 ARG,Argentina,Member State,Argentine,True
 ARM,Armenia,Member State,Arménie,True
 ASM,American Samoa (U.S.),Territory,Samoa américaines (É.-U.),True
-ATA,Antarctica,Supplemented,Antarctique,True
 ATF,French Southern and Antarctic Lands (Fr.),Territory,Terres australes et antarctiques françaises (Fr.),True
 ATG,Antigua and Barbuda,Member State,Antigua-et-Barbuda,True
 AUS,Australia,Member State,Australie,True
@@ -67,13 +66,11 @@ DZA,Algeria,Member State,Algérie,True
 ECU,Ecuador,Member State,Équateur,True
 EGY,Arab Republic of Egypt,Member State,République arabe d'Égypte,True
 ERI,Eritrea,Member State,Érythrée,True
-ESH,Western Sahara,Supplemented,Sahara occidental,True
 ESP,Spain,Member State,Espagne,True
 EST,Estonia,Member State,Estonie,True
 ETH,Ethiopia,Member State,Éthiopie,True
 FIN,Finland,Member State,Finlande,True
 FJI,Fiji,Member State,Fidji,True
-FLK,Falkland Islands,Supplemented,Îles Malouines,True
 FRA,France,Member State,France,True
 FRO,Faroe Islands (Den.),Territory,Îles Féroé (Dan.),True
 FSM,Federated States of Micronesia,Member State,États fédérés de Micronésie,True
@@ -225,7 +222,6 @@ TTO,Trinidad and Tobago,Member State,Trinité-et-Tobago,True
 TUN,Tunisia,Member State,Tunisie,True
 TUR,Türkiye,Member State,Türkiye,True
 TUV,Tuvalu,Member State,Tuvalu,True
-TWN,Taiwan,Supplemented,Taïwan,True
 TZA,Tanzania,Member State,Tanzanie,True
 UGA,Uganda,Member State,Ouganda,True
 UKR,Ukraine,Member State,Ukraine,True

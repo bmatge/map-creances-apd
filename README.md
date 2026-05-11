@@ -124,10 +124,9 @@ python3 processing/build_topojson.py
 
 Le script :
 1. télécharge `World Bank Official Boundaries - Admin 0.geojson` dans `downloads/wb_admin0.geojson` (cache local) ;
-2. télécharge Natural Earth 10m countries (même résolution 1:10 millions que le shapefile WB Admin0_10m source — indispensable pour que les frontières des polygones greffés s'alignent avec celles du WB après simplification) pour combler les 4 ISO que la World Bank omet pour raisons diplomatiques : `ATA` (Antarctique), `ESH` (Sahara occidental), `FLK` (îles Malouines), `TWN` (Taïwan) ;
-3. télécharge Natural Earth 10m land (le contour des masses terrestres, sans frontières politiques) qui sera dessiné en arrière-plan par le frontend pour combler visuellement les trous des zones disputées (Abyei, etc.) ;
-4. corrige le double-encodage UTF-8 que la World Bank a laissé sur ~7 noms (ex. *"TÃ¼rkiye"* → *"Türkiye"*, *"CÃ´te d'Ivoire"* → *"Côte d'Ivoire"*), greffe les polygones de complément, et écrit `downloads/wb_admin0_fixed.geojson` ;
-5. lance mapshaper avec deux entrées (countries + land) pour produire un topojson à deux couches :
+2. télécharge Natural Earth 10m land (contour des masses terrestres, sans frontières politiques) dessiné en arrière-plan par le frontend pour donner une couleur "terre" aux zones que la World Bank ne reconnaît pas (Sahara occidental, Taïwan, îles Malouines, Antarctique, Abyei, etc.) ;
+3. corrige le double-encodage UTF-8 que la World Bank a laissé sur ~7 noms (ex. *"TÃ¼rkiye"* → *"Türkiye"*, *"CÃ´te d'Ivoire"* → *"Côte d'Ivoire"*) et écrit `downloads/wb_admin0_fixed.geojson` ;
+4. lance mapshaper avec deux entrées (countries WB + land NE) pour produire un topojson à deux couches :
 
 ```bash
 mapshaper \
@@ -144,14 +143,16 @@ mapshaper \
 
 Le `-sort` priorise les features `Member State` avant les `Territory` partageant le même `ISO_A3`, sinon `dissolve2` aurait copié les attributs d'une enclave (Ceuta, Bonaire, Clipperton…) sur le polygone fusionné.
 
-Le topojson final expose deux couches : `objects.countries` (248 features cliquables avec attributs) et `objects.land` (11 multipolygones du contour terrestre, dessiné en fond par le frontend).
+Le topojson final expose deux couches : `objects.countries` (244 features cliquables avec attributs WB) et `objects.land` (11 multipolygones du contour terrestre Natural Earth, dessiné en fond par le frontend, sans interaction).
 
 Colonnes conservées (layer `countries`) :
 - `NAM_0` : nom du pays/territoire en anglais. Pour les territoires/dépendances, le libellé inclut déjà la métropole entre parenthèses (*"Greenland (Den.)"*, *"Puerto Rico (U.S.)"*).
 - `ISO_A3` / `WB_A3` : codes pays (Kosovo arrive directement avec `XKX`, plus besoin de remap).
-- `WB_STATUS` (`Member State` / `Territory` / `Supplemented` pour les 4 ISO injectés depuis Natural Earth) et `SOVEREIGN` : conservés pour usages futurs (filtrage, regroupement par métropole).
+- `WB_STATUS` (`Member State` / `Territory`) et `SOVEREIGN` : conservés pour usages futurs (filtrage, regroupement par métropole).
 
-> Le GeoJSON ne contient pas de noms FR. La traduction française vient de `sources/countries.csv` (champ `name_fr`), maintenue manuellement et couvrant les 248 ISO du topojson. Les libellés FR suivent la convention WB (forme longue + suffixe parenthétique traduit : "(Dan.)", "(R.-U.)", "(É.-U.)", "(P.-B.)", "(N.-Z.)", "(Aus.)", "(Fr.)", "(Nor.)", "(Fin.)", "(Esp.)").
+Les zones que le WB n'inclut pas (Sahara occidental, Taïwan, îles Malouines, Antarctique, frontière Abyei…) n'ont pas de polygone politique cliquable mais reçoivent la couleur "terre" via la couche `land` — la carte est ainsi visuellement complète sans prendre de position politique.
+
+> Le GeoJSON ne contient pas de noms FR. La traduction française vient de `sources/countries.csv` (champ `name_fr`), maintenue manuellement et couvrant les 244 ISO du layer `countries`. Les libellés FR suivent la convention WB (forme longue + suffixe parenthétique traduit : "(Dan.)", "(R.-U.)", "(É.-U.)", "(P.-B.)", "(N.-Z.)", "(Aus.)", "(Fr.)", "(Nor.)", "(Fin.)", "(Esp.)").
 
 ### Liste des pays
 

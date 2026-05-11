@@ -3,14 +3,15 @@
 Pipeline :
   1. Télécharge `World Bank Official Boundaries - Admin 0.geojson` (cache local
      dans `downloads/wb_admin0.geojson`).
-  2. Télécharge Natural Earth 110m comme source de complément pour les ISO que
-     la World Bank omet pour raisons diplomatiques (ATA, ESH, FLK, TWN).
+  2. Télécharge Natural Earth 10m land outline (`downloads/ne_10m_land.geojson`)
+     dessiné en arrière-plan par le frontend pour donner une couleur "terre"
+     aux zones que le WB ne reconnaît pas (Sahara, Taïwan, Malouines,
+     Antarctique, Abyei, etc.) sans tenter de leur donner un statut politique.
   3. Fixe le double-encodage UTF-8 dans le champ `NAM_0` (~7 noms cassés en
-     amont par la World Bank, ex. "TÃ¼rkiye" → "Türkiye") puis ajoute les
-     polygones de complément en réécrivant leurs attributs au schéma WB.
-  4. Écrit le tout dans `downloads/wb_admin0_fixed.geojson`.
-  5. Lance mapshaper pour filtrer les colonnes, simplifier (1%) et sortir
-     `wb_countries.topojson` à la racine du projet.
+     amont par la World Bank, ex. "TÃ¼rkiye" → "Türkiye").
+  4. Écrit la version corrigée dans `downloads/wb_admin0_fixed.geojson`.
+  5. Lance mapshaper avec deux entrées (countries + land) pour produire un
+     topojson à deux couches `objects.countries` et `objects.land`.
 
 Usage : python3 processing/build_topojson.py [--force-download]
 
@@ -27,7 +28,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DOWNLOADS = ROOT / 'downloads'
 RAW_GEOJSON = DOWNLOADS / 'wb_admin0.geojson'
-NE_GEOJSON = DOWNLOADS / 'ne_admin0_10m.geojson'
 NE_LAND_GEOJSON = DOWNLOADS / 'ne_10m_land.geojson'
 FIXED_GEOJSON = DOWNLOADS / 'wb_admin0_fixed.geojson'
 OUT_TOPOJSON = ROOT / 'wb_countries.topojson'
@@ -37,26 +37,14 @@ GEOJSON_URL = (
     'World%20Bank%20Official%20Boundaries%20(GeoJSON)/'
     'World%20Bank%20Official%20Boundaries%20-%20Admin%200.geojson'
 )
-# Natural Earth 10m has the same resolution as the World Bank Admin0_10m
-# source (both 1:10,000,000). Picking a coarser NE tier (50m, 110m) makes
-# the supplement polygons visibly misaligned with neighbouring WB borders.
-NE_URL = (
-    'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/'
-    'geojson/ne_10m_admin_0_countries.geojson'
-)
 # Land outline at 10m, drawn behind the country polygons as a neutral
-# backdrop to fill visual gaps in disputed/no-data zones (Abyei area,
-# unclaimed strips, narrow borders). 11 multipolygon features.
+# backdrop to fill visual gaps in disputed/no-data zones (Sahara, Taiwan,
+# Falkland Islands, Antarctica, Abyei area, narrow inter-polygon strips).
+# 11 multipolygon features.
 NE_LAND_URL = (
     'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/'
     'geojson/ne_10m_land.geojson'
 )
-
-# ISO codes World Bank omits for political reasons but ISO 3166 / Natural
-# Earth still tracks. We graft these from Natural Earth to avoid visible
-# holes on the map (Sahara, Falklands, Taiwan, Antarctica). Validate by
-# rerunning the diff against `ne_admin0_110m.geojson` after each WB refresh.
-SUPPLEMENT_ISOS = ('ATA', 'ESH', 'FLK', 'TWN')
 
 
 def _has_mapshaper():
@@ -75,32 +63,7 @@ def _download(url, target, force, label, size_hint):
 
 def download_geojson(force=False):
     _download(GEOJSON_URL, RAW_GEOJSON, force, 'World Bank Admin 0 GeoJSON', '~172 MB')
-    _download(NE_URL, NE_GEOJSON, force, 'Natural Earth 10m countries', '~13 MB')
     _download(NE_LAND_URL, NE_LAND_GEOJSON, force, 'Natural Earth 10m land outline', '~10 MB')
-
-
-def _collect_supplement_features():
-    """Extract ATA/ESH/FLK/TWN polygons from Natural Earth, mapped to WB schema."""
-    with NE_GEOJSON.open(encoding='utf-8') as f:
-        data = json.load(f)
-    out = []
-    for feat in data.get('features', []):
-        p = feat.get('properties') or {}
-        iso = p.get('ISO_A3')
-        if iso not in SUPPLEMENT_ISOS:
-            continue
-        out.append({
-            'type': 'Feature',
-            'properties': {
-                'ISO_A3': iso,
-                'WB_A3': iso,
-                'NAM_0': p.get('NAME_EN'),
-                'WB_STATUS': 'Supplemented',
-                'SOVEREIGN': '',
-            },
-            'geometry': feat.get('geometry'),
-        })
-    return out
 
 
 def _fix_double_utf8(s):
@@ -134,19 +97,6 @@ def prepare_geojson():
             props['NAM_0'] = new
             fixed += 1
     print(f'  patched {fixed} NAM_0 values')
-
-    supplements = _collect_supplement_features()
-    wb_isos = {(f.get('properties') or {}).get('ISO_A3') for f in data['features']}
-    grafted = []
-    for feat in supplements:
-        iso = feat['properties']['ISO_A3']
-        if iso in wb_isos:
-            print(f'  skipping supplement {iso}: already in WB dataset')
-            continue
-        data['features'].append(feat)
-        grafted.append(iso)
-    print(f'  grafted {len(grafted)} Natural Earth supplements: {", ".join(grafted) or "(none)"}')
-
     with FIXED_GEOJSON.open('w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False)
     print(f'  wrote {FIXED_GEOJSON.relative_to(ROOT)} ({FIXED_GEOJSON.stat().st_size:,} bytes)')
