@@ -28,6 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DOWNLOADS = ROOT / 'downloads'
 RAW_GEOJSON = DOWNLOADS / 'wb_admin0.geojson'
 NE_GEOJSON = DOWNLOADS / 'ne_admin0_10m.geojson'
+NE_LAND_GEOJSON = DOWNLOADS / 'ne_10m_land.geojson'
 FIXED_GEOJSON = DOWNLOADS / 'wb_admin0_fixed.geojson'
 OUT_TOPOJSON = ROOT / 'wb_countries.topojson'
 
@@ -42,6 +43,13 @@ GEOJSON_URL = (
 NE_URL = (
     'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/'
     'geojson/ne_10m_admin_0_countries.geojson'
+)
+# Land outline at 10m, drawn behind the country polygons as a neutral
+# backdrop to fill visual gaps in disputed/no-data zones (Abyei area,
+# unclaimed strips, narrow borders). 11 multipolygon features.
+NE_LAND_URL = (
+    'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/'
+    'geojson/ne_10m_land.geojson'
 )
 
 # ISO codes World Bank omits for political reasons but ISO 3166 / Natural
@@ -68,6 +76,7 @@ def _download(url, target, force, label, size_hint):
 def download_geojson(force=False):
     _download(GEOJSON_URL, RAW_GEOJSON, force, 'World Bank Admin 0 GeoJSON', '~172 MB')
     _download(NE_URL, NE_GEOJSON, force, 'Natural Earth 10m countries', '~13 MB')
+    _download(NE_LAND_URL, NE_LAND_GEOJSON, force, 'Natural Earth 10m land outline', '~10 MB')
 
 
 def _collect_supplement_features():
@@ -148,7 +157,7 @@ def run_mapshaper():
         sys.exit('error: mapshaper not found in PATH. Install with: npm install -g mapshaper')
     cmd = [
         'mapshaper',
-        str(FIXED_GEOJSON),
+        '-i', str(FIXED_GEOJSON), 'name=countries',
         '-filter-fields', 'ISO_A3,WB_A3,NAM_0,WB_STATUS,SOVEREIGN',
         # Member State features ahead of Territory features sharing the same
         # ISO_A3 (Spain, GBR, France, Australia have territory enclaves with
@@ -156,8 +165,12 @@ def run_mapshaper():
         '-sort', 'WB_STATUS === "Member State" ? 0 : 1',
         '-dissolve2', 'ISO_A3', 'copy-fields=ISO_A3,WB_A3,NAM_0,WB_STATUS,SOVEREIGN',
         '-simplify', '1%', 'keep-shapes',
-        '-rename-layers', 'countries',
-        '-o', 'format=topojson', str(OUT_TOPOJSON),
+        # Second input: Natural Earth land outline as a neutral backdrop.
+        # `combine-layers` on -o packs both layers into a single topojson.
+        '-i', str(NE_LAND_GEOJSON), 'name=land',
+        '-filter-fields', 'featurecla',
+        '-simplify', '1%', 'keep-shapes',
+        '-o', 'format=topojson', 'combine-layers', str(OUT_TOPOJSON),
     ]
     print('Running:', ' '.join(cmd))
     subprocess.run(cmd, check=True)

@@ -565,6 +565,9 @@ class ClubParisMap extends HTMLElement {
     this._data = await dataResp.json();
     const topo = await topoResp.json();
     this._geojson = topojson.feature(topo, topo.objects.countries);
+    this._landGeojson = topo.objects.land
+      ? topojson.feature(topo, topo.objects.land)
+      : null;
     this._wbNames = {};
     for (const f of this._geojson.features) {
       const p = f.properties || {};
@@ -634,7 +637,19 @@ class ClubParisMap extends HTMLElement {
     svg.call(this._zoom);
 
     const self = this;
-    g.selectAll('path')
+    // Land backdrop drawn behind the country polygons. Fills gaps in disputed
+    // zones (Abyei, etc.) and around WB polygons that don't perfectly tile.
+    if (this._landGeojson) {
+      g.selectAll('path.land')
+        .data(this._landGeojson.features)
+        .join('path')
+        .attr('class', 'land')
+        .attr('d', this._pathGen)
+        .attr('fill', ClubParisMap.DEFAULT_COLOR)
+        .attr('stroke', 'none')
+        .attr('pointer-events', 'none');
+    }
+    g.selectAll('path.country')
       .data(this._geojson.features)
       .join('path')
       .attr('d', this._pathGen)
@@ -688,6 +703,7 @@ class ClubParisMap extends HTMLElement {
     this._pathGen = d3.geoPath().projection(this._projection);
 
     this._svg.attr('width', w).attr('height', h);
+    this._g.selectAll('path.land').attr('d', this._pathGen);
     this._g.selectAll('path.country').attr('d', this._pathGen);
 
     this._svg.call(this._zoom.transform, d3.zoomIdentity);

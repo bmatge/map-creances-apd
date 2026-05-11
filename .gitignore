@@ -33,8 +33,9 @@ npm-debug.log*
 *.xls
 
 # Build cache for processing/build_topojson.py (raw + encoding-fixed
-# WB GeoJSONs ~170 MB each + Natural Earth 10m supplement ~13 MB, all
-# regeneratable from upstream URLs)
+# WB GeoJSONs ~170 MB each + Natural Earth 10m countries ~13 MB + 10m land
+# ~10 MB, all regeneratable from upstream URLs)
 downloads/wb_admin0.geojson
 downloads/wb_admin0_fixed.geojson
 downloads/ne_admin0_10m.geojson
+downloads/ne_10m_land.geojson

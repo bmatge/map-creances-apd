@@ -94,6 +94,8 @@ La World Bank omet délibérément 4 ISO pour raisons diplomatiques. On les gref
 
 Ces 4 features portent `WB_STATUS = "Supplemented"` dans le topojson pour les distinguer des features WB natives.
 
+**Couche `land` en arrière-plan** : le topojson expose aussi un second layer `objects.land` (11 multipolygones du contour terrestre Natural Earth 10m, ~10 Mo source → ~33 Ko dans le topojson final). Le frontend le dessine en premier en couleur `DEFAULT_COLOR` (#e8c4b0) avant les polygones politiques. Effet : les zones administrativement floues (frontière Abyei Soudan/Sud-Soudan, micro-bandes entre polygones WB qui ne se tilent pas parfaitement, eaux territoriales contestées) reçoivent une couleur terre neutre au lieu d'apparaître en couleur mer.
+
 **Méthode pour détecter de nouveaux trous lors d'un futur refresh WB** :
 ```python
 # Diff ISO_A3 entre Natural Earth 110m et le topojson généré
