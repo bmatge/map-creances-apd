@@ -585,6 +585,9 @@ class ClubParisMap extends HTMLElement {
     const defs = svg.append('defs');
 
     const C = ClubParisMap;
+
+    // Continuous diagonal stripes (used for creditors — bandes blanches
+    // entières sur fond bleu, distinguées par la largeur des bandes).
     const mkStripes = (id, bg, stripeColor, stripeWidth, period, angle) => {
       const p = defs.append('pattern').attr('id', id)
         .attr('patternUnits', 'userSpaceOnUse')
@@ -595,19 +598,36 @@ class ClubParisMap extends HTMLElement {
       return p;
     };
 
-    // Creditors — diagonale \ (angle 45°), bandes blanches sur fond bleu.
-    // Permanent : hachures fines. Ad hoc : hachures medium. Prospectif : hachures épaisses.
-    mkStripes('pattern-creditor-permanent',   C.CREDITOR_PERMANENT_COLOR,   '#ffffff', 1.5, 8, 45);
-    mkStripes('pattern-creditor-adhoc',       C.CREDITOR_ADHOC_COLOR,       '#ffffff', 3.0, 8, 45);
-    mkStripes('pattern-creditor-prospective', C.CREDITOR_PROSPECTIVE_COLOR, '#ffffff', 5.0, 10, 45);
+    // Dashed pattern (used for debtors and no-data — petits tirets dispersés,
+    // pas des lignes continues). Deux tirets en quinconce par cellule pour un
+    // rendu plus dense visuellement.
+    const mkDashes = (id, bg, dashColor, dashWidth, dashHeight, period, angle) => {
+      const p = defs.append('pattern').attr('id', id)
+        .attr('patternUnits', 'userSpaceOnUse')
+        .attr('width', period).attr('height', period)
+        .attr('patternTransform', `rotate(${angle})`);
+      p.append('rect').attr('width', period).attr('height', period).attr('fill', bg);
+      p.append('rect').attr('x', period * 0.15).attr('y', period * 0.10)
+        .attr('width', dashWidth).attr('height', dashHeight).attr('fill', dashColor);
+      p.append('rect').attr('x', period * 0.65).attr('y', period * 0.55)
+        .attr('width', dashWidth).attr('height', dashHeight).attr('fill', dashColor);
+      return p;
+    };
 
-    // Debtors — diagonale / (angle -45°), bandes blanches ESPACÉES sur fond jaune.
-    // Traité : hachures fines espacées. Encours : hachures épaisses espacées.
-    mkStripes('pattern-debtor-accord',  C.DEBTOR_ACCORD_COLOR,  '#ffffff', 1.5, 12, -45);
-    mkStripes('pattern-debtor-encours', C.DEBTOR_ENCOURS_COLOR, '#ffffff', 3.0, 12, -45);
+    // Creditors — fond bleu uni + bandes blanches continues \ (rotate 45°).
+    // Distinction : largeur des bandes blanches (fin / medium / épais).
+    mkStripes('pattern-creditor-permanent',   C.CREDITOR_PERMANENT_COLOR,   '#ffffff', 2,  12, 45);
+    mkStripes('pattern-creditor-adhoc',       C.CREDITOR_ADHOC_COLOR,       '#ffffff', 4,  12, 45);
+    mkStripes('pattern-creditor-prospective', C.CREDITOR_PROSPECTIVE_COLOR, '#ffffff', 6,  14, 45);
 
-    // No-data — fond saumon (couche `land` underneath), hachures fines #4d84bc \.
-    mkStripes('pattern-no-data', C.DEFAULT_COLOR, C.CREDITOR_PERMANENT_COLOR, 1.0, 10, 45);
+    // Debtors — fond jaune + petits tirets blancs pointillés / (rotate -45°).
+    // Distinction : épaisseur des tirets (fin / épais).
+    mkDashes('pattern-debtor-accord',  C.DEBTOR_ACCORD_COLOR,  '#ffffff', 1.4, 4, 10, -45);
+    mkDashes('pattern-debtor-encours', C.DEBTOR_ENCOURS_COLOR, '#ffffff', 2.8, 4, 10, -45);
+
+    // Pays non traité par le Club — fond blanc + petits tirets bleus \.
+    // S'applique aussi à la couche `land` (territoires hors WB / disputés).
+    mkDashes('pattern-no-data', '#ffffff', C.CREDITOR_PERMANENT_COLOR, 1.0, 3.5, 10, 45);
 
     // Selection overlay: semi-transparent cross-hatching
     const pSel = defs.append('pattern').attr('id','pattern-selection')
@@ -631,7 +651,7 @@ class ClubParisMap extends HTMLElement {
         .join('path')
         .attr('class', 'land')
         .attr('d', this._pathGen)
-        .attr('fill', ClubParisMap.DEFAULT_COLOR)
+        .attr('fill', 'url(#pattern-no-data)')
         .attr('stroke', 'none')
         .attr('pointer-events', 'none');
     }
@@ -1428,26 +1448,30 @@ class ClubParisMap extends HTMLElement {
       }
 
       /* Render mode toggle — compact segmented control next to the legend */
-      /* Legend — charte hybride (couleur de fond + hachures) en miroir des
-         SVG <pattern> rendus sur la carte. Les valeurs numériques (width,
-         stripe, gap, angle) doivent rester synchrones avec mkStripes(). */
+      /* Legend — charte hybride (couleur de fond + hachures/pointillés) en
+         miroir des SVG <pattern> rendus sur la carte. Les valeurs ci-dessous
+         doivent rester synchrones avec les appels mkStripes / mkDashes côté JS. */
       .legend-bar { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
       .legend-item { display: flex; align-items: center; gap: 0.3rem; }
-      .legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(15,23,42,0.25); }
+      .legend-swatch { width: 18px; height: 18px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(15,23,42,0.25); background-repeat: repeat; background-size: 12px 12px; background-position: 0 0; }
+      /* Creditors — bandes blanches continues diagonal \ sur fond bleu. */
       .legend-swatch-creditor-permanent {
-        background: repeating-linear-gradient(45deg, #ffffff 0 1.5px, #4d84bc 1.5px 8px);
+        background: repeating-linear-gradient(45deg, #4d84bc 0 10px, #ffffff 10px 12px);
       }
       .legend-swatch-creditor-adhoc {
-        background: repeating-linear-gradient(45deg, #ffffff 0 3px, #4d84bc 3px 8px);
+        background: repeating-linear-gradient(45deg, #4d84bc 0 8px, #ffffff 8px 12px);
       }
       .legend-swatch-creditor-prospective {
-        background: repeating-linear-gradient(45deg, #ffffff 0 5px, #7fa9d1 5px 10px);
+        background: repeating-linear-gradient(45deg, #7fa9d1 0 8px, #ffffff 8px 14px);
       }
+      /* Debtors — petits tirets blancs (segments courts) diagonal / sur fond jaune. */
       .legend-swatch-debtor-accord {
-        background: repeating-linear-gradient(-45deg, #ffffff 0 1.5px, #fee090 1.5px 12px);
+        background-color: #fee090;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><g transform='rotate(-45 5 5)'><rect x='1.5' y='1' width='1.4' height='4' fill='%23ffffff'/><rect x='6.5' y='5.5' width='1.4' height='4' fill='%23ffffff'/></g></svg>");
       }
       .legend-swatch-debtor-encours {
-        background: repeating-linear-gradient(-45deg, #ffffff 0 3px, #fee090 3px 12px);
+        background-color: #fee090;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><g transform='rotate(-45 5 5)'><rect x='1.5' y='1' width='2.8' height='4' fill='%23ffffff'/><rect x='6.5' y='5.5' width='2.8' height='4' fill='%23ffffff'/></g></svg>");
       }
       .legend-text { font-size: 0.68rem; color: #475569; }
 
